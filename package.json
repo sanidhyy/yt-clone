@@ -1,39 +1,46 @@
 {
-  "name": "yt-clone",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@radix-ui/react-slot": "^1.1.2",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "lucide-react": "^0.475.0",
-    "next": "15.1.7",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.0.1",
-    "tailwindcss-animate": "^1.0.7"
-  },
-  "devDependencies": {
-    "@babel/eslint-parser": "^7.26.8",
-    "@eslint/eslintrc": "^3",
-    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.1.7",
-    "eslint-config-prettier": "^10.0.1",
-    "eslint-plugin-prettier": "^5.2.3",
-    "postcss": "^8",
-    "prettier": "^3.5.1",
-    "prettier-plugin-tailwindcss": "^0.6.11",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
-  }
+	"name": "yt-clone",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"lint:fix": "next lint --fix",
+		"format": "prettier --check .",
+		"format:fix": "prettier --write ."
+	},
+	"dependencies": {
+		"@radix-ui/react-slot": "^1.1.2",
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1",
+		"lucide-react": "^0.475.0",
+		"next": "15.1.7",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"tailwind-merge": "^3.0.1",
+		"tailwindcss-animate": "^1.0.7"
+	},
+	"devDependencies": {
+		"@babel/eslint-parser": "^7.26.8",
+		"@eslint/eslintrc": "^3",
+		"@ianvs/prettier-plugin-sort-imports": "^4.4.1",
+		"@trivago/prettier-plugin-sort-imports": "^5.2.2",
+		"@types/node": "^20",
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
+		"eslint": "^9",
+		"eslint-config-next": "15.1.7",
+		"eslint-config-prettier": "^10.0.1",
+		"eslint-plugin-prettier": "^5.2.3",
+		"eslint-plugin-tailwindcss": "^3.18.0",
+		"postcss": "^8",
+		"prettier": "^3.5.1",
+		"prettier-plugin-tailwindcss": "^0.6.11",
+		"sort-classes": "npm:prettier-plugin-tailwindcss",
+		"tailwindcss": "^3.4.1",
+		"tidy-imports": "npm:@trivago/prettier-plugin-sort-imports",
+		"typescript": "^5"
+	}
 }
