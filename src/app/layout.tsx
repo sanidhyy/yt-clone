@@ -1,19 +1,11 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono as GeistMono } from 'next/font/google';
+import { Inter } from 'next/font/google';
 
 import { cn } from '@/lib/utils';
 
 import './globals.css';
 
-const geistSans = Geist({
-	subsets: ['latin'],
-	variable: '--font-geist-sans',
-});
-
-const geistMono = GeistMono({
-	subsets: ['latin'],
-	variable: '--font-geist-mono',
-});
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
 	description: 'Full-Stack YouTube Clone using Next.js',
@@ -27,7 +19,7 @@ const RootLayout = ({
 }>) => {
 	return (
 		<html lang='en'>
-			<body className={cn('antialiased', geistSans.variable, geistMono.variable)}>{children}</body>
+			<body className={cn('antialiased', inter.className)}>{children}</body>
 		</html>
 	);
 };
