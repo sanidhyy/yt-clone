@@ -10,10 +10,15 @@
 		"lint": "next lint",
 		"lint:fix": "next lint --fix",
 		"format": "prettier --check .",
-		"format:fix": "prettier --write ."
+		"format:fix": "prettier --write .",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate": "drizzle-kit migrate",
+		"db:studio": "drizzle-kit studio",
+		"postinstall": "drizzle-kit generate"
 	},
 	"dependencies": {
 		"@clerk/nextjs": "^6.22.0",
+		"@neondatabase/serverless": "^1.0.1",
 		"@radix-ui/react-dialog": "^1.1.14",
 		"@radix-ui/react-separator": "^1.1.7",
 		"@radix-ui/react-slot": "^1.2.3",
@@ -21,6 +26,8 @@
 		"@t3-oss/env-nextjs": "^0.13.8",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
+		"dotenv": "^16.5.0",
+		"drizzle-orm": "^0.44.2",
 		"jiti": "^2.4.2",
 		"lucide-react": "^0.515.0",
 		"next": "15.1.7",
@@ -38,6 +45,7 @@
 		"@types/node": "^20",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
+		"drizzle-kit": "^0.31.1",
 		"eslint": "^9",
 		"eslint-config-next": "15.1.7",
 		"eslint-config-prettier": "^10.0.1",
