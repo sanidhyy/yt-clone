@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 
 import { HomeNavbar } from '@/modules/home/ui/components/home-navbar';
 import { HomeSidebar } from '@/modules/home/ui/components/home-sidebar';
