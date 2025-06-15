@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 
+import { useAuth, useClerk } from '@clerk/nextjs';
 import { FlameIcon, HomeIcon, PlaySquareIcon } from 'lucide-react';
 
 import {
@@ -32,17 +33,25 @@ const NAV_ITEMS = [
 ];
 
 export const MainSection = () => {
+	const { isSignedIn } = useAuth();
+	const clerk = useClerk();
+
 	return (
 		<SidebarGroup>
 			<SidebarGroupContent>
 				<SidebarMenu>
-					{NAV_ITEMS.map(({ icon: Icon, title, url }) => (
+					{NAV_ITEMS.map(({ auth, icon: Icon, title, url }) => (
 						<SidebarMenuItem key={url}>
 							<SidebarMenuButton
 								tooltip={title}
 								asChild
 								isActive={false} // TODO: Change to look at current pathname
-								onClick={() => {}} // TODO: Implement on click functionality
+								onClick={(e) => {
+									if (!isSignedIn && auth) {
+										e.preventDefault();
+										return clerk.openSignIn();
+									}
+								}}
 							>
 								<Link href={url} className='flex items-center gap-4'>
 									<Icon />

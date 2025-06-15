@@ -20,7 +20,7 @@ const RootLayout = ({
 	children: React.ReactNode;
 }>) => {
 	return (
-		<ClerkProvider>
+		<ClerkProvider afterSignOutUrl='/'>
 			<html lang='en'>
 				<body className={cn('antialiased', inter.className)}>{children}</body>
 			</html>
