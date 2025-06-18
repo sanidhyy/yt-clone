@@ -19,6 +19,12 @@ const nextConfig = {
 			{
 				hostname: 'lh3.googleusercontent.com',
 				pathname: '/a/**',
+				port: '',
+				protocol: 'https',
+			},
+			{
+				hostname: 'img.clerk.com',
+				port: '',
 				protocol: 'https',
 			},
 		],
