@@ -7,6 +7,8 @@ import { cn } from '@/lib/utils';
 
 import './globals.css';
 
+import { TRPCProvider } from '@/trpc/client';
+
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
@@ -22,7 +24,9 @@ const RootLayout = ({
 	return (
 		<ClerkProvider afterSignOutUrl='/'>
 			<html lang='en'>
-				<body className={cn('antialiased', inter.className)}>{children}</body>
+				<body className={cn('antialiased', inter.className)}>
+					<TRPCProvider>{children}</TRPCProvider>
+				</body>
 			</html>
 		</ClerkProvider>
 	);
