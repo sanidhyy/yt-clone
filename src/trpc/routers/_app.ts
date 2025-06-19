@@ -1,21 +1,9 @@
-import { z } from 'zod';
+import { categoriesRouter } from '@/modules/categories/server/procedures';
 
-import { createTRPCRouter, protectedProcedure } from '@/trpc/init';
+import { createTRPCRouter } from '@/trpc/init';
 
 export const appRouter = createTRPCRouter({
-	hello: protectedProcedure
-		.input(
-			z.object({
-				text: z.string(),
-			})
-		)
-		.query((opts) => {
-			console.log({ userId: opts.ctx.user });
-
-			return {
-				greeting: `hello ${opts.input.text}`,
-			};
-		}),
+	categories: categoriesRouter,
 });
 
 export type AppRouter = typeof appRouter;
