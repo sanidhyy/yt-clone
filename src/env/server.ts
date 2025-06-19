@@ -21,5 +21,7 @@ export const env = createEnv({
 		CLERK_WEBHOOK_SECRET: z.string().min(1),
 		DATABASE_URL: z.string().url(),
 		NODE_ENV: z.enum(['development', 'production', 'test']).default('development').optional(),
+		UPSTASH_REDIS_REST_TOKEN: z.string().min(1),
+		UPSTASH_REDIS_REST_URL: z.string().url(),
 	},
 });

@@ -22,6 +22,10 @@ declare global {
 
 			// neon db uri
 			DATABASE_URL: string;
+
+			// upstash redis url and token
+			UPSTASH_REDIS_REST_URL: string;
+			UPSTASH_REDIS_REST_TOKEN: string;
 		}
 	}
 }
