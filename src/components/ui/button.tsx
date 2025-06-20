@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { Loader2Icon } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 
@@ -35,12 +36,26 @@ export interface ButtonProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement>,
 		VariantProps<typeof buttonVariants> {
 	asChild?: boolean;
+	isLoading?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-	({ className, variant, size, asChild = false, ...props }, ref) => {
+	({ children, className, variant, size, asChild = false, isLoading = false, ...props }, ref) => {
 		const Comp = asChild ? Slot : 'button';
-		return <Comp className={cn(buttonVariants({ className, size, variant }))} ref={ref} {...props} />;
+
+		return (
+			<Comp
+				className={cn(
+					buttonVariants({ className, size, variant }),
+					isLoading && "[&_svg:not([class*='animate-'])]:hidden"
+				)}
+				ref={ref}
+				{...props}
+			>
+				{isLoading && <Loader2Icon className='size-4 animate-spin' aria-label='Loading...' strokeWidth={2.5} />}
+				{children}
+			</Comp>
+		);
 	}
 );
 Button.displayName = 'Button';
