@@ -1,0 +1,2 @@
+ALTER TABLE "video" ADD COLUMN "category_id" uuid;--> statement-breakpoint
+ALTER TABLE "video" ADD CONSTRAINT "video_category_id_category_id_fk" FOREIGN KEY ("category_id") REFERENCES "public"."category"("id") ON DELETE set null ON UPDATE no action;
