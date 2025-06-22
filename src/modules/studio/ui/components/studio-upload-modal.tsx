@@ -3,6 +3,7 @@
 import { PlusIcon } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
+import { ResponsiveModal } from '@/components/responsive-modal';
 import { Button } from '@/components/ui/button';
 import { trpc } from '@/trpc/client';
 
@@ -19,14 +20,25 @@ export const StudioUploadModal = () => {
 	});
 
 	return (
-		<Button
-			variant='secondary'
-			disabled={create.isPending}
-			isLoading={create.isPending}
-			onClick={() => create.mutate()}
-		>
-			<PlusIcon />
-			Create
-		</Button>
+		<>
+			<ResponsiveModal
+				title='Upload a video'
+				description='Upload a video to your studio'
+				open={!!create.data}
+				onOpenChange={() => create.reset()}
+			>
+				<p>This will be an uploader.</p>
+			</ResponsiveModal>
+
+			<Button
+				variant='secondary'
+				disabled={create.isPending}
+				isLoading={create.isPending}
+				onClick={() => create.mutate()}
+			>
+				<PlusIcon />
+				Create
+			</Button>
+		</>
 	);
 };
