@@ -20,6 +20,8 @@ export const env = createEnv({
 		CLERK_SECRET_KEY: z.string().min(1),
 		CLERK_WEBHOOK_SECRET: z.string().min(1),
 		DATABASE_URL: z.string().url(),
+		MUX_TOKEN_ID: z.string().min(1),
+		MUX_TOKEN_SECRET: z.string().min(1),
 		NODE_ENV: z.enum(['development', 'production', 'test']).default('development').optional(),
 		UPSTASH_REDIS_REST_TOKEN: z.string().min(1),
 		UPSTASH_REDIS_REST_URL: z.string().url(),
