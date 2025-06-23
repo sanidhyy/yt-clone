@@ -1,7 +1,7 @@
 /* eslint-disable sort-keys */
 
 import { relations } from 'drizzle-orm';
-import { pgTable, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core';
+import { integer, pgTable, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core';
 
 export const enumToPgEnum = <T extends Record<string, unknown>>(myEnum: T): [T[keyof T], ...T[keyof T][]] => {
 	return Object.values(myEnum).map((value: unknown) => `${value}`) as never;
@@ -65,6 +65,7 @@ export const videos = pgTable('video', {
 	description: text('description'),
 	thumbnailUrl: text('thumbnail_url'),
 	previewUrl: text('preview_url'),
+	duration: integer('duration'),
 
 	muxStatus: text('mux_status', { enum: enumToPgEnum(MuxStatus) }),
 	muxAssetId: text('mux_asset_id').unique(),

@@ -78,9 +78,12 @@ export const POST = async (req: NextRequest) => {
 			const previewUrl = `${envClient.NEXT_PUBLIC_MUX_IMAGE_BASE_URL}/${playbackId}/animated.gif`;
 			const thumbnailUrl = `${envClient.NEXT_PUBLIC_MUX_IMAGE_BASE_URL}/${playbackId}/thumbnail.jpg`;
 
+			const duration = data.duration ? Math.round(data.duration * 1000) : 0;
+
 			await db
 				.update(videos)
 				.set({
+					duration,
 					muxAssetId: data.id,
 					muxPlaybackId: playbackId,
 					muxStatus: Object.values(MuxStatus).includes(data.status as MuxStatus)
