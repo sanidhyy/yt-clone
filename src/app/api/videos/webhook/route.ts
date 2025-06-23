@@ -1,5 +1,5 @@
 import { headers } from 'next/headers';
-import { NextResponse, type NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 import {
 	VideoAssetCreatedWebhookEvent,
@@ -12,6 +12,7 @@ import { eq } from 'drizzle-orm';
 import { BAD_REQUEST, NOT_FOUND, OK } from '@/config/http-status-codes';
 import { db } from '@/db';
 import { MuxStatus, videos } from '@/db/schema';
+import { env as envClient } from '@/env/client';
 import { env } from '@/env/server';
 import { mux } from '@/lib/mux';
 
@@ -58,6 +59,35 @@ export const POST = async (req: NextRequest) => {
 					muxStatus: Object.values(MuxStatus).includes(data.status as MuxStatus)
 						? (data.status as MuxStatus)
 						: MuxStatus.CANCELLED,
+				})
+				.where(eq(videos.muxUploadId, data.upload_id));
+
+			break;
+		}
+		case 'video.asset.ready': {
+			const data = payload.data as VideoAssetReadyWebhookEvent['data'];
+			if (!data.upload_id) {
+				return new NextResponse('No upload id found!', { status: NOT_FOUND });
+			}
+
+			const playbackId = data.playback_ids?.[0].id;
+			if (!playbackId) {
+				return new NextResponse('No playback id found!', { status: NOT_FOUND });
+			}
+
+			const previewUrl = `${envClient.NEXT_PUBLIC_MUX_IMAGE_BASE_URL}/${playbackId}/animated.gif`;
+			const thumbnailUrl = `${envClient.NEXT_PUBLIC_MUX_IMAGE_BASE_URL}/${playbackId}/thumbnail.jpg`;
+
+			await db
+				.update(videos)
+				.set({
+					muxAssetId: data.id,
+					muxPlaybackId: playbackId,
+					muxStatus: Object.values(MuxStatus).includes(data.status as MuxStatus)
+						? (data.status as MuxStatus)
+						: MuxStatus.CANCELLED,
+					previewUrl,
+					thumbnailUrl,
 				})
 				.where(eq(videos.muxUploadId, data.upload_id));
 

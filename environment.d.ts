@@ -27,6 +27,9 @@ declare global {
 			UPSTASH_REDIS_REST_URL: string;
 			UPSTASH_REDIS_REST_TOKEN: string;
 
+			// mux image base url
+			NEXT_PUBLIC_MUX_IMAGE_BASE_URL: string;
+
 			// mux token and webhook secret
 			MUX_TOKEN_ID: string;
 			MUX_TOKEN_SECRET: string;

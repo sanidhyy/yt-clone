@@ -27,6 +27,11 @@ const nextConfig = {
 				port: '',
 				protocol: 'https',
 			},
+			{
+				hostname: 'image.mux.com',
+				port: '',
+				protocol: 'https',
+			},
 		],
 	},
 };

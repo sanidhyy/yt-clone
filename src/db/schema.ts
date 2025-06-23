@@ -63,6 +63,8 @@ export const videos = pgTable('video', {
 
 	title: text('title').notNull(),
 	description: text('description'),
+	thumbnailUrl: text('thumbnail_url'),
+	previewUrl: text('preview_url'),
 
 	muxStatus: text('mux_status', { enum: enumToPgEnum(MuxStatus) }),
 	muxAssetId: text('mux_asset_id').unique(),

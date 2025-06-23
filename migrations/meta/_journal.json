@@ -1,41 +1,55 @@
 {
-	"version": "7",
-	"dialect": "postgresql",
-	"entries": [
-		{
-			"idx": 0,
-			"version": "7",
-			"when": 1749987763069,
-			"tag": "0000_brainy_franklin_richards",
-			"breakpoints": true
-		},
-		{
-			"idx": 1,
-			"version": "7",
-			"when": 1750338891172,
-			"tag": "0001_amusing_iron_fist",
-			"breakpoints": true
-		},
-		{
-			"idx": 2,
-			"version": "7",
-			"when": 1750401825534,
-			"tag": "0002_wide_iceman",
-			"breakpoints": true
-		},
-		{
-			"idx": 3,
-			"version": "7",
-			"when": 1750402121519,
-			"tag": "0003_fast_wrecker",
-			"breakpoints": true
-		},
-		{
-			"idx": 4,
-			"version": "7",
-			"when": 1750653305011,
-			"tag": "0004_hard_mathemanic",
-			"breakpoints": true
-		}
-	]
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1749987763069,
+      "tag": "0000_brainy_franklin_richards",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1750338891172,
+      "tag": "0001_amusing_iron_fist",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1750401825534,
+      "tag": "0002_wide_iceman",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1750402121519,
+      "tag": "0003_fast_wrecker",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1750653305011,
+      "tag": "0004_hard_mathemanic",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1750666213639,
+      "tag": "0005_loud_the_professor",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1750666701083,
+      "tag": "0006_lively_thor_girl",
+      "breakpoints": true
+    }
+  ]
 }

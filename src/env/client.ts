@@ -9,6 +9,7 @@ export const env = createEnv({
 		NEXT_PUBLIC_CLERK_SIGN_IN_URL: z.string().min(1).startsWith('/'),
 		NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL: z.string().min(1).startsWith('/'),
 		NEXT_PUBLIC_CLERK_SIGN_UP_URL: z.string().min(1).startsWith('/'),
+		NEXT_PUBLIC_MUX_IMAGE_BASE_URL: z.string().url(),
 	},
 	emptyStringAsUndefined: true,
 	isServer: typeof window === undefined,
@@ -28,5 +29,6 @@ export const env = createEnv({
 		NEXT_PUBLIC_CLERK_SIGN_IN_URL: process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL,
 		NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL: process.env.NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL,
 		NEXT_PUBLIC_CLERK_SIGN_UP_URL: process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL,
+		NEXT_PUBLIC_MUX_IMAGE_BASE_URL: process.env.NEXT_PUBLIC_MUX_IMAGE_BASE_URL,
 	},
 });
