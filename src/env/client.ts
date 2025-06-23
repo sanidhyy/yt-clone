@@ -4,7 +4,7 @@ import { z } from 'zod';
 export const env = createEnv({
 	client: {
 		NEXT_PUBLIC_APP_BASE_URL: z.string().url(),
-		NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string().min(1),
+		NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string().trim().min(1),
 		NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL: z.string().min(1).startsWith('/'),
 		NEXT_PUBLIC_CLERK_SIGN_IN_URL: z.string().min(1).startsWith('/'),
 		NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL: z.string().min(1).startsWith('/'),

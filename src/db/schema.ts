@@ -49,11 +49,13 @@ export const categoriesRelations = relations(categories, ({ many }) => ({
 }));
 
 export enum MuxStatus {
-	WAITING = 'waiting',
 	ASSET_CREATED = 'asset_created',
-	ERRORED = 'errored',
 	CANCELLED = 'cancelled',
+	ERRORED = 'errored',
+	PREPARING = 'preparing',
+	READY = 'ready',
 	TIMED_OUT = 'timed_out',
+	WAITING = 'waiting',
 }
 
 export const videos = pgTable('video', {
