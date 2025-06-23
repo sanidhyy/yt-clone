@@ -81,7 +81,7 @@ export const videos = pgTable('video', {
 	muxUploadId: text('mux_upload_id').unique(),
 	muxPlaybackId: text('mux_playback_id').unique(),
 	muxTrackId: text('mux_track_id').unique(),
-	muxTrackStatus: text('mux_track_status'),
+	muxTrackStatus: text('mux_track_status', { enum: enumToPgEnum(MuxStatus) }),
 
 	categoryId: uuid('category_id').references(() => categories.id, { onDelete: 'set null' }),
 	userId: uuid('user_id')

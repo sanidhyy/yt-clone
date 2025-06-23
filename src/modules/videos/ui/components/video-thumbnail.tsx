@@ -1,19 +1,20 @@
 import Image from 'next/image';
 
-import { formatDuration } from '@/lib/utils';
+import { cn, formatDuration } from '@/lib/utils';
 
 interface VideoThumbnailProps {
+	className?: string;
 	duration: number;
 	title: string;
 	imageUrl?: string | null;
 	previewUrl?: string | null;
 }
 
-export const VideoThumbnail = ({ duration, title, imageUrl, previewUrl }: VideoThumbnailProps) => {
+export const VideoThumbnail = ({ className, duration, title, imageUrl, previewUrl }: VideoThumbnailProps) => {
 	return (
 		<div className='group relative'>
 			{/* Thumbnail wrapper */}
-			<div className='relative aspect-video w-full overflow-hidden rounded-xl'>
+			<div className={cn('relative aspect-video w-full overflow-hidden rounded-xl', className)}>
 				<Image
 					src={imageUrl || '/placeholder.svg'}
 					alt={`Thumbnail of ${title}`}
