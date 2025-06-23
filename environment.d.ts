@@ -27,9 +27,10 @@ declare global {
 			UPSTASH_REDIS_REST_URL: string;
 			UPSTASH_REDIS_REST_TOKEN: string;
 
-			// mux token
+			// mux token and webhook secret
 			MUX_TOKEN_ID: string;
 			MUX_TOKEN_SECRET: string;
+			MUX_WEBHOOK_SECRET: string;
 		}
 	}
 }

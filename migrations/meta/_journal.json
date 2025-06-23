@@ -29,6 +29,13 @@
       "when": 1750402121519,
       "tag": "0003_fast_wrecker",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1750653305011,
+      "tag": "0004_hard_mathemanic",
+      "breakpoints": true
     }
   ]
 }

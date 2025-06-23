@@ -1,11 +1,13 @@
 'use client';
 
-import { PlusIcon } from 'lucide-react';
+import { Loader2Icon, PlusIcon } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
 import { ResponsiveModal } from '@/components/responsive-modal';
 import { Button } from '@/components/ui/button';
 import { trpc } from '@/trpc/client';
+
+import { StudioUploader } from './studio-uploader';
 
 export const StudioUploadModal = () => {
 	const utils = trpc.useUtils();
@@ -27,7 +29,11 @@ export const StudioUploadModal = () => {
 				open={!!create.data}
 				onOpenChange={() => create.reset()}
 			>
-				<p>This will be an uploader.</p>
+				{create.data?.url ? (
+					<StudioUploader endpoint={create.data.url} onSuccess={() => {}} />
+				) : (
+					<Loader2Icon className='size-5 animate-spin' />
+				)}
 			</ResponsiveModal>
 
 			<Button
