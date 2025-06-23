@@ -13,6 +13,16 @@ export const videosRouter = createTRPCRouter({
 		const upload = await mux.video.uploads.create({
 			cors_origin: env.NEXT_PUBLIC_APP_BASE_URL,
 			new_asset_settings: {
+				inputs: [
+					{
+						generated_subtitles: [
+							{
+								language_code: 'en',
+								name: 'English',
+							},
+						],
+					},
+				],
 				passthrough: userId,
 				playback_policies: ['public'],
 				static_renditions: [

@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import {
 	VideoAssetCreatedWebhookEvent,
+	VideoAssetDeletedWebhookEvent,
 	VideoAssetErroredWebhookEvent,
 	VideoAssetReadyWebhookEvent,
 	VideoAssetTrackReadyWebhookEvent,
@@ -20,7 +21,8 @@ type WebhookEvent =
 	| VideoAssetCreatedWebhookEvent
 	| VideoAssetErroredWebhookEvent
 	| VideoAssetReadyWebhookEvent
-	| VideoAssetTrackReadyWebhookEvent;
+	| VideoAssetTrackReadyWebhookEvent
+	| VideoAssetDeletedWebhookEvent;
 
 export const POST = async (req: NextRequest) => {
 	const MUX_SIGNATURE_HEADER_NAME = 'Mux-Signature';
@@ -96,6 +98,57 @@ export const POST = async (req: NextRequest) => {
 
 			break;
 		}
+		case 'video.asset.errored': {
+			const data = payload.data as VideoAssetErroredWebhookEvent['data'];
+			if (!data.upload_id) {
+				return new NextResponse('No upload id found!', { status: NOT_FOUND });
+			}
+
+			await db
+				.update(videos)
+				.set({
+					muxStatus: Object.values(MuxStatus).includes(data.status as MuxStatus)
+						? (data.status as MuxStatus)
+						: MuxStatus.CANCELLED,
+				})
+				.where(eq(videos.muxUploadId, data.upload_id));
+
+			break;
+		}
+		case 'video.asset.deleted': {
+			const data = payload.data as VideoAssetDeletedWebhookEvent['data'];
+			if (!data.upload_id) {
+				return new NextResponse('No upload id found!', { status: NOT_FOUND });
+			}
+
+			await db.delete(videos).where(eq(videos.muxUploadId, data.upload_id));
+
+			break;
+		}
+		case 'video.asset.track.ready': {
+			const data = payload.data as VideoAssetTrackReadyWebhookEvent['data'] & { asset_id: string };
+
+			// Typescript incorrectly says that asset_id does not exist
+			const assetId = data.asset_id;
+
+			if (!assetId) {
+				return new NextResponse('No asset id found!', { status: NOT_FOUND });
+			}
+
+			await db
+				.update(videos)
+				.set({
+					muxTrackId: data.id,
+					muxTrackStatus: Object.values(MuxStatus).includes(data.status as MuxStatus)
+						? (data.status as MuxStatus)
+						: MuxStatus.CANCELLED,
+				})
+				.where(eq(videos.muxAssetId, assetId));
+
+			break;
+		}
+		default:
+			console.warn('Unhandled event: ', payload);
 	}
 
 	return new NextResponse('Webhook received', { status: OK });

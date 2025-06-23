@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import Link from 'next/link';
 
 import { formatDate } from 'date-fns';
+import { Globe2Icon, LockIcon } from 'lucide-react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { VideoThumbnail } from '@/modules/videos/ui/components/video-thumbnail';
@@ -11,7 +12,7 @@ import { VideoThumbnail } from '@/modules/videos/ui/components/video-thumbnail';
 import { InfiniteScroll } from '@/components/infinite-scroll';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { DEFAULT_LIMIT } from '@/constants';
-import { MuxStatus } from '@/db/schema';
+import { MuxStatus, VideoVisibility } from '@/db/schema';
 import { cn, snakeCaseToTitle } from '@/lib/utils';
 import { trpc } from '@/trpc/client';
 
@@ -77,7 +78,16 @@ const VideosSectionSuspense = () => {
 												</div>
 											</div>
 										</TableCell>
-										<TableCell>Visibility</TableCell>
+										<TableCell>
+											<div className='flex items-center'>
+												{video.visibility === VideoVisibility.PRIVATE ? (
+													<LockIcon className='mr-2 size-4' />
+												) : (
+													<Globe2Icon className='mr-2 size-4' />
+												)}
+												{snakeCaseToTitle(video.visibility)}
+											</div>
+										</TableCell>
 										<TableCell>
 											<div className='flex items-center'>{snakeCaseToTitle(video.muxStatus || MuxStatus.ERRORED)}</div>
 										</TableCell>

@@ -22,6 +22,7 @@ export const VideoThumbnail = ({ duration, title, imageUrl, previewUrl }: VideoT
 				/>
 
 				<Image
+					unoptimized={!!previewUrl?.trim()}
 					src={previewUrl || '/placeholder.svg'}
 					alt={`Preview of ${title}`}
 					fill
