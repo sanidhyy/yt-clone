@@ -2,6 +2,7 @@
 
 import { relations } from 'drizzle-orm';
 import { integer, pgTable, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core';
+import { createInsertSchema, createSelectSchema, createUpdateSchema } from 'drizzle-zod';
 
 export const enumToPgEnum = <T extends Record<string, unknown>>(myEnum: T): [T[keyof T], ...T[keyof T][]] => {
 	return Object.values(myEnum).map((value: unknown) => `${value}`) as never;
@@ -94,6 +95,10 @@ export const videos = pgTable('video', {
 		.notNull()
 		.$onUpdate(() => new Date()),
 });
+
+export const VideoInsertSchema = createInsertSchema(videos);
+export const VideoSelectSchema = createSelectSchema(videos);
+export const VideoUpdateSchema = createUpdateSchema(videos);
 
 export const videosRelations = relations(videos, ({ one }) => ({
 	user: one(users, {

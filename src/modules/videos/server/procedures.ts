@@ -1,7 +1,10 @@
 /* eslint-disable camelcase */
 
+import { TRPCError } from '@trpc/server';
+import { and, eq } from 'drizzle-orm';
+
 import { db } from '@/db';
-import { MuxStatus, videos } from '@/db/schema';
+import { MuxStatus, VideoUpdateSchema, videos } from '@/db/schema';
 import { env } from '@/env/client';
 import { mux } from '@/lib/mux';
 import { createTRPCRouter, protectedProcedure } from '@/trpc/init';
@@ -39,5 +42,24 @@ export const videosRouter = createTRPCRouter({
 			.returning();
 
 		return { url: upload.url, video };
+	}),
+	update: protectedProcedure.input(VideoUpdateSchema).mutation(async ({ ctx, input }) => {
+		const { id: userId } = ctx.user;
+		const { id, categoryId, description, title, visibility } = input;
+
+		if (!id) throw new TRPCError({ code: 'NOT_FOUND', message: 'Video id not found!' });
+
+		const [updatedVideo] = await db
+			.update(videos)
+			.set({
+				categoryId,
+				description,
+				title,
+				visibility,
+			})
+			.where(and(eq(videos.id, id), eq(videos.userId, userId)))
+			.returning();
+
+		if (!updatedVideo) throw new TRPCError({ code: 'NOT_FOUND', message: 'Video not found!' });
 	}),
 });
