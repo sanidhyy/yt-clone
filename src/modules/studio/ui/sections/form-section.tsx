@@ -50,7 +50,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
 						<Button variant='ghost' size='icon'>
-							<MoreVerticalIcon />
+							<MoreVerticalIcon className='size-4' />
 						</Button>
 					</DropdownMenuTrigger>
 

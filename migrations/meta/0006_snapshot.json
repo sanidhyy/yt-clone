@@ -1,324 +1,304 @@
 {
-  "id": "dd393da0-9cbb-4107-be7f-27586575f18e",
-  "prevId": "b4f05de3-2d8f-4e29-bc34-8b267fcae0fc",
-  "version": "7",
-  "dialect": "postgresql",
-  "tables": {
-    "public.category": {
-      "name": "category",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "uuid",
-          "primaryKey": true,
-          "notNull": true,
-          "default": "gen_random_uuid()"
-        },
-        "name": {
-          "name": "name",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "description": {
-          "name": "description",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "updatedAt": {
-          "name": "updatedAt",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {
-        "name_idx": {
-          "name": "name_idx",
-          "columns": [
-            {
-              "expression": "name",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": true,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        }
-      },
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "category_name_unique": {
-          "name": "category_name_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "name"
-          ]
-        }
-      },
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public.user": {
-      "name": "user",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "uuid",
-          "primaryKey": true,
-          "notNull": true,
-          "default": "gen_random_uuid()"
-        },
-        "clerk_id": {
-          "name": "clerk_id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "name": {
-          "name": "name",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "image_url": {
-          "name": "image_url",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "updatedAt": {
-          "name": "updatedAt",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {
-        "clerk_id_idx": {
-          "name": "clerk_id_idx",
-          "columns": [
-            {
-              "expression": "clerk_id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": true,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        }
-      },
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "user_clerk_id_unique": {
-          "name": "user_clerk_id_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "clerk_id"
-          ]
-        }
-      },
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public.video": {
-      "name": "video",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "uuid",
-          "primaryKey": true,
-          "notNull": true,
-          "default": "gen_random_uuid()"
-        },
-        "title": {
-          "name": "title",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "description": {
-          "name": "description",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "thumbnail_url": {
-          "name": "thumbnail_url",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "preview_url": {
-          "name": "preview_url",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "mux_status": {
-          "name": "mux_status",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "mux_asset_id": {
-          "name": "mux_asset_id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "mux_upload_id": {
-          "name": "mux_upload_id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "mux_playback_id": {
-          "name": "mux_playback_id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "mux_track_id": {
-          "name": "mux_track_id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "mux_track_status": {
-          "name": "mux_track_status",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "category_id": {
-          "name": "category_id",
-          "type": "uuid",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "user_id": {
-          "name": "user_id",
-          "type": "uuid",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "updatedAt": {
-          "name": "updatedAt",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "video_category_id_category_id_fk": {
-          "name": "video_category_id_category_id_fk",
-          "tableFrom": "video",
-          "tableTo": "category",
-          "columnsFrom": [
-            "category_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "set null",
-          "onUpdate": "no action"
-        },
-        "video_user_id_user_id_fk": {
-          "name": "video_user_id_user_id_fk",
-          "tableFrom": "video",
-          "tableTo": "user",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "video_mux_asset_id_unique": {
-          "name": "video_mux_asset_id_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "mux_asset_id"
-          ]
-        },
-        "video_mux_upload_id_unique": {
-          "name": "video_mux_upload_id_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "mux_upload_id"
-          ]
-        },
-        "video_mux_playback_id_unique": {
-          "name": "video_mux_playback_id_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "mux_playback_id"
-          ]
-        },
-        "video_mux_track_id_unique": {
-          "name": "video_mux_track_id_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "mux_track_id"
-          ]
-        }
-      },
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    }
-  },
-  "enums": {},
-  "schemas": {},
-  "sequences": {},
-  "roles": {},
-  "policies": {},
-  "views": {},
-  "_meta": {
-    "columns": {},
-    "schemas": {},
-    "tables": {}
-  }
+	"id": "dd393da0-9cbb-4107-be7f-27586575f18e",
+	"prevId": "b4f05de3-2d8f-4e29-bc34-8b267fcae0fc",
+	"version": "7",
+	"dialect": "postgresql",
+	"tables": {
+		"public.category": {
+			"name": "category",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "uuid",
+					"primaryKey": true,
+					"notNull": true,
+					"default": "gen_random_uuid()"
+				},
+				"name": {
+					"name": "name",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"description": {
+					"name": "description",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"updatedAt": {
+					"name": "updatedAt",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {
+				"name_idx": {
+					"name": "name_idx",
+					"columns": [
+						{
+							"expression": "name",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": true,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {
+				"category_name_unique": {
+					"name": "category_name_unique",
+					"nullsNotDistinct": false,
+					"columns": ["name"]
+				}
+			},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.user": {
+			"name": "user",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "uuid",
+					"primaryKey": true,
+					"notNull": true,
+					"default": "gen_random_uuid()"
+				},
+				"clerk_id": {
+					"name": "clerk_id",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"name": {
+					"name": "name",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"image_url": {
+					"name": "image_url",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"updatedAt": {
+					"name": "updatedAt",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {
+				"clerk_id_idx": {
+					"name": "clerk_id_idx",
+					"columns": [
+						{
+							"expression": "clerk_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": true,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {
+				"user_clerk_id_unique": {
+					"name": "user_clerk_id_unique",
+					"nullsNotDistinct": false,
+					"columns": ["clerk_id"]
+				}
+			},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.video": {
+			"name": "video",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "uuid",
+					"primaryKey": true,
+					"notNull": true,
+					"default": "gen_random_uuid()"
+				},
+				"title": {
+					"name": "title",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"description": {
+					"name": "description",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"thumbnail_url": {
+					"name": "thumbnail_url",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"preview_url": {
+					"name": "preview_url",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"mux_status": {
+					"name": "mux_status",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"mux_asset_id": {
+					"name": "mux_asset_id",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"mux_upload_id": {
+					"name": "mux_upload_id",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"mux_playback_id": {
+					"name": "mux_playback_id",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"mux_track_id": {
+					"name": "mux_track_id",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"mux_track_status": {
+					"name": "mux_track_status",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"category_id": {
+					"name": "category_id",
+					"type": "uuid",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"user_id": {
+					"name": "user_id",
+					"type": "uuid",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"updatedAt": {
+					"name": "updatedAt",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {
+				"video_category_id_category_id_fk": {
+					"name": "video_category_id_category_id_fk",
+					"tableFrom": "video",
+					"tableTo": "category",
+					"columnsFrom": ["category_id"],
+					"columnsTo": ["id"],
+					"onDelete": "set null",
+					"onUpdate": "no action"
+				},
+				"video_user_id_user_id_fk": {
+					"name": "video_user_id_user_id_fk",
+					"tableFrom": "video",
+					"tableTo": "user",
+					"columnsFrom": ["user_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {
+				"video_mux_asset_id_unique": {
+					"name": "video_mux_asset_id_unique",
+					"nullsNotDistinct": false,
+					"columns": ["mux_asset_id"]
+				},
+				"video_mux_upload_id_unique": {
+					"name": "video_mux_upload_id_unique",
+					"nullsNotDistinct": false,
+					"columns": ["mux_upload_id"]
+				},
+				"video_mux_playback_id_unique": {
+					"name": "video_mux_playback_id_unique",
+					"nullsNotDistinct": false,
+					"columns": ["mux_playback_id"]
+				},
+				"video_mux_track_id_unique": {
+					"name": "video_mux_track_id_unique",
+					"nullsNotDistinct": false,
+					"columns": ["mux_track_id"]
+				}
+			},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		}
+	},
+	"enums": {},
+	"schemas": {},
+	"sequences": {},
+	"roles": {},
+	"policies": {},
+	"views": {},
+	"_meta": {
+		"columns": {},
+		"schemas": {},
+		"tables": {}
+	}
 }
