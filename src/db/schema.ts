@@ -58,6 +58,11 @@ export enum MuxStatus {
 	WAITING = 'waiting',
 }
 
+export enum VideoVisibility {
+	PUBLIC = 'public',
+	PRIVATE = 'private',
+}
+
 export const videos = pgTable('video', {
 	id: uuid('id').primaryKey().defaultRandom(),
 
@@ -65,7 +70,10 @@ export const videos = pgTable('video', {
 	description: text('description'),
 	thumbnailUrl: text('thumbnail_url'),
 	previewUrl: text('preview_url'),
-	duration: integer('duration'),
+	duration: integer('duration').notNull().default(0),
+	visibility: text('visibility', { enum: enumToPgEnum(VideoVisibility) })
+		.notNull()
+		.default(VideoVisibility.PRIVATE),
 
 	muxStatus: text('mux_status', { enum: enumToPgEnum(MuxStatus) }),
 	muxAssetId: text('mux_asset_id').unique(),
@@ -76,10 +84,10 @@ export const videos = pgTable('video', {
 
 	categoryId: uuid('category_id').references(() => categories.id, { onDelete: 'set null' }),
 	userId: uuid('user_id')
+		.notNull()
 		.references(() => users.id, {
 			onDelete: 'cascade',
-		})
-		.notNull(),
+		}),
 
 	createdAt: timestamp('created_at').notNull().defaultNow(),
 	updatedAt: timestamp('updatedAt')

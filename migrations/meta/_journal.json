@@ -57,6 +57,13 @@
       "when": 1750667124093,
       "tag": "0007_soft_maggott",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1750668077921,
+      "tag": "0008_first_madame_web",
+      "breakpoints": true
     }
   ]
 }
