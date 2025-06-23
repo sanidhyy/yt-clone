@@ -2,12 +2,14 @@
 
 import { Suspense, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
 	CopyCheckIcon,
 	CopyIcon,
 	Globe2Icon,
+	Loader2Icon,
 	LockIcon,
 	MoreVerticalIcon,
 	RefreshCwIcon,
@@ -55,7 +57,9 @@ const FormSectionSkeleton = () => {
 };
 
 const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
+	const router = useRouter();
 	const utils = trpc.useUtils();
+
 	const [isCopied, setIsCopied] = useState(false);
 	const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -71,6 +75,18 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 			utils.studio.getOne.invalidate({ id: videoId });
 
 			toast.success('Video updated!');
+		},
+	});
+
+	const remove = trpc.videos.remove.useMutation({
+		onError: (error) => {
+			toast.error(error.message || 'Failed to remove video!');
+		},
+		onSuccess: () => {
+			utils.studio.getMany.invalidate();
+
+			toast.success('Video removed!');
+			router.push('/studio');
 		},
 	});
 
@@ -111,7 +127,9 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 		}
 	};
 
-	const isPending = update.isPending;
+	const isUpdating = update.isPending;
+	const isRemoving = remove.isPending;
+	const isPending = isUpdating || isRemoving;
 
 	return (
 		<Form {...form}>
@@ -123,7 +141,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 					</div>
 
 					<div className='flex items-center gap-x-2'>
-						<Button type='submit' disabled={isPending} isLoading={isPending}>
+						<Button type='submit' disabled={isPending} isLoading={isUpdating}>
 							Save
 						</Button>
 
@@ -141,12 +159,17 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
 								<Button type='button' variant='ghost' size='icon' disabled={isPending}>
-									<MoreVerticalIcon className='size-4' />
+									{isRemoving ? (
+										<Loader2Icon className='size-4 animate-spin' />
+									) : (
+										<MoreVerticalIcon className='size-4' />
+									)}
 									<span className='sr-only'>More video options</span>
 								</Button>
 							</DropdownMenuTrigger>
 
-							<DropdownMenuContent align='end'>
+							{/* TODO: Add confirm delete dialog */}
+							<DropdownMenuContent onClick={() => remove.mutate({ id: videoId })} align='end'>
 								<DropdownMenuItem variant='destructive' disabled={isPending}>
 									<Trash2Icon className='size-4' />
 									Delete

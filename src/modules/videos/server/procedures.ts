@@ -2,6 +2,7 @@
 
 import { TRPCError } from '@trpc/server';
 import { and, eq } from 'drizzle-orm';
+import { z } from 'zod';
 
 import { db } from '@/db';
 import { MuxStatus, VideoUpdateSchema, videos } from '@/db/schema';
@@ -43,6 +44,19 @@ export const videosRouter = createTRPCRouter({
 
 		return { url: upload.url, video };
 	}),
+	remove: protectedProcedure.input(z.object({ id: z.string().uuid() })).mutation(async ({ ctx, input }) => {
+		const { id: userId } = ctx.user;
+		const { id } = input;
+
+		const [removedVideo] = await db
+			.delete(videos)
+			.where(and(eq(videos.id, id), eq(videos.userId, userId)))
+			.returning();
+
+		if (!removedVideo) throw new TRPCError({ code: 'NOT_FOUND', message: 'Video not found!' });
+
+		return removedVideo;
+	}),
 	update: protectedProcedure.input(VideoUpdateSchema).mutation(async ({ ctx, input }) => {
 		const { id: userId } = ctx.user;
 		const { id, categoryId, description, title, visibility } = input;
@@ -61,5 +75,7 @@ export const videosRouter = createTRPCRouter({
 			.returning();
 
 		if (!updatedVideo) throw new TRPCError({ code: 'NOT_FOUND', message: 'Video not found!' });
+
+		return updatedVideo;
 	}),
 });
