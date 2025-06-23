@@ -1,4 +1,4 @@
-import { StudioView } from '@/modules/studio/ui/view/studio-view';
+import { StudioView } from '@/modules/studio/ui/views/studio-view';
 
 import { DEFAULT_LIMIT } from '@/constants';
 import { HydrateClient, trpc } from '@/trpc/server';
