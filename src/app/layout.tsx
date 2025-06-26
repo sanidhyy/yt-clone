@@ -3,11 +3,11 @@ import { Inter } from 'next/font/google';
 
 import { ClerkProvider } from '@clerk/nextjs';
 
-import { ToasterProvider } from '@/components/providers/toaster-provider';
 import { cn } from '@/lib/utils';
-import { TRPCProvider } from '@/trpc/client';
 
 import './globals.css';
+
+import { Providers } from '@/components/providers';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
@@ -25,11 +25,7 @@ const RootLayout = ({
 		<ClerkProvider afterSignOutUrl='/'>
 			<html lang='en'>
 				<body className={cn('antialiased', inter.className)}>
-					<TRPCProvider>
-						<ToasterProvider />
-
-						{children}
-					</TRPCProvider>
+					<Providers>{children}</Providers>
 				</body>
 			</html>
 		</ClerkProvider>

@@ -1,8 +1,9 @@
 import tailwindAnimate from 'tailwindcss-animate';
+import { withUt } from 'uploadthing/tw';
 
 import type { Config } from 'tailwindcss';
 
-export default {
+export default withUt({
 	content: [
 		'./src/app/**/*.{js,ts,jsx,tsx,mdx}',
 		'./src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -60,15 +61,15 @@ export default {
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
 					accent: 'hsl(var(--sidebar-accent))',
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
+					foreground: 'hsl(var(--sidebar-foreground))',
+					primary: 'hsl(var(--sidebar-primary))',
+					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
 					ring: 'hsl(var(--sidebar-ring))',
 				},
 			},
 		},
 	},
-} satisfies Config;
+}) satisfies Config;
