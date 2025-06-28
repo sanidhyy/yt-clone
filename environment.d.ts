@@ -35,7 +35,8 @@ declare global {
 			MUX_TOKEN_SECRET: string;
 			MUX_WEBHOOK_SECRET: string;
 
-			// uploadthing token
+			// uploadthing app id and token
+			UPLOADTHING_APP_ID: string;
 			UPLOADTHING_TOKEN: string;
 		}
 	}

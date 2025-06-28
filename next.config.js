@@ -32,6 +32,12 @@ const nextConfig = {
 				port: '',
 				protocol: 'https',
 			},
+			{
+				hostname: `${process.env.UPLOADTHING_APP_ID}.ufs.sh`,
+				pathname: '/f/*',
+				port: '',
+				protocol: 'https',
+			},
 		],
 	},
 };
