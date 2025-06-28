@@ -57,5 +57,5 @@ export async function POST(req: NextRequest) {
 			console.warn('Unhandled event: ', evt);
 	}
 
-	return new NextResponse('Webhook received', { status: OK });
+	return new NextResponse('Webhook received!', { status: OK });
 }
