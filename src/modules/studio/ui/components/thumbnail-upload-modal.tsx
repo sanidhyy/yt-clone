@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { TRPCError } from '@trpc/server';
+
 import { ResponsiveModal } from '@/components/responsive-modal';
 import { UploadDropzone } from '@/lib/uploadthing';
 import { trpc } from '@/trpc/client';
@@ -34,6 +36,18 @@ export const ThumbnailUploadModal = ({ onOpenChange, open, videoId }: ThumbnailU
 				onUploadBegin={(files) => {
 					setIsUploading(true);
 					return files;
+				}}
+				onBeforeUploadBegin={(files) => {
+					const file = files?.[0];
+					if (!file) throw new TRPCError({ code: 'NOT_FOUND', message: 'Image to upload not found!' });
+
+					const blob = file.slice(0, file.size, file.type);
+					const extension = file.name.split('.').at(-1);
+
+					const fileName = `${crypto.randomUUID()}.${extension}`;
+					const newFile = new File([blob], fileName, { type: file.type });
+
+					return [newFile];
 				}}
 				onClientUploadComplete={onUploadComplete}
 				onUploadAborted={() => setIsUploading(false)}

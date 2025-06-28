@@ -1,8 +1,15 @@
-import MuxPlayer from '@mux/mux-player-react';
+'use client';
+
+import { useEffect, useState } from 'react';
+
+import MuxPlayer from '@mux/mux-video-react';
+import MediaThemeYt from 'player.style/yt/react';
 
 import { THUMBNAIL_FALLBACK } from '@/modules/videos/constants';
 
 import { VideoThumbnail } from './video-thumbnail';
+
+import '@/modules/videos/ui/css/mux-player.css';
 
 interface VideoPlayerProps {
 	autoPlay?: boolean;
@@ -23,6 +30,12 @@ export const VideoPlayer = ({
 	previewUrl,
 	title,
 }: VideoPlayerProps) => {
+	const [isMounted, setIsMounted] = useState(false);
+
+	useEffect(() => setIsMounted(true), []);
+
+	if (!isMounted) return null;
+
 	if (!playbackId) {
 		return (
 			<VideoThumbnail
@@ -36,15 +49,17 @@ export const VideoPlayer = ({
 	}
 
 	return (
-		<MuxPlayer
-			playbackId={playbackId}
-			poster={thumbnailUrl || THUMBNAIL_FALLBACK}
-			playerInitTime={0}
-			autoPlay={autoPlay}
-			thumbnailTime={0}
-			className='size-full object-contain'
-			accentColor='#ff2056'
-			onPlay={onPlay}
-		/>
+		<MediaThemeYt className='size-full object-contain'>
+			<MuxPlayer
+				slot='media'
+				playbackId={playbackId}
+				poster={thumbnailUrl || THUMBNAIL_FALLBACK}
+				playerInitTime={0}
+				autoPlay={autoPlay}
+				className='size-full object-contain'
+				onPlay={onPlay}
+				crossOrigin='anonymous'
+			/>
+		</MediaThemeYt>
 	);
 };

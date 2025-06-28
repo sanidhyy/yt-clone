@@ -69,7 +69,9 @@ export const videos = pgTable('video', {
 
 	title: text('title').notNull(),
 	description: text('description'),
+	thumbnailKey: text('thumbnail_key'),
 	thumbnailUrl: text('thumbnail_url'),
+	previewkey: text('preview_key'),
 	previewUrl: text('preview_url'),
 	duration: integer('duration').notNull().default(0),
 	visibility: text('visibility', { enum: enumToPgEnum(VideoVisibility) })
