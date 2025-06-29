@@ -43,6 +43,7 @@
     "@uploadthing/react": "^7.3.2",
     "@upstash/ratelimit": "^2.0.5",
     "@upstash/redis": "^1.35.0",
+    "@upstash/workflow": "^0.2.14",
     "class-variance-authority": "^0.7.1",
     "client-only": "^0.0.1",
     "clsx": "^2.1.1",
