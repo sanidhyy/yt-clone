@@ -183,6 +183,10 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 	const isUpdating = update.isPending;
 	const isRemoving = remove.isPending;
 	const isRestoring = restoreThumbnail.isPending;
+	const isGeneratingDescription = generateDescription.isPending;
+	const isGeneratingThumbnail = generateThumbnail.isPending;
+	const isGeneratingTitle = generateTitle.isPending;
+	const isGenerating = isGeneratingDescription || isGeneratingThumbnail || isGeneratingTitle;
 	const isPending = isUpdating || isRemoving;
 
 	return (
@@ -253,8 +257,8 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 													variant='outline'
 													className='size-6 rounded-full [&_svg]:size-3'
 													onClick={() => generateTitle.mutate({ id: videoId })}
-													disabled={generateTitle.isPending || !video.muxTrackId}
-													isLoading={generateTitle.isPending}
+													disabled={isGenerating || !video.muxTrackId}
+													isLoading={isGeneratingTitle}
 												>
 													<SparklesIcon />
 												</Button>
@@ -285,8 +289,8 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 													variant='outline'
 													className='size-6 rounded-full [&_svg]:size-3'
 													onClick={() => generateDescription.mutate({ id: videoId })}
-													disabled={generateDescription.isPending || !video.muxTrackId}
-													isLoading={generateDescription.isPending}
+													disabled={isGenerating || !video.muxTrackId}
+													isLoading={isGeneratingDescription}
 												>
 													<SparklesIcon />
 												</Button>
@@ -329,8 +333,8 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 															type='button'
 															size='icon'
 															className='absolute right-1 top-1 size-7 rounded-full border border-white/50 bg-black/50 opacity-100 duration-300 hover:bg-black/50 group-hover:opacity-100 data-[state=open]:opacity-100 md:opacity-0 md:disabled:opacity-100'
-															disabled={isPending || isRestoring}
-															isLoading={isRestoring}
+															disabled={isPending || isRestoring || isGenerating}
+															isLoading={isRestoring || isGeneratingThumbnail}
 														>
 															<MoreVerticalIcon className='size-4 text-white' />
 															<span className='sr-only'>More image options</span>
