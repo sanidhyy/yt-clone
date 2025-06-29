@@ -25,6 +25,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { z } from 'zod/v4';
 
+import { ThumbnailGenerateModal } from '@/modules/studio/ui/components/thumbnail-generate-modal';
 import { ThumbnailUploadModal } from '@/modules/studio/ui/components/thumbnail-upload-modal';
 import { THUMBNAIL_FALLBACK } from '@/modules/videos/constants';
 import { VideoPlayer } from '@/modules/videos/ui/components/video-player';
@@ -69,7 +70,8 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 
 	const [isCopied, setIsCopied] = useState(false);
 	const [isRefreshing, setIsRefreshing] = useState(false);
-	const [thumbnailModalOpen, setThumbnailModalOpen] = useState(false);
+	const [thumbnailUploadModalOpen, setThumbnailUploadModalOpen] = useState(false);
+	const [thumbnailGenerateModalOpen, setThumbnailGenerateModalOpen] = useState(false);
 
 	const [video] = trpc.studio.getOne.useSuspenseQuery({ id: videoId });
 	const [categories] = trpc.categories.getMany.useSuspenseQuery();
@@ -101,17 +103,6 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 	const generateDescription = trpc.videos.generateDescription.useMutation({
 		onError: (error) => {
 			toast.error(error.message || 'Failed to generate video description!');
-		},
-		onSuccess: () => {
-			toast('Background job started!\nThis may take some time.', {
-				icon: <CheckCircle2Icon className='size-6 text-primary' />,
-			});
-		},
-	});
-
-	const generateThumbnail = trpc.videos.generateThumbnail.useMutation({
-		onError: (error) => {
-			toast.error(error.message || 'Failed to generate video thumbnail!');
 		},
 		onSuccess: () => {
 			toast('Background job started!\nThis may take some time.', {
@@ -184,14 +175,22 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 	const isRemoving = remove.isPending;
 	const isRestoring = restoreThumbnail.isPending;
 	const isGeneratingDescription = generateDescription.isPending;
-	const isGeneratingThumbnail = generateThumbnail.isPending;
 	const isGeneratingTitle = generateTitle.isPending;
-	const isGenerating = isGeneratingDescription || isGeneratingThumbnail || isGeneratingTitle;
+	const isGenerating = isGeneratingDescription || isGeneratingTitle;
 	const isPending = isUpdating || isRemoving;
 
 	return (
 		<>
-			<ThumbnailUploadModal open={thumbnailModalOpen} onOpenChange={setThumbnailModalOpen} videoId={videoId} />
+			<ThumbnailGenerateModal
+				open={thumbnailGenerateModalOpen}
+				onOpenChange={setThumbnailGenerateModalOpen}
+				videoId={videoId}
+			/>
+			<ThumbnailUploadModal
+				open={thumbnailUploadModalOpen}
+				onOpenChange={setThumbnailUploadModalOpen}
+				videoId={videoId}
+			/>
 
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)}>
@@ -334,7 +333,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 															size='icon'
 															className='absolute right-1 top-1 size-7 rounded-full border border-white/50 bg-black/50 opacity-100 duration-300 hover:bg-black/50 group-hover:opacity-100 data-[state=open]:opacity-100 md:opacity-0 md:disabled:opacity-100'
 															disabled={isPending || isRestoring || isGenerating}
-															isLoading={isRestoring || isGeneratingThumbnail}
+															isLoading={isRestoring}
 														>
 															<MoreVerticalIcon className='size-4 text-white' />
 															<span className='sr-only'>More image options</span>
@@ -342,12 +341,12 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 													</DropdownMenuTrigger>
 
 													<DropdownMenuContent align='start' side='right'>
-														<DropdownMenuItem onClick={() => setThumbnailModalOpen(true)}>
+														<DropdownMenuItem onClick={() => setThumbnailUploadModalOpen(true)}>
 															<ImagePlusIcon className='size-4' />
 															Change
 														</DropdownMenuItem>
 
-														<DropdownMenuItem onClick={() => generateThumbnail.mutate({ id: videoId })}>
+														<DropdownMenuItem onClick={() => setThumbnailGenerateModalOpen(true)}>
 															<SparklesIcon className='size-4' />
 															AI-generated
 														</DropdownMenuItem>

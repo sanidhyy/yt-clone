@@ -46,7 +46,8 @@ declare global {
 			UPLOADTHING_APP_ID: string;
 			UPLOADTHING_TOKEN: string;
 
-			// openai api key
+			// openai api base url and key
+			OPENAI_API_BASE_URL: string;
 			OPENAI_API_KEY: string;
 		}
 	}

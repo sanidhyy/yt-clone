@@ -5,6 +5,8 @@ import { and, eq } from 'drizzle-orm';
 import { UTApi } from 'uploadthing/server';
 import { z } from 'zod';
 
+import { thumbnailGenerateSchema } from '@/modules/studio/schemas/thumbnail-generate-schema';
+
 import { db } from '@/db';
 import { MuxStatus, VideoUpdateSchema, videos } from '@/db/schema';
 import { env as clientEnv } from '@/env/client';
@@ -60,17 +62,19 @@ export const videosRouter = createTRPCRouter({
 
 			return workflowRunId;
 		}),
-	generateThumbnail: protectedProcedure.input(z.object({ id: z.string().uuid() })).mutation(async ({ ctx, input }) => {
-		const { id: userId } = ctx.user;
-		const { id: videoId } = input;
+	generateThumbnail: protectedProcedure
+		.input(z.object({ id: z.string().uuid(), ...thumbnailGenerateSchema.shape }))
+		.mutation(async ({ ctx, input }) => {
+			const { id: userId } = ctx.user;
+			const { id: videoId, prompt } = input;
 
-		const { workflowRunId } = await qstash.trigger({
-			body: { userId, videoId },
-			url: `${env.UPSTASH_WORKFLOW_URL}/api/videos/workflows/title`,
-		});
+			const { workflowRunId } = await qstash.trigger({
+				body: { prompt, userId, videoId },
+				url: `${env.UPSTASH_WORKFLOW_URL}/api/videos/workflows/thumbnail`,
+			});
 
-		return workflowRunId;
-	}),
+			return workflowRunId;
+		}),
 	generateTitle: protectedProcedure.input(z.object({ id: z.string().uuid() })).mutation(async ({ ctx, input }) => {
 		const { id: userId } = ctx.user;
 		const { id: videoId } = input;
