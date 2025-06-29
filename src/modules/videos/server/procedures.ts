@@ -7,8 +7,10 @@ import { z } from 'zod';
 
 import { db } from '@/db';
 import { MuxStatus, VideoUpdateSchema, videos } from '@/db/schema';
-import { env } from '@/env/client';
+import { env as clientEnv } from '@/env/client';
+import { env } from '@/env/server';
 import { mux } from '@/lib/mux';
+import { qstash } from '@/lib/qstash';
 import { createTRPCRouter, protectedProcedure } from '@/trpc/init';
 
 export const videosRouter = createTRPCRouter({
@@ -16,7 +18,7 @@ export const videosRouter = createTRPCRouter({
 		const { id: userId } = ctx.user;
 
 		const upload = await mux.video.uploads.create({
-			cors_origin: env.NEXT_PUBLIC_APP_BASE_URL,
+			cors_origin: clientEnv.NEXT_PUBLIC_APP_BASE_URL,
 			new_asset_settings: {
 				inputs: [
 					{
@@ -44,6 +46,16 @@ export const videosRouter = createTRPCRouter({
 			.returning();
 
 		return { url: upload.url, video };
+	}),
+	generateThumbnail: protectedProcedure.mutation(async ({ ctx }) => {
+		const { id: userId } = await ctx.user;
+
+		const { workflowRunId } = await qstash.trigger({
+			body: { userId },
+			url: `${env.UPSTASH_WORKFLOW_URL}/api/videos/workflows/title`,
+		});
+
+		return workflowRunId;
 	}),
 	remove: protectedProcedure.input(z.object({ id: z.string().uuid() })).mutation(async ({ ctx, input }) => {
 		const { id: userId } = ctx.user;
@@ -81,7 +93,7 @@ export const videosRouter = createTRPCRouter({
 
 		if (!existingVideo.muxPlaybackId) throw new TRPCError({ code: 'BAD_REQUEST', message: 'Playback id not found!' });
 
-		const muxThumbnailUrl = `${env.NEXT_PUBLIC_MUX_IMAGE_BASE_URL}/${existingVideo.muxPlaybackId}/thumbnail.jpg`;
+		const muxThumbnailUrl = `${clientEnv.NEXT_PUBLIC_MUX_IMAGE_BASE_URL}/${existingVideo.muxPlaybackId}/thumbnail.jpg`;
 		const uploadedThumbnail = await utapi.uploadFilesFromUrl(muxThumbnailUrl);
 
 		if (!uploadedThumbnail.data)

@@ -27,6 +27,12 @@ declare global {
 			UPSTASH_REDIS_REST_URL: string;
 			UPSTASH_REDIS_REST_TOKEN: string;
 
+			// qstash token, url and keys
+			QSTASH_TOKEN: string;
+			UPSTASH_WORKFLOW_URL: string;
+			QSTASH_CURRENT_SIGNING_KEY: string;
+			QSTASH_NEXT_SIGNING_KEY: string;
+
 			// mux image base url
 			NEXT_PUBLIC_MUX_IMAGE_BASE_URL: string;
 

@@ -24,9 +24,13 @@ export const env = createEnv({
 		MUX_TOKEN_SECRET: z.string().trim().min(1),
 		MUX_WEBHOOK_SECRET: z.string().trim().min(1),
 		NODE_ENV: z.enum(['development', 'production', 'test']).default('development').optional(),
+		QSTASH_CURRENT_SIGNING_KEY: z.string().min(1).startsWith('sig_'),
+		QSTASH_NEXT_SIGNING_KEY: z.string().min(1).startsWith('sig_'),
+		QSTASH_TOKEN: z.string().trim().min(1),
 		UPLOADTHING_APP_ID: z.string().trim().min(1),
 		UPLOADTHING_TOKEN: z.string().trim().min(1),
 		UPSTASH_REDIS_REST_TOKEN: z.string().trim().min(1),
 		UPSTASH_REDIS_REST_URL: z.string().url(),
+		UPSTASH_WORKFLOW_URL: z.string().url(),
 	},
 });
