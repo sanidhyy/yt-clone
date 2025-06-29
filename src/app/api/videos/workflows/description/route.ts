@@ -1,7 +1,7 @@
 import { serve } from '@upstash/workflow/nextjs';
 import { and, eq } from 'drizzle-orm';
 
-import { TITLE_SYSTEM_PROMPT } from '@/constants';
+import { DESCRIPTION_SYSTEM_PROMPT } from '@/constants';
 import { db } from '@/db';
 import { videos } from '@/db/schema';
 import { env as clientEnv } from '@/env/client';
@@ -39,11 +39,11 @@ export const { POST } = serve(async (ctx) => {
 		return transcriptTxt;
 	});
 
-	const { body } = await ctx.api.openai.call('generate-title', {
+	const { body } = await ctx.api.openai.call('generate-description', {
 		body: {
 			messages: [
 				{
-					content: TITLE_SYSTEM_PROMPT,
+					content: DESCRIPTION_SYSTEM_PROMPT,
 					role: 'system',
 				},
 				{
@@ -57,12 +57,12 @@ export const { POST } = serve(async (ctx) => {
 		token: env.OPENAI_API_KEY,
 	});
 
-	const title = body.choices[0]?.message.content || video.title;
+	const description = body.choices[0]?.message.content || video.description;
 
 	await ctx.run('update-video', async () => {
 		await db
 			.update(videos)
-			.set({ title })
+			.set({ description })
 			.where(and(eq(videos.id, video.id), eq(videos.userId, userId)));
 	});
 });

@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
+	CheckCircle2Icon,
 	CopyCheckIcon,
 	CopyIcon,
 	Globe2Icon,
@@ -94,6 +95,39 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 
 			toast.success('Video removed!');
 			router.push('/studio');
+		},
+	});
+
+	const generateDescription = trpc.videos.generateDescription.useMutation({
+		onError: (error) => {
+			toast.error(error.message || 'Failed to generate video description!');
+		},
+		onSuccess: () => {
+			toast('Background job started!\nThis may take some time.', {
+				icon: <CheckCircle2Icon className='size-6 text-primary' />,
+			});
+		},
+	});
+
+	const generateThumbnail = trpc.videos.generateThumbnail.useMutation({
+		onError: (error) => {
+			toast.error(error.message || 'Failed to generate video thumbnail!');
+		},
+		onSuccess: () => {
+			toast('Background job started!\nThis may take some time.', {
+				icon: <CheckCircle2Icon className='size-6 text-primary' />,
+			});
+		},
+	});
+
+	const generateTitle = trpc.videos.generateTitle.useMutation({
+		onError: (error) => {
+			toast.error(error.message || 'Failed to generate video title!');
+		},
+		onSuccess: () => {
+			toast('Background job started!\nThis may take some time.', {
+				icon: <CheckCircle2Icon className='size-6 text-primary' />,
+			});
 		},
 	});
 
@@ -210,8 +244,22 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 								name='title'
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Title</FormLabel>
-										{/* TODO: Add AI generate button */}
+										<FormLabel>
+											<div className='flex items-center gap-x-2'>
+												Title
+												<Button
+													type='button'
+													size='icon'
+													variant='outline'
+													className='size-6 rounded-full [&_svg]:size-3'
+													onClick={() => generateTitle.mutate({ id: videoId })}
+													disabled={generateTitle.isPending || !video.muxTrackId}
+													isLoading={generateTitle.isPending}
+												>
+													<SparklesIcon />
+												</Button>
+											</div>
+										</FormLabel>
 
 										<FormControl>
 											<Input {...field} placeholder='Add a title to your video' />
@@ -228,8 +276,22 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 								name='description'
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Description</FormLabel>
-										{/* TODO: Add AI generate button */}
+										<FormLabel>
+											<div className='flex items-center gap-x-2'>
+												Description
+												<Button
+													type='button'
+													size='icon'
+													variant='outline'
+													className='size-6 rounded-full [&_svg]:size-3'
+													onClick={() => generateDescription.mutate({ id: videoId })}
+													disabled={generateDescription.isPending || !video.muxTrackId}
+													isLoading={generateDescription.isPending}
+												>
+													<SparklesIcon />
+												</Button>
+											</div>
+										</FormLabel>
 
 										<FormControl>
 											<Textarea
@@ -281,7 +343,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 															Change
 														</DropdownMenuItem>
 
-														<DropdownMenuItem>
+														<DropdownMenuItem onClick={() => generateThumbnail.mutate({ id: videoId })}>
 															<SparklesIcon className='size-4' />
 															AI-generated
 														</DropdownMenuItem>

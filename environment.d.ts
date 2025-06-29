@@ -33,8 +33,9 @@ declare global {
 			QSTASH_CURRENT_SIGNING_KEY: string;
 			QSTASH_NEXT_SIGNING_KEY: string;
 
-			// mux image base url
+			// mux image and stream base url
 			NEXT_PUBLIC_MUX_IMAGE_BASE_URL: string;
+			NEXT_PUBLIC_MUX_STREAM_BASE_URL: string;
 
 			// mux token and webhook secret
 			MUX_TOKEN_ID: string;
@@ -44,6 +45,9 @@ declare global {
 			// uploadthing app id and token
 			UPLOADTHING_APP_ID: string;
 			UPLOADTHING_TOKEN: string;
+
+			// openai api key
+			OPENAI_API_KEY: string;
 		}
 	}
 }

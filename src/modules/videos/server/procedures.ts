@@ -47,11 +47,36 @@ export const videosRouter = createTRPCRouter({
 
 		return { url: upload.url, video };
 	}),
-	generateThumbnail: protectedProcedure.mutation(async ({ ctx }) => {
-		const { id: userId } = await ctx.user;
+	generateDescription: protectedProcedure
+		.input(z.object({ id: z.string().uuid() }))
+		.mutation(async ({ ctx, input }) => {
+			const { id: userId } = ctx.user;
+			const { id: videoId } = input;
+
+			const { workflowRunId } = await qstash.trigger({
+				body: { userId, videoId },
+				url: `${env.UPSTASH_WORKFLOW_URL}/api/videos/workflows/description`,
+			});
+
+			return workflowRunId;
+		}),
+	generateThumbnail: protectedProcedure.input(z.object({ id: z.string().uuid() })).mutation(async ({ ctx, input }) => {
+		const { id: userId } = ctx.user;
+		const { id: videoId } = input;
 
 		const { workflowRunId } = await qstash.trigger({
-			body: { userId },
+			body: { userId, videoId },
+			url: `${env.UPSTASH_WORKFLOW_URL}/api/videos/workflows/title`,
+		});
+
+		return workflowRunId;
+	}),
+	generateTitle: protectedProcedure.input(z.object({ id: z.string().uuid() })).mutation(async ({ ctx, input }) => {
+		const { id: userId } = ctx.user;
+		const { id: videoId } = input;
+
+		const { workflowRunId } = await qstash.trigger({
+			body: { userId, videoId },
 			url: `${env.UPSTASH_WORKFLOW_URL}/api/videos/workflows/title`,
 		});
 
