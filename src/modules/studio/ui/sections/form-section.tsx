@@ -40,6 +40,7 @@ import {
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Skeleton } from '@/components/ui/skeleton';
 import { Textarea } from '@/components/ui/textarea';
 import { MuxStatus, VideoUpdateSchema, VideoVisibility } from '@/db/schema';
 import { env } from '@/env/client';
@@ -61,7 +62,74 @@ export const FormSection = ({ videoId }: FormSectionProps) => {
 };
 
 const FormSectionSkeleton = () => {
-	return <p>Loading...</p>;
+	return (
+		<div>
+			<div className='mb-6 flex items-center justify-between'>
+				<div className='space-y-2'>
+					<Skeleton className='h-7 w-32' />
+					<Skeleton className='h-4 w-40' />
+				</div>
+
+				<div className='flex items-center gap-x-2'>
+					<Skeleton className='h-9 w-16' />
+					<Skeleton className='h-9 w-8' />
+					<Skeleton className='h-9 w-8' />
+				</div>
+			</div>
+
+			<div className='grid grid-cols-1 gap-6 lg:grid-cols-5'>
+				<div className='space-y-8 lg:col-span-3'>
+					<div className='space-y-2'>
+						<Skeleton className='h-5 w-16' />
+						<Skeleton className='h-10 w-full' />
+					</div>
+
+					<div className='space-y-2'>
+						<Skeleton className='h-5 w-24' />
+						<Skeleton className='h-[220px] w-full' />
+					</div>
+
+					<div className='space-y-2'>
+						<Skeleton className='h-5 w-20' />
+						<Skeleton className='h-[84px] w-[153px]' />
+					</div>
+
+					<div className='space-y-2'>
+						<Skeleton className='h-5 w-20' />
+						<Skeleton className='h-10 w-full' />
+					</div>
+				</div>
+
+				<div className='flex flex-col gap-y-8 lg:col-span-2'>
+					<div className='flex flex-col gap-4 overflow-hidden rounded-xl bg-[#f9f9f9]'>
+						<Skeleton className='aspect-video' />
+
+						<div className='space-y-6 p-4'>
+							<div className='space-y-2'>
+								<Skeleton className='h-4 w-20' />
+								<Skeleton className='h-5 w-full' />
+							</div>
+
+							<div className='space-y-2'>
+								<Skeleton className='h-4 w-24' />
+								<Skeleton className='h-5 w-32' />
+							</div>
+
+							<div className='space-y-2'>
+								<Skeleton className='h-4 w-24' />
+								<Skeleton className='h-5 w-32' />
+							</div>
+						</div>
+					</div>
+
+					<div className='space-y-2'>
+						<Skeleton className='h-5 w-20' />
+						<Skeleton className='h-10 w-full' />
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
