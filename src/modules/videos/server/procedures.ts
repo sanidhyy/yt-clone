@@ -1,19 +1,19 @@
 /* eslint-disable camelcase */
 
 import { TRPCError } from '@trpc/server';
-import { and, eq } from 'drizzle-orm';
+import { and, eq, getTableColumns } from 'drizzle-orm';
 import { UTApi } from 'uploadthing/server';
 import { z } from 'zod';
 
 import { thumbnailGenerateSchema } from '@/modules/studio/schemas/thumbnail-generate-schema';
 
 import { db } from '@/db';
-import { MuxStatus, VideoUpdateSchema, videos } from '@/db/schema';
+import { MuxStatus, VideoUpdateSchema, users, videos } from '@/db/schema';
 import { env as clientEnv } from '@/env/client';
 import { env } from '@/env/server';
 import { mux } from '@/lib/mux';
 import { qstash } from '@/lib/qstash';
-import { createTRPCRouter, protectedProcedure } from '@/trpc/init';
+import { baseProcedure, createTRPCRouter, protectedProcedure } from '@/trpc/init';
 
 export const videosRouter = createTRPCRouter({
 	create: protectedProcedure.mutation(async ({ ctx }) => {
@@ -85,6 +85,17 @@ export const videosRouter = createTRPCRouter({
 		});
 
 		return workflowRunId;
+	}),
+	getOne: baseProcedure.input(z.object({ id: z.string().uuid() })).query(async ({ input }) => {
+		const [existingVideo] = await db
+			.select({ ...getTableColumns(videos), user: getTableColumns(users) })
+			.from(videos)
+			.innerJoin(users, eq(videos.userId, users.id))
+			.where(eq(videos.id, input.id));
+
+		if (!existingVideo) throw new TRPCError({ code: 'NOT_FOUND', message: 'Video not found!' });
+
+		return existingVideo;
 	}),
 	remove: protectedProcedure.input(z.object({ id: z.string().uuid() })).mutation(async ({ ctx, input }) => {
 		const { id: userId } = ctx.user;
