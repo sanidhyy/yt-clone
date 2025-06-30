@@ -47,12 +47,12 @@ export const StudioUploadModal = () => {
 			</ResponsiveModal>
 
 			<Button
-				variant='secondary'
 				disabled={create.isPending}
 				isLoading={create.isPending}
 				onClick={() => create.mutate()}
+				className='gap-1'
 			>
-				<PlusIcon />
+				<PlusIcon strokeWidth={2.1} />
 				Create
 			</Button>
 		</>
