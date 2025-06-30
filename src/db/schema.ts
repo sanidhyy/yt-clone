@@ -1,7 +1,7 @@
 /* eslint-disable sort-keys */
 
 import { relations } from 'drizzle-orm';
-import { integer, pgTable, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core';
+import { integer, pgTable, primaryKey, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core';
 import { createInsertSchema, createSelectSchema, createUpdateSchema } from 'drizzle-zod';
 
 export const enumToPgEnum = <T extends Record<string, unknown>>(myEnum: T): [T[keyof T], ...T[keyof T][]] => {
@@ -19,7 +19,7 @@ export const users = pgTable(
 		// TODO: Add banner url
 
 		createdAt: timestamp('created_at').notNull().defaultNow(),
-		updatedAt: timestamp('updatedAt')
+		updatedAt: timestamp('updated_at')
 			.notNull()
 			.$onUpdate(() => new Date()),
 	},
@@ -28,6 +28,7 @@ export const users = pgTable(
 
 export const usersRelations = relations(users, ({ many }) => ({
 	videos: many(videos),
+	videoViews: many(videoViews),
 }));
 
 export const categories = pgTable(
@@ -38,7 +39,7 @@ export const categories = pgTable(
 		description: text('description'),
 
 		createdAt: timestamp('created_at').notNull().defaultNow(),
-		updatedAt: timestamp('updatedAt')
+		updatedAt: timestamp('updated_at')
 			.notNull()
 			.$onUpdate(() => new Date()),
 	},
@@ -93,7 +94,7 @@ export const videos = pgTable('video', {
 		}),
 
 	createdAt: timestamp('created_at').notNull().defaultNow(),
-	updatedAt: timestamp('updatedAt')
+	updatedAt: timestamp('updated_at')
 		.notNull()
 		.$onUpdate(() => new Date()),
 });
@@ -102,13 +103,52 @@ export const VideoInsertSchema = createInsertSchema(videos);
 export const VideoSelectSchema = createSelectSchema(videos);
 export const VideoUpdateSchema = createUpdateSchema(videos);
 
-export const videosRelations = relations(videos, ({ one }) => ({
-	user: one(users, {
-		fields: [videos.userId],
-		references: [users.id],
-	}),
+export const videosRelations = relations(videos, ({ many, one }) => ({
 	category: one(categories, {
 		fields: [videos.categoryId],
 		references: [categories.id],
 	}),
+	user: one(users, {
+		fields: [videos.userId],
+		references: [users.id],
+	}),
+	views: many(videoViews),
 }));
+
+export const videoViews = pgTable(
+	'video_view',
+	{
+		userId: uuid('user_id')
+			.notNull()
+			.references(() => users.id, { onDelete: 'cascade' }),
+		videoId: uuid('video_id')
+			.notNull()
+			.references(() => videos.id, { onDelete: 'cascade' }),
+
+		createdAt: timestamp('created_at').notNull().defaultNow(),
+		updatedAt: timestamp('updated_at')
+			.notNull()
+			.$onUpdate(() => new Date()),
+	},
+	(videoView) => [
+		primaryKey({
+			name: 'video_views_pk',
+			columns: [videoView.userId, videoView.videoId],
+		}),
+	]
+);
+
+export const videoViewsRelations = relations(videoViews, ({ one }) => ({
+	users: one(users, {
+		fields: [videoViews.userId],
+		references: [users.id],
+	}),
+	videos: one(videos, {
+		fields: [videoViews.videoId],
+		references: [videos.id],
+	}),
+}));
+
+export const videoViewInsertSchema = createInsertSchema(videoViews);
+export const videoViewSelectSchema = createSelectSchema(videoViews);
+export const videoViewUpdateSchema = createUpdateSchema(videoViews);
