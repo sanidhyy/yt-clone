@@ -78,6 +78,13 @@
       "when": 1751277958731,
       "tag": "0010_odd_justice",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1751355780110,
+      "tag": "0011_heavy_supreme_intelligence",
+      "breakpoints": true
     }
   ]
 }
