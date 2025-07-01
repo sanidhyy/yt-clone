@@ -11,6 +11,7 @@ interface VideoDescriptionProps {
 	compactViews: string;
 	expandedDate: string;
 	expandedViews: string;
+	views: number;
 	description?: string | null;
 }
 
@@ -20,6 +21,7 @@ export const VideoDescription = ({
 	expandedDate,
 	expandedViews,
 	description,
+	views,
 }: VideoDescriptionProps) => {
 	const [isExpanded, setIsExpanded] = useState(false);
 
@@ -36,21 +38,27 @@ export const VideoDescription = ({
 		>
 			{isExpanded ? (
 				<div className='mb-2 flex gap-2 text-sm'>
-					<span className='font-medium'>{expandedViews} views</span>
+					<span className='font-medium'>
+						{expandedViews} view{views !== 1 && 's'}
+					</span>
 					<span className='font-medium'>{expandedDate}</span>
 				</div>
 			) : (
 				<Tooltip>
 					<TooltipTrigger>
 						<div className='mb-2 flex gap-2 text-sm'>
-							<span className='font-medium'>{compactViews} views</span>
+							<span className='font-medium'>
+								{compactViews} view{views !== 1 && 's'}
+							</span>
 							<span className='font-medium'>{compactDate}</span>
 						</div>
 					</TooltipTrigger>
 
 					<TooltipContent align='start' className='bg-black/70' hideArrow>
 						<div className='flex gap-2 text-xs'>
-							<span className='font-medium'>{expandedViews} views</span>
+							<span className='font-medium'>
+								{expandedViews} view{views !== 1 && 's'}
+							</span>
 							<span className='font-medium'>•</span>
 							<span className='font-medium'>{expandedDate}</span>
 						</div>

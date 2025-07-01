@@ -8,7 +8,7 @@ import { z } from 'zod';
 import { thumbnailGenerateSchema } from '@/modules/studio/schemas/thumbnail-generate-schema';
 
 import { db } from '@/db';
-import { MuxStatus, VideoUpdateSchema, users, videos } from '@/db/schema';
+import { MuxStatus, VideoUpdateSchema, users, videoViews, videos } from '@/db/schema';
 import { env as clientEnv } from '@/env/client';
 import { env } from '@/env/server';
 import { mux } from '@/lib/mux';
@@ -88,7 +88,11 @@ export const videosRouter = createTRPCRouter({
 	}),
 	getOne: baseProcedure.input(z.object({ id: z.string().uuid() })).query(async ({ input }) => {
 		const [existingVideo] = await db
-			.select({ ...getTableColumns(videos), user: getTableColumns(users) })
+			.select({
+				...getTableColumns(videos),
+				user: getTableColumns(users),
+				viewCount: db.$count(videoViews, eq(videoViews.videoId, videos.id)),
+			})
 			.from(videos)
 			.innerJoin(users, eq(videos.userId, users.id))
 			.where(eq(videos.id, input.id));
@@ -105,6 +109,9 @@ export const videosRouter = createTRPCRouter({
 			.delete(videos)
 			.where(and(eq(videos.id, id), eq(videos.userId, userId)))
 			.returning();
+
+		// TODO: Remove thumbnail and preview from uploadthing
+		// TODO: Remove video from mux
 
 		if (!removedVideo) throw new TRPCError({ code: 'NOT_FOUND', message: 'Video not found!' });
 

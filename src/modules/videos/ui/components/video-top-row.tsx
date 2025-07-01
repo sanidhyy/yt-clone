@@ -17,14 +17,14 @@ export const VideoTopRow = ({ video }: VideoTopRowProps) => {
 	const compactViews = useMemo(() => {
 		return Intl.NumberFormat('en', {
 			notation: 'compact',
-		}).format(1456);
-	}, []);
+		}).format(video.viewCount);
+	}, [video.viewCount]);
 
 	const expandedViews = useMemo(() => {
 		return Intl.NumberFormat('en', {
 			notation: 'standard',
-		}).format(1456);
-	}, []);
+		}).format(video.viewCount);
+	}, [video.viewCount]);
 
 	const compactDate = useMemo(() => {
 		return formatDistanceToNow(video.createdAt, { addSuffix: true });
@@ -53,6 +53,7 @@ export const VideoTopRow = ({ video }: VideoTopRowProps) => {
 				expandedDate={expandedDate}
 				expandedViews={expandedViews}
 				description={video.description}
+				views={video.viewCount}
 			/>
 		</div>
 	);
