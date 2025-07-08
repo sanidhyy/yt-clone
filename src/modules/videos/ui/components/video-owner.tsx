@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import Link from 'next/link';
 
 import { useAuth } from '@clerk/nextjs';
@@ -20,11 +21,17 @@ interface VideoOwnerProps {
 
 export const VideoOwner = ({ user, videoId }: VideoOwnerProps) => {
 	const { userId: clerkUserId, isLoaded } = useAuth();
-	const { isPending, onClick } = useSubscription({
-		fromVideoId: videoId,
+	const { onClick, isSubscribed, subscriberCount } = useSubscription({
+		initialSubscriberCount: user.subscriberCount,
 		isSubscribed: user.viewerSubscribed,
 		userId: user.id,
 	});
+
+	const compactSubscriberCount = useMemo(() => {
+		return Intl.NumberFormat('en', {
+			notation: 'compact',
+		}).format(subscriberCount);
+	}, [subscriberCount]);
 
 	return (
 		<div className='flex min-w-0 items-center justify-between gap-3 sm:items-start sm:justify-start'>
@@ -35,7 +42,7 @@ export const VideoOwner = ({ user, videoId }: VideoOwnerProps) => {
 					<div className='flex min-w-0 flex-col gap-0'>
 						<UserInfo size='lg' name={user.name} />
 						<span className='line-clamp-1 text-xs leading-3 text-muted-foreground'>
-							{user.subscriberCount} subscribers
+							{compactSubscriberCount} subscribers
 						</span>
 					</div>
 				</div>
@@ -49,12 +56,7 @@ export const VideoOwner = ({ user, videoId }: VideoOwnerProps) => {
 					Edit video
 				</Link>
 			) : (
-				<SubscriptionButton
-					onClick={onClick}
-					disabled={isPending || !isLoaded}
-					isSubscribed={user.viewerSubscribed}
-					className='flex-none'
-				/>
+				<SubscriptionButton onClick={onClick} disabled={!isLoaded} isSubscribed={isSubscribed} className='flex-none' />
 			)}
 		</div>
 	);
