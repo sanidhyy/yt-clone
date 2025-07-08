@@ -61,16 +61,17 @@ export const subscriptions = pgTable(
 	]
 );
 
-export const subscriptionsRelations = relations(subscriptions, ({ one }) => ({
-	viewer: one(users, {
-		fields: [subscriptions.viewerId],
-		references: [users.id],
-		relationName: 'subscription_viewer_id_fkey',
-	}),
+export const subscriptionsRelations = relations(subscriptions, ({ many, one }) => ({
+	comments: many(comments),
 	creator: one(users, {
 		fields: [subscriptions.creatorId],
 		references: [users.id],
 		relationName: 'subscription_creator_id_fkey',
+	}),
+	viewer: one(users, {
+		fields: [subscriptions.viewerId],
+		references: [users.id],
+		relationName: 'subscription_viewer_id_fkey',
 	}),
 }));
 
@@ -151,12 +152,42 @@ export const videosRelations = relations(videos, ({ many, one }) => ({
 		fields: [videos.categoryId],
 		references: [categories.id],
 	}),
+	comments: many(comments),
 	user: one(users, {
 		fields: [videos.userId],
 		references: [users.id],
 	}),
 	views: many(videoViews),
 	reactions: many(videoReactions),
+}));
+
+export const comments = pgTable('comment', {
+	id: uuid('id').primaryKey().defaultRandom(),
+
+	userId: uuid('user_id')
+		.notNull()
+		.references(() => users.id, { onDelete: 'cascade' }),
+	videoId: uuid('video_id')
+		.notNull()
+		.references(() => videos.id, { onDelete: 'cascade' }),
+
+	value: text('value').notNull(),
+
+	createdAt: timestamp('created_at').notNull().defaultNow(),
+	updatedAt: timestamp('updated_at')
+		.notNull()
+		.$onUpdate(() => new Date()),
+});
+
+export const commentsRelations = relations(comments, ({ one }) => ({
+	user: one(users, {
+		fields: [comments.userId],
+		references: [users.id],
+	}),
+	video: one(videos, {
+		fields: [comments.videoId],
+		references: [videos.id],
+	}),
 }));
 
 export const videoViews = pgTable(
