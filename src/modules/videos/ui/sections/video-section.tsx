@@ -6,8 +6,8 @@ import { useAuth } from '@clerk/nextjs';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { VideoBanner } from '@/modules/videos/ui/components/video-banner';
-import { VideoPlayer } from '@/modules/videos/ui/components/video-player';
-import { VideoTopRow } from '@/modules/videos/ui/components/video-top-row';
+import { VideoPlayer, VideoPlayerSkeleton } from '@/modules/videos/ui/components/video-player';
+import { VideoTopRow, VideoTopRowSkeleton } from '@/modules/videos/ui/components/video-top-row';
 
 import { MuxStatus } from '@/db/schema';
 import { cn } from '@/lib/utils';
@@ -59,9 +59,18 @@ const VideoSectionSuspense = ({ videoId }: VideoSectionProps) => {
 	);
 };
 
+const VideoSectionSkeleton = () => {
+	return (
+		<>
+			<VideoPlayerSkeleton />
+			<VideoTopRowSkeleton />
+		</>
+	);
+};
+
 export const VideoSection = ({ videoId }: VideoSectionProps) => {
 	return (
-		<Suspense fallback={<p>Loading...</p>}>
+		<Suspense fallback={<VideoSectionSkeleton />}>
 			<ErrorBoundary fallback={<p>Error...</p>}>
 				<VideoSectionSuspense videoId={videoId} />
 			</ErrorBoundary>

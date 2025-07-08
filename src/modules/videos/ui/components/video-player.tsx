@@ -11,6 +11,10 @@ import { VideoThumbnail } from './video-thumbnail';
 
 import '@/modules/videos/ui/css/mux-player.css';
 
+export const VideoPlayerSkeleton = () => {
+	return <div className='aspect-video rounded-xl bg-black' />;
+};
+
 interface VideoPlayerProps {
 	autoPlay?: boolean;
 	duration: number;

@@ -4,10 +4,40 @@ import { formatDate, formatDistanceToNow } from 'date-fns';
 
 import type { VideoGetOneOutput } from '@/modules/videos/types';
 
+import { Skeleton } from '@/components/ui/skeleton';
+
 import { VideoDescription } from './video-description';
 import { VideoMenu } from './video-menu';
 import { VideoOwner } from './video-owner';
 import { VideoReactions } from './video-reactions';
+
+export const VideoTopRowSkeleton = () => {
+	return (
+		<div className='mt-4 flex flex-col gap-4'>
+			<div className='flex flex-col gap-2'>
+				<Skeleton className='h-6 w-4/5 md:w-2/5' />
+			</div>
+
+			<div className='flex w-full items-center justify-between'>
+				<div className='flex w-[70%] items-center gap-3'>
+					<Skeleton className='size-10 shrink-0 rounded-full' />
+
+					<div className='flex w-full flex-col gap-2'>
+						<Skeleton className='h-5 w-4/5 md:w-2/6' />
+						<Skeleton className='h-5 w-3/5 md:w-1/5' />
+					</div>
+				</div>
+
+				<div className='flex items-center gap-2'>
+					<Skeleton className='h-9 w-[130px] rounded-full' />
+					<Skeleton className='size-9 rounded-full' />
+				</div>
+			</div>
+
+			<div className='h-[120px] w-full' />
+		</div>
+	);
+};
 
 interface VideoTopRowProps {
 	video: VideoGetOneOutput;
@@ -48,6 +78,7 @@ export const VideoTopRow = ({ video }: VideoTopRowProps) => {
 						videoId={video.id}
 						viewerReaction={video.viewerReaction}
 					/>
+
 					<VideoMenu videoId={video.id} variant='secondary' />
 				</div>
 			</div>
