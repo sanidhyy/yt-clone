@@ -125,8 +125,6 @@ export const VideoReactions = ({ dislikes, likes, videoId, viewerReaction }: Vid
 		},
 	});
 
-	const isMutationPending = like.isPending || dislike.isPending;
-
 	const handleLike = () => {
 		setOptimisticState((prevState) => {
 			// If already liked, remove like
@@ -191,11 +189,13 @@ export const VideoReactions = ({ dislikes, likes, videoId, viewerReaction }: Vid
 		dislike.mutate({ videoId });
 	};
 
+	const isMutationPending = like.isPending || dislike.isPending;
+
 	return (
 		<div className='flex flex-none items-center'>
 			<Button
 				onClick={handleLike}
-				disabled={isMutationPending}
+				disabled={isMutationPending || !clerk.loaded}
 				className='gap-2 rounded-l-full rounded-r-none pr-4 hover:bg-gray-200 disabled:opacity-100'
 				variant='secondary'
 			>
@@ -208,7 +208,7 @@ export const VideoReactions = ({ dislikes, likes, videoId, viewerReaction }: Vid
 
 			<Button
 				onClick={handleDislike}
-				disabled={isMutationPending}
+				disabled={isMutationPending || !clerk.loaded}
 				className='rounded-l-none rounded-r-full pl-3 hover:bg-gray-200 disabled:opacity-100'
 				variant='secondary'
 			>
