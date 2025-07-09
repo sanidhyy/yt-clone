@@ -190,6 +190,10 @@ export const commentsRelations = relations(comments, ({ one }) => ({
 	}),
 }));
 
+export const CommentInsertSchema = createInsertSchema(comments);
+export const CommentSelectSchema = createSelectSchema(comments);
+export const CommentUpdateSchema = createUpdateSchema(comments);
+
 export const videoViews = pgTable(
 	'video_view',
 	{
