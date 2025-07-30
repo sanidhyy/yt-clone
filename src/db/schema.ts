@@ -27,6 +27,7 @@ export const users = pgTable(
 );
 
 export const usersRelations = relations(users, ({ many }) => ({
+	comments: many(comments),
 	videos: many(videos),
 	videoViews: many(videoViews),
 	videoReactions: many(videoReactions),
@@ -61,8 +62,7 @@ export const subscriptions = pgTable(
 	]
 );
 
-export const subscriptionsRelations = relations(subscriptions, ({ many, one }) => ({
-	comments: many(comments),
+export const subscriptionsRelations = relations(subscriptions, ({ one }) => ({
 	creator: one(users, {
 		fields: [subscriptions.creatorId],
 		references: [users.id],

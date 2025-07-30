@@ -1,4 +1,4 @@
-import { eq, getTableColumns } from 'drizzle-orm';
+import { and, desc, eq, getTableColumns, lt, or } from 'drizzle-orm';
 import { z } from 'zod';
 
 import { db } from '@/db';
@@ -14,18 +14,59 @@ export const commentsRouter = createTRPCRouter({
 
 		return comment;
 	}),
-	getMany: baseProcedure.input(z.object({ videoId: z.string().uuid() })).query(async ({ input }) => {
-		const { videoId } = input;
-
-		const data = await db
-			.select({
-				user: users,
-				...getTableColumns(comments),
+	getMany: baseProcedure
+		.input(
+			z.object({
+				cursor: z
+					.object({
+						id: z.string().uuid(),
+						updatedAt: z.date(),
+					})
+					.nullish(),
+				limit: z.number().min(1).max(100),
+				videoId: z.string().uuid(),
 			})
-			.from(comments)
-			.where(eq(comments.videoId, videoId))
-			.innerJoin(users, eq(comments.userId, users.id));
+		)
+		.query(async ({ input }) => {
+			const { cursor, limit, videoId } = input;
 
-		return data;
-	}),
+			const dataPromise = db
+				.select({
+					user: users,
+					...getTableColumns(comments),
+				})
+				.from(comments)
+				.where(
+					and(
+						eq(comments.videoId, videoId),
+						cursor
+							? or(
+									lt(comments.updatedAt, cursor.updatedAt),
+									and(eq(comments.updatedAt, cursor.updatedAt), lt(comments.id, cursor.id))
+								)
+							: undefined
+					)
+				)
+				.innerJoin(users, eq(comments.userId, users.id))
+				.orderBy(desc(comments.updatedAt), desc(comments.id))
+				// Add 1 to the limit to check if there is more data
+				.limit(limit + 1);
+
+			const totalCountPromise = db.$count(comments, eq(comments.videoId, videoId));
+
+			const [data, totalCount] = await Promise.all([dataPromise, totalCountPromise]);
+
+			const hasMore = data.length > limit;
+			// Remove the last item if there is more data
+			const items = hasMore ? data.slice(0, -1) : data;
+			// Set the next cursor to the last item if there is more data
+			const lastItem = items[items.length - 1];
+			const nextCursor = hasMore ? { id: lastItem.id, updatedAt: lastItem.updatedAt } : null;
+
+			return {
+				items,
+				nextCursor,
+				totalCount,
+			};
+		}),
 });

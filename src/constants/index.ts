@@ -1,3 +1,4 @@
+// TODO: Change to higher value
 export const DEFAULT_LIMIT = 5 as const; // number between 1 and 100
 
 export const TITLE_SYSTEM_PROMPT =
