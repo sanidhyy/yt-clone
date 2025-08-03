@@ -2,9 +2,10 @@ import Link from 'next/link';
 
 import { useAuth, useClerk } from '@clerk/nextjs';
 import { formatDistanceToNow } from 'date-fns';
-import { MessageSquareIcon, MoreVerticalIcon, ThumbsDownIcon, ThumbsUpIcon, Trash2Icon } from 'lucide-react';
+import { MessageSquareIcon, MoreVerticalIcon, Trash2Icon } from 'lucide-react';
 import toast from 'react-hot-toast';
 
+import { CommentReactions } from '@/modules/comment-reactions/ui/components/comment-reactions';
 import { CommentsGetManyOutput } from '@/modules/comments/types';
 
 import { Button } from '@/components/ui/button';
@@ -15,8 +16,6 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { UserAvatar } from '@/components/user-avatar';
-import { ReactionType } from '@/db/schema';
-import { cn } from '@/lib/utils';
 import { trpc } from '@/trpc/client';
 
 interface CommentItemProps {
@@ -64,17 +63,13 @@ export const CommentItem = ({ comment }: CommentItemProps) => {
 					<p className='text-sm'>{comment.value}</p>
 
 					<div className='mt-1 flex items-center gap-2'>
-						<div className='flex items-center'>
-							<Button disabled={false} size='icon' variant='ghost' className='size-8'>
-								<ThumbsUpIcon className={cn(comment.viewerReaction === ReactionType.LIKE && 'fill-black')} />
-							</Button>
-							<span className='text-xs text-muted-foreground'>{comment.likeCount}</span>
-
-							<Button disabled={false} size='icon' variant='ghost' className='size-8'>
-								<ThumbsDownIcon className={cn(comment.viewerReaction === ReactionType.DISLIKE && 'fill-black')} />
-							</Button>
-							<span className='text-xs text-muted-foreground'>{comment.dislikeCount}</span>
-						</div>
+						<CommentReactions
+							commentId={comment.id}
+							dislikes={comment.dislikeCount}
+							likes={comment.likeCount}
+							videoId={comment.videoId}
+							viewerReaction={comment.viewerReaction}
+						/>
 					</div>
 				</div>
 

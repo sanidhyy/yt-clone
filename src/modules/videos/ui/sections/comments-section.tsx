@@ -40,10 +40,14 @@ const CommentsSectionSuspense = ({ videoId }: CommentsSectionProps) => {
 		{ getNextPageParam: (lastPage) => lastPage.nextCursor }
 	);
 
+	const totalCount = comments.pages?.[0]?.totalCount || 0;
+
 	return (
 		<div className='mt-6'>
 			<div className='flex flex-col gap-6'>
-				<h1 className='text-xl font-bold'>{comments.pages?.[0]?.totalCount || 0} Comments</h1>
+				<h1 className='text-xl font-bold'>
+					{totalCount} Comment{totalCount === 1 ? '' : 's'}
+				</h1>
 
 				<CommentForm videoId={videoId} />
 
