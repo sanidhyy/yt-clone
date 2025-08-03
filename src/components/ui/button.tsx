@@ -27,6 +27,7 @@ const buttonVariants = cva(
 				link: 'text-primary underline-offset-4 hover:underline',
 				outline: 'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
 				secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
+				tertiary: 'bg-background text-blue-500 hover:bg-blue-500/10',
 			},
 		},
 	}

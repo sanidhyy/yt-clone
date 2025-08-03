@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
 
 import { useAuth, useClerk } from '@clerk/nextjs';
 import { formatDistanceToNow } from 'date-fns';
-import { MessageSquareIcon, MoreVerticalIcon, Trash2Icon } from 'lucide-react';
+import { ChevronDownIcon, ChevronUpIcon, MessageSquareIcon, MoreVerticalIcon, Trash2Icon } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 import { CommentReactions } from '@/modules/comment-reactions/ui/components/comment-reactions';
@@ -17,9 +17,11 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { UserAvatar } from '@/components/user-avatar';
+import { cn } from '@/lib/utils';
 import { trpc } from '@/trpc/client';
 
 import { CommentForm } from './comment-form';
+import { CommentReplies } from './comment-replies';
 
 interface CommentItemProps {
 	comment: CommentsGetManyOutput['items'][number];
@@ -48,13 +50,19 @@ export const CommentItem = ({ comment, variant = 'comment' }: CommentItemProps) 
 		},
 	});
 
+	const compactReplyCount = useMemo(() => {
+		return Intl.NumberFormat('en', {
+			notation: 'compact',
+		}).format(comment.replyCount);
+	}, [comment.replyCount]);
+
 	const isReply = variant === 'reply';
 
 	return (
 		<div>
-			<div className='flex gap-4'>
+			<div className={cn('flex gap-4', isReply && 'gap-2')}>
 				<Link href={`/users/${comment.userId}`}>
-					<UserAvatar size='lg' imageUrl={comment.user.imageUrl} name={comment.user.name} />
+					<UserAvatar size={isReply ? 'sm' : 'lg'} imageUrl={comment.user.imageUrl} name={comment.user.name} />
 				</Link>
 
 				<div className='min-w-0 flex-1'>
@@ -88,30 +96,32 @@ export const CommentItem = ({ comment, variant = 'comment' }: CommentItemProps) 
 					</div>
 				</div>
 
-				<DropdownMenu>
-					<DropdownMenuTrigger asChild>
-						<Button variant='ghost' size='icon' className='size-8'>
-							<MoreVerticalIcon />
-						</Button>
-					</DropdownMenuTrigger>
+				{(comment.user.clerkId === userId || !isReply) && (
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
+							<Button variant='ghost' size='icon' className='size-8'>
+								<MoreVerticalIcon />
+							</Button>
+						</DropdownMenuTrigger>
 
-					<DropdownMenuContent align='end'>
-						{!isReply && (
-							<DropdownMenuItem onClick={() => setIsReplyOpen(true)}>
-								<MessageSquareIcon className='size-4' />
-								Reply
-							</DropdownMenuItem>
-						)}
+						<DropdownMenuContent align='end'>
+							{!isReply && (
+								<DropdownMenuItem onClick={() => setIsReplyOpen(true)}>
+									<MessageSquareIcon className='size-4' />
+									Reply
+								</DropdownMenuItem>
+							)}
 
-						{/* TODO: Add confirm delete dialog */}
-						{comment.user.clerkId === userId && (
-							<DropdownMenuItem onClick={() => remove.mutate({ id: comment.id })} variant='destructive'>
-								<Trash2Icon className='size-4' />
-								Delete
-							</DropdownMenuItem>
-						)}
-					</DropdownMenuContent>
-				</DropdownMenu>
+							{/* TODO: Add confirm delete dialog */}
+							{comment.user.clerkId === userId && (
+								<DropdownMenuItem onClick={() => remove.mutate({ id: comment.id })} variant='destructive'>
+									<Trash2Icon className='size-4' />
+									Delete
+								</DropdownMenuItem>
+							)}
+						</DropdownMenuContent>
+					</DropdownMenu>
+				)}
 			</div>
 
 			{isReplyOpen && !isReply && (
@@ -127,6 +137,18 @@ export const CommentItem = ({ comment, variant = 'comment' }: CommentItemProps) 
 						}}
 					/>
 				</div>
+			)}
+
+			{comment.replyCount > 0 && !isReply && (
+				<div className='pl-14'>
+					<Button variant='tertiary' size='sm' onClick={() => setIsRepliesOpen((isRepliesOpen) => !isRepliesOpen)}>
+						{isRepliesOpen ? <ChevronUpIcon /> : <ChevronDownIcon />} {compactReplyCount} replies
+					</Button>
+				</div>
+			)}
+
+			{comment.replyCount > 0 && !isReply && isRepliesOpen && (
+				<CommentReplies parentId={comment.id} videoId={comment.videoId} />
 			)}
 		</div>
 	);

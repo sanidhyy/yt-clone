@@ -34,7 +34,8 @@ export const CommentForm = ({ videoId, onCancel, onSuccess, parentId, variant = 
 			}
 		},
 		onSuccess: () => {
-			utils.comments.getMany.invalidate({ videoId });
+			utils.comments.getMany.invalidate({ videoId }); // Comments
+			utils.comments.getMany.invalidate({ parentId, videoId }); // Replies
 			form.reset();
 			toast.success('Comment added!');
 			onSuccess?.();
@@ -64,7 +65,11 @@ export const CommentForm = ({ videoId, onCancel, onSuccess, parentId, variant = 
 	return (
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(handleSubmit)} className='group flex gap-4'>
-				<UserAvatar size='lg' imageUrl={user?.imageUrl || '/user-placeholder.svg'} name={user?.fullName || 'User'} />
+				<UserAvatar
+					size={isReply ? 'default' : 'lg'}
+					imageUrl={user?.imageUrl || '/user-placeholder.svg'}
+					name={user?.fullName || 'User'}
+				/>
 
 				<div className='flex-1'>
 					<FormField
