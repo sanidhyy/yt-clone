@@ -1,16 +1,32 @@
+import { TRPCError } from '@trpc/server';
 import { and, desc, eq, getTableColumns, inArray, lt, or } from 'drizzle-orm';
 import { z } from 'zod';
 
+import { CommentSchema } from '@/modules/comments/schema';
+
 import { db } from '@/db';
-import { CommentInsertSchema, ReactionType, commentReactions, comments, users } from '@/db/schema';
+import { ReactionType, commentReactions, comments, users } from '@/db/schema';
 import { baseProcedure, createTRPCRouter, protectedProcedure } from '@/trpc/init';
 
 export const commentsRouter = createTRPCRouter({
-	create: protectedProcedure.input(CommentInsertSchema.omit({ userId: true })).mutation(async ({ ctx, input }) => {
+	create: protectedProcedure.input(CommentSchema).mutation(async ({ ctx, input }) => {
 		const { id: userId } = ctx.user;
-		const { videoId, value } = input;
+		const { parentId, value, videoId } = input;
 
-		const [comment] = await db.insert(comments).values({ userId, value, videoId }).returning();
+		const [existingComment] = await db
+			.select()
+			.from(comments)
+			.where(inArray(comments.id, parentId ? [parentId] : []));
+
+		if (parentId && !existingComment) {
+			throw new TRPCError({ code: 'NOT_FOUND', message: 'Comment not found!' });
+		}
+
+		if (parentId && existingComment?.parentId) {
+			throw new TRPCError({ code: 'BAD_REQUEST', message: 'Cannot reply a reply!' });
+		}
+
+		const [comment] = await db.insert(comments).values({ parentId, userId, value, videoId }).returning();
 
 		return comment;
 	}),

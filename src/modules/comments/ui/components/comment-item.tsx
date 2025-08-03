@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Link from 'next/link';
 
 import { useAuth, useClerk } from '@clerk/nextjs';
@@ -18,14 +19,20 @@ import {
 import { UserAvatar } from '@/components/user-avatar';
 import { trpc } from '@/trpc/client';
 
+import { CommentForm } from './comment-form';
+
 interface CommentItemProps {
 	comment: CommentsGetManyOutput['items'][number];
+	variant?: 'reply' | 'comment';
 }
 
-export const CommentItem = ({ comment }: CommentItemProps) => {
+export const CommentItem = ({ comment, variant = 'comment' }: CommentItemProps) => {
 	const utils = trpc.useUtils();
 	const { userId } = useAuth();
 	const clerk = useClerk();
+
+	const [isReplyOpen, setIsReplyOpen] = useState(false);
+	const [isRepliesOpen, setIsRepliesOpen] = useState(false);
 
 	const remove = trpc.comments.remove.useMutation({
 		onError: (error) => {
@@ -40,6 +47,8 @@ export const CommentItem = ({ comment }: CommentItemProps) => {
 			utils.comments.getMany.invalidate({ videoId: comment.videoId });
 		},
 	});
+
+	const isReply = variant === 'reply';
 
 	return (
 		<div>
@@ -70,6 +79,12 @@ export const CommentItem = ({ comment }: CommentItemProps) => {
 							videoId={comment.videoId}
 							viewerReaction={comment.viewerReaction}
 						/>
+
+						{!isReply && (
+							<Button variant='ghost' size='sm' className='h-8' onClick={() => setIsReplyOpen(true)}>
+								Reply
+							</Button>
+						)}
 					</div>
 				</div>
 
@@ -81,10 +96,12 @@ export const CommentItem = ({ comment }: CommentItemProps) => {
 					</DropdownMenuTrigger>
 
 					<DropdownMenuContent align='end'>
-						<DropdownMenuItem onClick={() => {}}>
-							<MessageSquareIcon className='size-4' />
-							Reply
-						</DropdownMenuItem>
+						{!isReply && (
+							<DropdownMenuItem onClick={() => setIsReplyOpen(true)}>
+								<MessageSquareIcon className='size-4' />
+								Reply
+							</DropdownMenuItem>
+						)}
 
 						{/* TODO: Add confirm delete dialog */}
 						{comment.user.clerkId === userId && (
@@ -96,6 +113,21 @@ export const CommentItem = ({ comment }: CommentItemProps) => {
 					</DropdownMenuContent>
 				</DropdownMenu>
 			</div>
+
+			{isReplyOpen && !isReply && (
+				<div className='mt-4 pl-14'>
+					<CommentForm
+						variant='reply'
+						parentId={comment.id}
+						videoId={comment.videoId}
+						onCancel={() => setIsReplyOpen(false)}
+						onSuccess={() => {
+							setIsReplyOpen(false);
+							setIsRepliesOpen(true);
+						}}
+					/>
+				</div>
+			)}
 		</div>
 	);
 };
