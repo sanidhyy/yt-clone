@@ -201,7 +201,7 @@ export const VideoReactions = ({ dislikes, likes, videoId, viewerReaction }: Vid
 			>
 				<ThumbsUpIcon className={cn('size-5', optimisticState.viewerReaction === ReactionType.LIKE && 'fill-black')} />
 				{compactLikes}
-				<span className='sr-only'>Likes</span>
+				<span className='sr-only'>Like{likes === 1 ? '' : 's'}</span>
 			</Button>
 
 			<Separator orientation='vertical' className='h-7' />
@@ -216,7 +216,7 @@ export const VideoReactions = ({ dislikes, likes, videoId, viewerReaction }: Vid
 					className={cn('size-5', optimisticState.viewerReaction === ReactionType.DISLIKE && 'fill-black')}
 				/>
 				{compactDislikes}
-				<span className='sr-only'>Dislikes</span>
+				<span className='sr-only'>Dislike{dislikes === 1 ? '' : 's'}</span>
 			</Button>
 		</div>
 	);

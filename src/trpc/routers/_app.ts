@@ -3,6 +3,7 @@ import { commentReactionsRouter } from '@/modules/comment-reactions/server/proce
 import { commentsRouter } from '@/modules/comments/server/procedures';
 import { studioRouter } from '@/modules/studio/server/procedures';
 import { subscriptionsRouter } from '@/modules/subscriptions/server/procedures';
+import { suggestionsRouter } from '@/modules/suggestions/server/procedures';
 import { videoReactionsRouter } from '@/modules/video-reactions/server/procedures';
 import { videoViewsRouter } from '@/modules/video-views/server/procedures';
 import { videosRouter } from '@/modules/videos/server/procedures';
@@ -15,6 +16,7 @@ export const appRouter = createTRPCRouter({
 	comments: commentsRouter,
 	studio: studioRouter,
 	subscriptions: subscriptionsRouter,
+	suggestions: suggestionsRouter,
 	videoReactions: videoReactionsRouter,
 	videoViews: videoViewsRouter,
 	videos: videosRouter,

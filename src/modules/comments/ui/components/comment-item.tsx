@@ -142,7 +142,8 @@ export const CommentItem = ({ comment, variant = 'comment' }: CommentItemProps) 
 			{comment.replyCount > 0 && !isReply && (
 				<div className='pl-14'>
 					<Button variant='tertiary' size='sm' onClick={() => setIsRepliesOpen((isRepliesOpen) => !isRepliesOpen)}>
-						{isRepliesOpen ? <ChevronUpIcon /> : <ChevronDownIcon />} {compactReplyCount} replies
+						{isRepliesOpen ? <ChevronUpIcon /> : <ChevronDownIcon />} {compactReplyCount}{' '}
+						{comment.replyCount === 1 ? 'reply' : 'replies'}
 					</Button>
 				</div>
 			)}

@@ -17,7 +17,7 @@ interface VideoMenuProps {
 }
 
 // TODO: Implement functionality
-export const VideoMenu = ({ videoId, onRemove, variant }: VideoMenuProps) => {
+export const VideoMenu = ({ videoId, onRemove, variant = 'ghost' }: VideoMenuProps) => {
 	const fullUrl = `${env.NEXT_PUBLIC_APP_BASE_URL}/videos/${videoId}`;
 
 	const onShare = async () => {
