@@ -1,8 +1,8 @@
-import { and, desc, eq, getTableColumns, lt, or } from 'drizzle-orm';
+import { and, desc, eq, getTableColumns, inArray, lt, or } from 'drizzle-orm';
 import { z } from 'zod';
 
 import { db } from '@/db';
-import { CommentInsertSchema, comments, users } from '@/db/schema';
+import { CommentInsertSchema, ReactionType, commentReactions, comments, users } from '@/db/schema';
 import { baseProcedure, createTRPCRouter, protectedProcedure } from '@/trpc/init';
 
 export const commentsRouter = createTRPCRouter({
@@ -27,13 +27,43 @@ export const commentsRouter = createTRPCRouter({
 				videoId: z.string().uuid(),
 			})
 		)
-		.query(async ({ input }) => {
+		.query(async ({ ctx, input }) => {
+			const { clerkUserId } = ctx;
 			const { cursor, limit, videoId } = input;
 
+			let userId;
+
+			const [user] = await db
+				.select({ id: users.id })
+				.from(users)
+				.where(inArray(users.clerkId, clerkUserId ? [clerkUserId] : []));
+
+			if (user) userId = user.id;
+
+			const viewerReactions = db.$with('viewer_reactions').as(
+				db
+					.select({
+						commentId: commentReactions.commentId,
+						type: commentReactions.type,
+					})
+					.from(commentReactions)
+					.where(inArray(commentReactions.userId, userId ? [userId] : []))
+			);
+
 			const dataPromise = db
+				.with(viewerReactions)
 				.select({
-					user: users,
 					...getTableColumns(comments),
+					dislikeCount: db.$count(
+						commentReactions,
+						and(eq(commentReactions.type, ReactionType.DISLIKE), eq(commentReactions.commentId, comments.id))
+					),
+					likeCount: db.$count(
+						commentReactions,
+						and(eq(commentReactions.type, ReactionType.LIKE), eq(commentReactions.commentId, comments.id))
+					),
+					user: users,
+					viewerReaction: viewerReactions.type,
 				})
 				.from(comments)
 				.where(
@@ -48,6 +78,7 @@ export const commentsRouter = createTRPCRouter({
 					)
 				)
 				.innerJoin(users, eq(comments.userId, users.id))
+				.leftJoin(viewerReactions, eq(comments.id, viewerReactions.commentId))
 				.orderBy(desc(comments.updatedAt), desc(comments.id))
 				// Add 1 to the limit to check if there is more data
 				.limit(limit + 1);
