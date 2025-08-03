@@ -1,7 +1,7 @@
 /* eslint-disable sort-keys */
 
 import { relations } from 'drizzle-orm';
-import { integer, pgTable, primaryKey, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core';
+import { foreignKey, integer, pgTable, primaryKey, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core';
 import { createInsertSchema, createSelectSchema, createUpdateSchema } from 'drizzle-zod';
 
 export const enumToPgEnum = <T extends Record<string, unknown>>(myEnum: T): [T[keyof T], ...T[keyof T][]] => {
@@ -167,26 +167,45 @@ export const videosRelations = relations(videos, ({ many, one }) => ({
 	reactions: many(videoReactions),
 }));
 
-export const comments = pgTable('comment', {
-	id: uuid('id').primaryKey().defaultRandom(),
+export const comments = pgTable(
+	'comment',
+	{
+		id: uuid('id').primaryKey().defaultRandom(),
 
-	userId: uuid('user_id')
-		.notNull()
-		.references(() => users.id, { onDelete: 'cascade' }),
-	videoId: uuid('video_id')
-		.notNull()
-		.references(() => videos.id, { onDelete: 'cascade' }),
+		parentId: uuid('parent_id'),
+		userId: uuid('user_id')
+			.notNull()
+			.references(() => users.id, { onDelete: 'cascade' }),
+		videoId: uuid('video_id')
+			.notNull()
+			.references(() => videos.id, { onDelete: 'cascade' }),
 
-	value: text('value').notNull(),
+		value: text('value').notNull(),
 
-	createdAt: timestamp('created_at').notNull().defaultNow(),
-	updatedAt: timestamp('updated_at')
-		.notNull()
-		.$onUpdate(() => new Date()),
-});
+		createdAt: timestamp('created_at').notNull().defaultNow(),
+		updatedAt: timestamp('updated_at')
+			.notNull()
+			.$onUpdate(() => new Date()),
+	},
+	(comment) => [
+		foreignKey({
+			columns: [comment.parentId],
+			foreignColumns: [comment.id],
+			name: 'comment_parent_id_fk',
+		}).onDelete('cascade'),
+	]
+);
 
 export const commentsRelations = relations(comments, ({ many, one }) => ({
+	parent: one(comments, {
+		fields: [comments.parentId],
+		references: [comments.id],
+		relationName: 'comment_parent_id_fk',
+	}),
 	reactions: many(commentReactions),
+	replies: many(comments, {
+		relationName: 'comment_parent_id_fk',
+	}),
 	user: one(users, {
 		fields: [comments.userId],
 		references: [users.id],
