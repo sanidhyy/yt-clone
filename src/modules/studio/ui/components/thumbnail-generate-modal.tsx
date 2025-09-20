@@ -33,7 +33,7 @@ export const ThumbnailGenerateModal = ({ onOpenChange, open, videoId }: Thumbnai
 		onSuccess: () => {
 			form.reset();
 			onOpenChange(false);
-			toast('Background job started!\nThis may take some time.', {
+			toast('Generating Video thumbnail...\nThis may take some time.', {
 				icon: <CheckCircle2Icon className='size-6 text-primary' />,
 			});
 		},

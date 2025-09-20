@@ -23,6 +23,7 @@ import { env as clientEnv } from '@/env/client';
 import { env } from '@/env/server';
 import { mux } from '@/lib/mux';
 import { qstash } from '@/lib/qstash';
+import { absoluteUrl } from '@/lib/utils';
 import { baseProcedure, createTRPCRouter, protectedProcedure } from '@/trpc/init';
 
 import { updateVideoAsset } from './actions';
@@ -35,7 +36,7 @@ export const videosRouter = createTRPCRouter({
 
 		try {
 			upload = await mux.video.uploads.create({
-				cors_origin: clientEnv.NEXT_PUBLIC_APP_BASE_URL,
+				cors_origin: absoluteUrl(''),
 				new_asset_settings: {
 					inputs: [
 						{

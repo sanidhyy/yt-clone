@@ -1,5 +1,3 @@
-import type { KeyboardEvent } from 'react';
-
 import { useClerk, useUser } from '@clerk/nextjs';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -62,7 +60,7 @@ export const CommentForm = ({ videoId, onCancel, onSuccess, parentId, variant = 
 		create.mutate(values);
 	};
 
-	const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
 		// Check for both Windows (event.ctrlKey) and macOS (event.metaKey) Command key
 		if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
 			e.preventDefault();

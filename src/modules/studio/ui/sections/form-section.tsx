@@ -43,8 +43,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Skeleton } from '@/components/ui/skeleton';
 import { Textarea } from '@/components/ui/textarea';
 import { MuxStatus, VideoUpdateSchema, VideoVisibility } from '@/db/schema';
-import { env } from '@/env/client';
-import { cn, snakeCaseToTitle } from '@/lib/utils';
+import { absoluteUrl, cn, snakeCaseToTitle } from '@/lib/utils';
 import { trpc } from '@/trpc/client';
 
 interface FormSectionProps {
@@ -182,7 +181,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 			toast.error(error.message || 'Failed to generate video description!');
 		},
 		onSuccess: () => {
-			toast('Background job started!\nThis may take some time.', {
+			toast('Generating Video description...\nThis may take some time.', {
 				icon: <CheckCircle2Icon className='size-6 text-primary' />,
 			});
 		},
@@ -193,7 +192,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 			toast.error(error.message || 'Failed to generate video title!');
 		},
 		onSuccess: () => {
-			toast('Background job started!\nThis may take some time.', {
+			toast('Generating Video title...\nThis may take some time.', {
 				icon: <CheckCircle2Icon className='size-6 text-primary' />,
 			});
 		},
@@ -220,7 +219,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 		update.mutate(data);
 	};
 
-	const fullUrl = `${env.NEXT_PUBLIC_APP_BASE_URL}/videos/${videoId}`;
+	const fullUrl = absoluteUrl(`/videos/${videoId}`);
 
 	const onCopy = async () => {
 		try {

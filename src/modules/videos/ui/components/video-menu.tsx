@@ -8,7 +8,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { env } from '@/env/client';
+import { absoluteUrl } from '@/lib/utils';
 
 interface VideoMenuProps {
 	videoId: string;
@@ -18,7 +18,7 @@ interface VideoMenuProps {
 
 // TODO: Implement functionality
 export const VideoMenu = ({ videoId, onRemove, variant = 'ghost' }: VideoMenuProps) => {
-	const fullUrl = `${env.NEXT_PUBLIC_APP_BASE_URL}/videos/${videoId}`;
+	const fullUrl = absoluteUrl(`/videos/${videoId}`);
 
 	const onShare = async () => {
 		try {

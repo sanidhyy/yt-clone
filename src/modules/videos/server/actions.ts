@@ -7,7 +7,7 @@ import { UTApi } from 'uploadthing/server';
 
 import { db } from '@/db';
 import { MuxStatus, videos } from '@/db/schema';
-import { env as envClient } from '@/env/client';
+import { env } from '@/env/client';
 import { mux } from '@/lib/mux';
 
 export const updateVideoAsset = async (muxUploadId: string) => {
@@ -55,8 +55,8 @@ export const updateVideoAsset = async (muxUploadId: string) => {
 		? (asset.status as MuxStatus)
 		: MuxStatus.CANCELLED;
 
-	const muxPreviewUrl = `${envClient.NEXT_PUBLIC_MUX_IMAGE_BASE_URL}/${muxPlaybackId}/animated.gif`;
-	const muxThumbnailUrl = `${envClient.NEXT_PUBLIC_MUX_IMAGE_BASE_URL}/${muxPlaybackId}/thumbnail.jpg`;
+	const muxPreviewUrl = `${env.NEXT_PUBLIC_MUX_IMAGE_BASE_URL}/${muxPlaybackId}/animated.gif`;
+	const muxThumbnailUrl = `${env.NEXT_PUBLIC_MUX_IMAGE_BASE_URL}/${muxPlaybackId}/thumbnail.jpg`;
 
 	const [uploadedPreview, uploadedThumbnail] = await utapi.uploadFilesFromUrl([muxPreviewUrl, muxThumbnailUrl]);
 

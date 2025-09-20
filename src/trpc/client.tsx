@@ -7,7 +7,7 @@ import { httpBatchLink } from '@trpc/client';
 import { createTRPCReact } from '@trpc/react-query';
 import superjson from 'superjson';
 
-import { env } from '@/env/client';
+import { absoluteUrl } from '@/lib/utils';
 import type { AppRouter } from '@/trpc/routers/_app';
 
 import { makeQueryClient } from './query-client';
@@ -22,12 +22,6 @@ function getQueryClient() {
 	}
 
 	return (clientQueryClientSingleton ??= makeQueryClient());
-}
-
-function getUrl() {
-	const base = env.NEXT_PUBLIC_APP_BASE_URL;
-
-	return `${base}/api/trpc`;
 }
 
 export function TRPCProvider(
@@ -48,7 +42,7 @@ export function TRPCProvider(
 						return headers;
 					},
 					transformer: superjson,
-					url: getUrl(),
+					url: absoluteUrl('/api/trpc'),
 				}),
 			],
 		})

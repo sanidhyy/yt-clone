@@ -1,9 +1,22 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
+import { env } from '@/env/client';
+
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
+
+export const absoluteUrl = (path: string): string => {
+	const formattedPath = path.trim();
+	if (formattedPath.startsWith('http')) return formattedPath;
+
+	let baseUrl = env.NEXT_PUBLIC_APP_BASE_URL || 'http://localhost:3000';
+
+	if (process.env.NEXT_PUBLIC_VERCEL_URL) baseUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+
+	return baseUrl + (formattedPath.startsWith('/') ? formattedPath : `/${formattedPath}`);
+};
 
 export function formatDuration(duration: number) {
 	const seconds = Math.floor((duration % 60000) / 1000);
