@@ -13,6 +13,7 @@ interface UseSubscriptionProps {
 
 export const useSubscription = ({ isSubscribed, userId, initialSubscriberCount }: UseSubscriptionProps) => {
 	const clerk = useClerk();
+	const utils = trpc.useUtils();
 
 	// Optimistic state for subscription status and subscriber count
 	const [optimisticState, setOptimisticState] = useState({
@@ -49,7 +50,8 @@ export const useSubscription = ({ isSubscribed, userId, initialSubscriberCount }
 			}
 		},
 		onSuccess: () => {
-			// TODO: Reinvalidate subscriptions.getMany, users.getOne
+			// TODO: Reinvalidate users.getOne
+			utils.videos.getManySubscribed.invalidate();
 		},
 	});
 
@@ -68,7 +70,8 @@ export const useSubscription = ({ isSubscribed, userId, initialSubscriberCount }
 			}
 		},
 		onSuccess: () => {
-			// TODO: Reinvalidate subscriptions.getMany, users.getOne
+			// TODO: Reinvalidate users.getOne
+			utils.videos.getManySubscribed.invalidate();
 		},
 	});
 
