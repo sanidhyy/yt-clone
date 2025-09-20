@@ -2,7 +2,7 @@ import { and, desc, eq, getTableColumns, ilike, lt, or } from 'drizzle-orm';
 import { z } from 'zod';
 
 import { db } from '@/db';
-import { ReactionType, users, videoReactions, videoViews, videos } from '@/db/schema';
+import { ReactionType, VideoVisibility, users, videoReactions, videoViews, videos } from '@/db/schema';
 import { baseProcedure, createTRPCRouter } from '@/trpc/init';
 
 export const searchRouter = createTRPCRouter({
@@ -41,6 +41,7 @@ export const searchRouter = createTRPCRouter({
 				.innerJoin(users, eq(videos.userId, users.id))
 				.where(
 					and(
+						eq(videos.visibility, VideoVisibility.PUBLIC),
 						or(ilike(videos.title, `%${query}%`), ilike(videos.description, `%${query}%`)),
 						categoryId ? eq(videos.categoryId, categoryId) : undefined,
 						cursor

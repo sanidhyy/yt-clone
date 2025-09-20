@@ -24,12 +24,12 @@ interface UserInfoProps extends VariantProps<typeof userInfoVariants> {
 export const UserInfo = ({ name, className, size }: UserInfoProps) => {
 	return (
 		<div className={cn(userInfoVariants({ className, size }))}>
-			<Tooltip>
+			<Tooltip delayDuration={500}>
 				<TooltipTrigger asChild>
 					<p className='line-clamp-1 text-gray-500 hover:text-gray-800'>{name}</p>
 				</TooltipTrigger>
 
-				<TooltipContent align='center' className='bg-black/70'>
+				<TooltipContent align='center' className='bg-black/70' hideArrow>
 					<p>{name}</p>
 				</TooltipContent>
 			</Tooltip>
