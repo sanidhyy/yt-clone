@@ -1,11 +1,30 @@
+import { TRPCError } from '@trpc/server';
 import { and, desc, eq, getTableColumns, lt, or } from 'drizzle-orm';
 import { z } from 'zod';
 
+import { playlistCreateSchema } from '@/modules/playlists/schemas/playlist-create-schema';
+
 import { db } from '@/db';
-import { ReactionType, VideoVisibility, users, videoReactions, videoViews, videos } from '@/db/schema';
+import { ReactionType, VideoVisibility, playlists, users, videoReactions, videoViews, videos } from '@/db/schema';
 import { createTRPCRouter, protectedProcedure } from '@/trpc/init';
 
 export const playlistsRouter = createTRPCRouter({
+	create: protectedProcedure.input(playlistCreateSchema).mutation(async ({ ctx, input }) => {
+		const { name } = input;
+		const { id: userId } = ctx.user;
+
+		const [playlist] = await db
+			.insert(playlists)
+			.values({
+				name,
+				userId,
+			})
+			.returning();
+
+		if (!playlist) throw new TRPCError({ code: 'BAD_REQUEST', message: 'Failed to create playlist!' });
+
+		return playlist;
+	}),
 	getHistory: protectedProcedure
 		.input(
 			z.object({
