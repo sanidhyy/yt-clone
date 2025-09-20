@@ -9,12 +9,12 @@ import {
 	VideoAssetTrackReadyWebhookEvent,
 } from '@mux/mux-node/resources/webhooks';
 import { eq } from 'drizzle-orm';
-import { UTApi } from 'uploadthing/server';
 
-import { BAD_REQUEST, INTERNAL_SERVER_ERROR, NOT_FOUND, OK } from '@/config/http-status-codes';
+import { updateVideoAsset } from '@/modules/videos/server/actions';
+
+import { BAD_REQUEST, NOT_FOUND, OK } from '@/config/http-status-codes';
 import { db } from '@/db';
 import { MuxStatus, videos } from '@/db/schema';
-import { env as envClient } from '@/env/client';
 import { env } from '@/env/server';
 import { mux } from '@/lib/mux';
 
@@ -73,41 +73,7 @@ export const POST = async (req: NextRequest) => {
 				return new NextResponse('No upload id found!', { status: NOT_FOUND });
 			}
 
-			const playbackId = data.playback_ids?.[0].id;
-			if (!playbackId) {
-				return new NextResponse('No playback id found!', { status: NOT_FOUND });
-			}
-
-			const utapi = new UTApi();
-
-			const muxPreviewUrl = `${envClient.NEXT_PUBLIC_MUX_IMAGE_BASE_URL}/${playbackId}/animated.gif`;
-			const muxThumbnailUrl = `${envClient.NEXT_PUBLIC_MUX_IMAGE_BASE_URL}/${playbackId}/thumbnail.jpg`;
-			const duration = data.duration ? Math.round(data.duration * 1000) : 0;
-
-			const [uploadedPreview, uploadedThumbnail] = await utapi.uploadFilesFromUrl([muxPreviewUrl, muxThumbnailUrl]);
-
-			if (!uploadedPreview.data || !uploadedThumbnail.data) {
-				return new NextResponse('Failed to upload preview or thumbnai!', { status: INTERNAL_SERVER_ERROR });
-			}
-
-			const { key: thumbnailKey, ufsUrl: thumbnailUrl } = uploadedThumbnail.data;
-			const { key: previewKey, ufsUrl: previewUrl } = uploadedPreview.data;
-
-			await db
-				.update(videos)
-				.set({
-					duration,
-					muxAssetId: data.id,
-					muxPlaybackId: playbackId,
-					muxStatus: Object.values(MuxStatus).includes(data.status as MuxStatus)
-						? (data.status as MuxStatus)
-						: MuxStatus.CANCELLED,
-					previewKey,
-					previewUrl,
-					thumbnailKey,
-					thumbnailUrl,
-				})
-				.where(eq(videos.muxUploadId, data.upload_id));
+			await updateVideoAsset(data.upload_id);
 
 			break;
 		}

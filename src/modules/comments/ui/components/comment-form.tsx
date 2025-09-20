@@ -1,3 +1,5 @@
+import type { KeyboardEvent } from 'react';
+
 import { useClerk, useUser } from '@clerk/nextjs';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -60,6 +62,14 @@ export const CommentForm = ({ videoId, onCancel, onSuccess, parentId, variant = 
 		create.mutate(values);
 	};
 
+	const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+		// Check for both Windows (event.ctrlKey) and macOS (event.metaKey) Command key
+		if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+			e.preventDefault();
+			form.handleSubmit(handleSubmit)();
+		}
+	};
+
 	const isReply = variant === 'reply';
 
 	return (
@@ -73,6 +83,7 @@ export const CommentForm = ({ videoId, onCancel, onSuccess, parentId, variant = 
 
 				<div className='flex-1'>
 					<FormField
+						disabled={create.isPending}
 						control={form.control}
 						name='value'
 						render={({ field }) => (
@@ -82,6 +93,7 @@ export const CommentForm = ({ videoId, onCancel, onSuccess, parentId, variant = 
 										{...field}
 										placeholder={isReply ? 'Reply to this comment...' : 'Add a comment...'}
 										className='min-h-0 resize-none overflow-hidden bg-transparent'
+										onKeyDown={handleKeyDown}
 									/>
 								</FormControl>
 

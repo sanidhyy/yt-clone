@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 
+import type { Upload } from '@mux/mux-node/resources/video';
 import { TRPCError } from '@trpc/server';
 import { and, eq, getTableColumns, inArray, isNotNull } from 'drizzle-orm';
 import { UTApi } from 'uploadthing/server';
@@ -24,32 +25,40 @@ import { mux } from '@/lib/mux';
 import { qstash } from '@/lib/qstash';
 import { baseProcedure, createTRPCRouter, protectedProcedure } from '@/trpc/init';
 
+import { updateVideoAsset } from './actions';
+
 export const videosRouter = createTRPCRouter({
 	create: protectedProcedure.mutation(async ({ ctx }) => {
 		const { id: userId } = ctx.user;
 
-		const upload = await mux.video.uploads.create({
-			cors_origin: clientEnv.NEXT_PUBLIC_APP_BASE_URL,
-			new_asset_settings: {
-				inputs: [
-					{
-						generated_subtitles: [
-							{
-								language_code: 'en',
-								name: 'English',
-							},
-						],
-					},
-				],
-				passthrough: userId,
-				playback_policies: ['public'],
-				static_renditions: [
-					{
-						resolution: 'highest',
-					},
-				],
-			},
-		});
+		let upload: Upload | undefined = undefined;
+
+		try {
+			upload = await mux.video.uploads.create({
+				cors_origin: clientEnv.NEXT_PUBLIC_APP_BASE_URL,
+				new_asset_settings: {
+					inputs: [
+						{
+							generated_subtitles: [
+								{
+									language_code: 'en',
+									name: 'English',
+								},
+							],
+						},
+					],
+					passthrough: userId,
+					playback_policies: ['public'],
+					static_renditions: [
+						{
+							resolution: 'highest',
+						},
+					],
+				},
+			});
+		} catch {}
+
+		if (!upload) throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Failed to upload the video!' });
 
 		const [video] = await db
 			.insert(videos)
@@ -206,6 +215,21 @@ export const videosRouter = createTRPCRouter({
 			.where(and(eq(videos.id, id), eq(videos.userId, userId)))
 			.returning();
 
+		return updatedVideo;
+	}),
+	revalidate: protectedProcedure.input(z.object({ id: z.string().uuid() })).mutation(async ({ ctx, input }) => {
+		const { id: userId } = ctx.user;
+		const { id } = input;
+
+		const [existingVideo] = await db
+			.select()
+			.from(videos)
+			.where(and(eq(videos.id, id), eq(videos.userId, userId)));
+
+		if (!existingVideo) throw new TRPCError({ code: 'NOT_FOUND', message: 'Video not found!' });
+		if (!existingVideo.muxUploadId) throw new TRPCError({ code: 'BAD_REQUEST', message: 'Mux upload id not found!' });
+
+		const updatedVideo = updateVideoAsset(existingVideo.muxUploadId);
 		return updatedVideo;
 	}),
 	update: protectedProcedure.input(VideoUpdateSchema).mutation(async ({ ctx, input }) => {

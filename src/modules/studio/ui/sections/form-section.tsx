@@ -137,7 +137,6 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 	const utils = trpc.useUtils();
 
 	const [isCopied, setIsCopied] = useState(false);
-	const [isRefreshing, setIsRefreshing] = useState(false);
 	const [thumbnailUploadModalOpen, setThumbnailUploadModalOpen] = useState(false);
 	const [thumbnailGenerateModalOpen, setThumbnailGenerateModalOpen] = useState(false);
 
@@ -165,6 +164,16 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 
 			toast.success('Video removed!');
 			router.push('/studio');
+		},
+	});
+
+	const revalidate = trpc.videos.revalidate.useMutation({
+		onError: (error) => {
+			toast.error(error.message || 'Failed to refresh video data!');
+		},
+		onSuccess: () => {
+			utils.studio.getMany.invalidate();
+			utils.studio.getOne.invalidate({ id: videoId });
 		},
 	});
 
@@ -227,18 +236,6 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 		}
 	};
 
-	const onRefresh = async () => {
-		try {
-			setIsRefreshing(true);
-
-			await utils.studio.getOne.invalidate({ id: videoId });
-		} catch (error) {
-			toast.error(error instanceof Error ? error.message : 'Failed to copy video url!');
-		} finally {
-			setIsRefreshing(false);
-		}
-	};
-
 	const isUpdating = update.isPending;
 	const isRemoving = remove.isPending;
 	const isRestoring = restoreThumbnail.isPending;
@@ -246,6 +243,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 	const isGeneratingTitle = generateTitle.isPending;
 	const isGenerating = isGeneratingDescription || isGeneratingTitle;
 	const isPending = isUpdating || isRemoving;
+	const isRefreshing = revalidate.isPending;
 
 	return (
 		<>
@@ -278,7 +276,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 								variant='secondary'
 								size='icon'
 								disabled={isPending || isRefreshing}
-								onClick={onRefresh}
+								onClick={() => revalidate.mutate({ id: videoId })}
 							>
 								<RefreshCwIcon className={cn('size-4', isRefreshing && 'animate-spin')} />
 								<span className='sr-only'>Refresh video data</span>
