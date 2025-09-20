@@ -29,58 +29,56 @@ export const VideosSection = () => {
 
 const VideosSectionSkeleton = () => {
 	return (
-		<>
-			<div className='border-y'>
-				<Table>
-					<TableHeader>
-						<TableRow>
-							<TableHead className='w-[510px] pl-6'>Video</TableHead>
-							<TableHead>Visibility</TableHead>
-							<TableHead>Status</TableHead>
-							<TableHead>Date</TableHead>
-							<TableHead className='text-right'>Views</TableHead>
-							<TableHead className='text-right'>Comments</TableHead>
-							<TableHead className='pr-6 text-right'>Likes</TableHead>
-						</TableRow>
-					</TableHeader>
+		<div className='border-y'>
+			<Table>
+				<TableHeader>
+					<TableRow>
+						<TableHead className='w-[510px] pl-6'>Video</TableHead>
+						<TableHead>Visibility</TableHead>
+						<TableHead>Status</TableHead>
+						<TableHead>Date</TableHead>
+						<TableHead className='text-right'>Views</TableHead>
+						<TableHead className='text-right'>Comments</TableHead>
+						<TableHead className='pr-6 text-right'>Likes</TableHead>
+					</TableRow>
+				</TableHeader>
 
-					<TableBody>
-						{Array.from({ length: 5 }).map((_, index) => (
-							<TableRow key={index}>
-								<TableCell className='w-[510px] pl-6'>
-									<div className='flex items-center gap-4'>
-										<Skeleton className='h-20 w-36' />
-										<div className='flex flex-col gap-2'>
-											<Skeleton className='h-4 w-[100px]' />
-											<Skeleton className='h-3 w-[150px]' />
-										</div>
+				<TableBody>
+					{Array.from({ length: 5 }).map((_, index) => (
+						<TableRow key={index}>
+							<TableCell className='w-[510px] pl-6'>
+								<div className='flex items-center gap-4'>
+									<Skeleton className='h-20 w-36' />
+									<div className='flex flex-col gap-2'>
+										<Skeleton className='h-4 w-[100px]' />
+										<Skeleton className='h-3 w-[150px]' />
 									</div>
-								</TableCell>
+								</div>
+							</TableCell>
 
-								<TableCell>
-									<Skeleton className='h-4 w-20' />
-								</TableCell>
-								<TableCell>
-									<Skeleton className='h-4 w-16' />
-								</TableCell>
-								<TableCell>
-									<Skeleton className='h-4 w-24' />
-								</TableCell>
-								<TableCell className='text-right'>
-									<Skeleton className='ml-auto h-4 w-12' />
-								</TableCell>
-								<TableCell className='text-right'>
-									<Skeleton className='ml-auto h-4 w-12' />
-								</TableCell>
-								<TableCell className='pr-6 text-right'>
-									<Skeleton className='ml-auto h-4 w-12' />
-								</TableCell>
-							</TableRow>
-						))}
-					</TableBody>
-				</Table>
-			</div>
-		</>
+							<TableCell>
+								<Skeleton className='h-4 w-20' />
+							</TableCell>
+							<TableCell>
+								<Skeleton className='h-4 w-16' />
+							</TableCell>
+							<TableCell>
+								<Skeleton className='h-4 w-24' />
+							</TableCell>
+							<TableCell className='text-right'>
+								<Skeleton className='ml-auto h-4 w-12' />
+							</TableCell>
+							<TableCell className='text-right'>
+								<Skeleton className='ml-auto h-4 w-12' />
+							</TableCell>
+							<TableCell className='pr-6 text-right'>
+								<Skeleton className='ml-auto h-4 w-12' />
+							</TableCell>
+						</TableRow>
+					))}
+				</TableBody>
+			</Table>
+		</div>
 	);
 };
 
@@ -91,7 +89,7 @@ const VideosSectionSuspense = () => {
 	);
 
 	return (
-		<div>
+		<>
 			<div className='border-y'>
 				<Table>
 					<TableHeader>
@@ -167,6 +165,6 @@ const VideosSectionSuspense = () => {
 				isFetchingNextPage={query.isFetchingNextPage}
 				fetchNextPage={query.fetchNextPage}
 			/>
-		</div>
+		</>
 	);
 };
