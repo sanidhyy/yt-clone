@@ -1,7 +1,7 @@
 'use client';
 
-import { Suspense } from 'react';
-import { useRouter } from 'next/navigation';
+import { Suspense, useCallback } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import { ErrorBoundary } from 'react-error-boundary';
 
@@ -29,6 +29,7 @@ export const CategoriesSection = ({ categoryId }: CategoriesSectionProps) => {
 
 const CategoriesSectionSuspense = ({ categoryId }: CategoriesSectionProps) => {
 	const router = useRouter();
+	const searchParams = useSearchParams();
 	const [categories] = trpc.categories.getMany.useSuspenseQuery();
 
 	const data = categories.map(({ id, name }) => ({
@@ -36,17 +37,17 @@ const CategoriesSectionSuspense = ({ categoryId }: CategoriesSectionProps) => {
 		value: id,
 	}));
 
-	const onSelect = (value: string | null) => {
-		const url = new URL(absoluteUrl(''));
+	const onSelect = useCallback(
+		(value: string | null) => {
+			const params = new URLSearchParams(searchParams.toString());
 
-		if (value) {
-			url.searchParams.set('categoryId', value);
-		} else {
-			url.searchParams.delete('categoryId');
-		}
+			if (value) params.set('categoryId', value);
+			else params.delete('categoryId');
 
-		router.push(url.toString());
-	};
+			router.push(absoluteUrl(`/search?${params.toString()}`));
+		},
+		[router, searchParams]
+	);
 
 	return <FilterCarousel onSelect={onSelect} value={categoryId} data={data} />;
 };
