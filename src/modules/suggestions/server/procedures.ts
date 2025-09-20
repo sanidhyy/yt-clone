@@ -1,9 +1,9 @@
 import { TRPCError } from '@trpc/server';
-import { and, desc, eq, getTableColumns, lt, or } from 'drizzle-orm';
+import { and, desc, eq, getTableColumns, lt, not, or } from 'drizzle-orm';
 import { z } from 'zod';
 
 import { db } from '@/db';
-import { ReactionType, users, videoReactions, videoViews, videos } from '@/db/schema';
+import { ReactionType, VideoVisibility, users, videoReactions, videoViews, videos } from '@/db/schema';
 import { baseProcedure, createTRPCRouter } from '@/trpc/init';
 
 export const suggestionsRouter = createTRPCRouter({
@@ -23,7 +23,6 @@ export const suggestionsRouter = createTRPCRouter({
 		.query(async ({ input }) => {
 			const { cursor, limit, videoId } = input;
 
-			// TODO: Only show public video
 			const [existingVideo] = await db.select().from(videos).where(eq(videos.id, videoId));
 
 			if (!existingVideo) {
@@ -47,6 +46,8 @@ export const suggestionsRouter = createTRPCRouter({
 				.from(videos)
 				.where(
 					and(
+						not(eq(videos.id, existingVideo.id)),
+						eq(videos.visibility, VideoVisibility.PUBLIC),
 						existingVideo.categoryId ? eq(videos.categoryId, existingVideo.categoryId) : undefined,
 						cursor
 							? or(

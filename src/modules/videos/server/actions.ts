@@ -22,7 +22,6 @@ export const updateVideoAsset = async (muxUploadId: string) => {
 		upload = await mux.video.uploads.retrieve(muxUploadId);
 	} catch {}
 
-	// const upload = await mux.video.uploads.retrieve(muxUploadId);
 	if (!upload || !upload.asset_id) throw new TRPCError({ code: 'BAD_REQUEST', message: 'Mux upload not found!' });
 
 	let asset: Asset | undefined = undefined;
@@ -31,6 +30,22 @@ export const updateVideoAsset = async (muxUploadId: string) => {
 		asset = await mux.video.assets.retrieve(upload.asset_id);
 	} catch {}
 	if (!asset) throw new TRPCError({ code: 'BAD_REQUEST', message: 'Mux asset not found!' });
+
+	let muxTrackId: string | undefined = undefined;
+	let muxTrackStatus: MuxStatus | undefined = undefined;
+
+	const assetTracks = asset.tracks || [];
+
+	for (const track of assetTracks) {
+		if (track.type === 'text') {
+			muxTrackId = track.id;
+			muxTrackStatus = Object.values(MuxStatus).includes(track.status as MuxStatus)
+				? (track.status as MuxStatus)
+				: MuxStatus.CANCELLED;
+
+			break;
+		}
+	}
 
 	const utapi = new UTApi();
 
@@ -58,6 +73,8 @@ export const updateVideoAsset = async (muxUploadId: string) => {
 			muxAssetId: asset.id,
 			muxPlaybackId,
 			muxStatus,
+			muxTrackId,
+			muxTrackStatus,
 			previewKey,
 			previewUrl,
 			thumbnailKey,
