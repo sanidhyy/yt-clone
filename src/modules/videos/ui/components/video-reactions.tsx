@@ -97,7 +97,7 @@ export const VideoReactions = ({ dislikes, likes, videoId, viewerReaction }: Vid
 			// ONLY invalidate the query.
 			// The useEffect will handle syncing the state once new props arrive.
 			utils.videos.getOne.invalidate({ id: videoId });
-			// TODO: Invalidate "liked" playlists
+			utils.playlists.getLiked.invalidate();
 		},
 	});
 
@@ -121,7 +121,7 @@ export const VideoReactions = ({ dislikes, likes, videoId, viewerReaction }: Vid
 			// ONLY invalidate the query.
 			// The useEffect will handle syncing the state once new props arrive.
 			utils.videos.getOne.invalidate({ id: videoId });
-			// TODO: Invalidate "liked" playlists
+			utils.playlists.getLiked.invalidate();
 		},
 	});
 
