@@ -12,7 +12,7 @@ import { UserAvatar } from '@/components/user-avatar';
 import { cn } from '@/lib/utils';
 
 import { VideoMenu } from './video-menu';
-import { VideoThumbnail } from './video-thumbnail';
+import { VideoThumbnail, VideoThumbnailSkeleton } from './video-thumbnail';
 
 const videoRowCardVariants = cva('group flex min-w-0', {
 	defaultVariants: {
@@ -38,9 +38,39 @@ const thumbnailVariants = cva('relative flex-none', {
 	},
 });
 
-export const VideoRowCardSkeleton = () => {
-	// TODO: Complete skeleton ui
-	return <div>Skeleton</div>;
+export const VideoRowCardSkeleton = ({ size }: VariantProps<typeof videoRowCardVariants>) => {
+	const isCompact = size === 'compact';
+
+	return (
+		<div className={videoRowCardVariants({ size })}>
+			{/* Thumbnail Skeleton */}
+			<div className={thumbnailVariants({ size })}>
+				<VideoThumbnailSkeleton />
+			</div>
+
+			{/* Info Skeleton */}
+			<div className='min-w-0 flex-1'>
+				<div className='flex justify-between gap-x-2'>
+					<div className='min-w-0 flex-1'>
+						<Skeleton className={cn('h-5 w-2/5', isCompact && 'h-4')} />
+
+						{isCompact ? (
+							<Skeleton className='mt-1 h-4 w-1/2' />
+						) : (
+							<>
+								<Skeleton className='mt-1 h-4 w-1/5' />
+
+								<div className='my-3 flex items-center gap-2'>
+									<Skeleton className='size-8 rounded-full' />
+									<Skeleton className='h-4 w-24' />
+								</div>
+							</>
+						)}
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 interface VideoRowCardProps extends VariantProps<typeof videoRowCardVariants> {
