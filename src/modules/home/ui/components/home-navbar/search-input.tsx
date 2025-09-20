@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import { SearchIcon, XIcon } from 'lucide-react';
 
@@ -10,7 +10,10 @@ import { absoluteUrl } from '@/lib/utils';
 
 export const SearchInput = () => {
 	const router = useRouter();
-	const [searchValue, setSearchValue] = useState('');
+	const searchParams = useSearchParams();
+
+	const query = searchParams.get('query') || '';
+	const [searchValue, setSearchValue] = useState(query);
 
 	const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();

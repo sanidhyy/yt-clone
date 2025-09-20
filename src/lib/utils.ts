@@ -15,7 +15,7 @@ export const absoluteUrl = (path: string): string => {
 
 	if (process.env.NEXT_PUBLIC_VERCEL_URL) baseUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
 
-	return baseUrl + (formattedPath.startsWith('/') ? formattedPath : `/${formattedPath}`);
+	return `${baseUrl}${formattedPath.startsWith('/') ? '' : '/'}${formattedPath}`;
 };
 
 export function formatDuration(duration: number) {

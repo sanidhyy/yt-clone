@@ -1,5 +1,9 @@
 'use client';
 
+import { Suspense } from 'react';
+
+import { ErrorBoundary } from 'react-error-boundary';
+
 import { VideoGridCard, VideoGridCardSkeleton } from '@/modules/videos/ui/components/video-grid-card';
 import { VideoRowCard, VideoRowCardSkeleton } from '@/modules/videos/ui/components/video-row-card';
 
@@ -14,6 +18,34 @@ interface ResultsSectionProps {
 }
 
 export const ResultsSection = ({ query, categoryId }: ResultsSectionProps) => {
+	return (
+		<Suspense key={`${query}-${categoryId}`} fallback={<ResultsSectionSkeleton />}>
+			<ErrorBoundary fallback={<p>Error...</p>}>
+				<ResultsSectionSuspense query={query} categoryId={categoryId} />
+			</ErrorBoundary>
+		</Suspense>
+	);
+};
+
+const ResultsSectionSkeleton = () => {
+	return (
+		<>
+			<div className='hidden flex-col gap-4 md:flex'>
+				{Array.from({ length: 5 }).map((_, i) => (
+					<VideoRowCardSkeleton key={i} />
+				))}
+			</div>
+
+			<div className='flex flex-col gap-x-4 gap-y-10 p-4 pt-6 md:hidden'>
+				{Array.from({ length: 5 }).map((_, i) => (
+					<VideoGridCardSkeleton key={i} />
+				))}
+			</div>
+		</>
+	);
+};
+
+const ResultsSectionSuspense = ({ query, categoryId }: ResultsSectionProps) => {
 	const isMobile = useIsMobile();
 
 	const [results, resultsQuery] = trpc.search.getMany.useSuspenseInfiniteQuery(
