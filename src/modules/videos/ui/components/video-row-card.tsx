@@ -38,7 +38,7 @@ const thumbnailVariants = cva('relative flex-none', {
 	},
 });
 
-export const VideoRowCardSkeleton = ({ size }: VariantProps<typeof videoRowCardVariants>) => {
+export const VideoRowCardSkeleton = ({ size = 'default' }: VariantProps<typeof videoRowCardVariants>) => {
 	const isCompact = size === 'compact';
 
 	return (
@@ -78,7 +78,7 @@ interface VideoRowCardProps extends VariantProps<typeof videoRowCardVariants> {
 	onRemove?: () => void;
 }
 
-export const VideoRowCard = ({ data, onRemove, size }: VideoRowCardProps) => {
+export const VideoRowCard = ({ data, onRemove, size = 'default' }: VideoRowCardProps) => {
 	const compactLikes = useMemo(() => {
 		return Intl.NumberFormat('en', {
 			notation: 'compact',

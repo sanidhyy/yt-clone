@@ -12,7 +12,6 @@ import { DEFAULT_LIMIT } from '@/constants';
 import { trpc } from '@/trpc/client';
 
 interface SuggestionsSectionProps {
-	isManual?: boolean;
 	videoId: string;
 }
 
@@ -34,17 +33,17 @@ const SuggestionsSectionSkeleton = () => {
 	);
 };
 
-export const SuggestionsSection = ({ videoId, isManual }: SuggestionsSectionProps) => {
+export const SuggestionsSection = ({ videoId }: SuggestionsSectionProps) => {
 	return (
 		<Suspense fallback={<SuggestionsSectionSkeleton />}>
 			<ErrorBoundary fallback={<p>Error...</p>}>
-				<SuggestionsSectionSuspense videoId={videoId} isManual={isManual} />
+				<SuggestionsSectionSuspense videoId={videoId} />
 			</ErrorBoundary>
 		</Suspense>
 	);
 };
 
-export const SuggestionsSectionSuspense = ({ isManual = false, videoId }: SuggestionsSectionProps) => {
+export const SuggestionsSectionSuspense = ({ videoId }: SuggestionsSectionProps) => {
 	const [suggestions, query] = trpc.suggestions.getMany.useSuspenseInfiniteQuery(
 		{
 			limit: DEFAULT_LIMIT,
@@ -77,7 +76,6 @@ export const SuggestionsSectionSuspense = ({ isManual = false, videoId }: Sugges
 				fetchNextPage={query.fetchNextPage}
 				hasNextPage={query.hasNextPage}
 				isFetchingNextPage={query.isFetchingNextPage}
-				isManual={isManual}
 			/>
 		</>
 	);
