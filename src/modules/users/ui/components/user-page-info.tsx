@@ -82,6 +82,46 @@ export const UserPageInfo = ({ user }: UserPageInfoProps) => {
 					/>
 				)}
 			</div>
+
+			{/* Desktop layout */}
+			<div className='hidden items-start gap-4 md:flex'>
+				<UserAvatar
+					size='xl'
+					imageUrl={user.imageUrl}
+					name={user.name}
+					className={cn(
+						clerkUser &&
+							user.clerkId === clerkUser.id &&
+							'cursor-pointer transition-opacity duration-300 hover:opacity-80'
+					)}
+					onClick={() => {
+						if (loaded && clerkUser && user.clerkId === clerkUser.id) {
+							openUserProfile();
+						}
+					}}
+				/>
+
+				<div className='min-w-0 flex-1'>
+					<h1 className='text-4xl font-bold'>{user.name}</h1>
+					<div className='mt-3 flex items-center gap-1 text-sm text-muted-foreground'>
+						<span>
+							{compactSubscriberCount} subscriber{user.subscriberCount === 1 ? '' : 's'}
+						</span>
+						<span>&bull;</span>
+						<span>
+							{compactVideoCount} video{user.videoCount === 1 ? '' : 's'}
+						</span>
+					</div>
+
+					{clerkUser && user.clerkId === clerkUser.id ? (
+						<Link href='/studio' className={cn(buttonVariants({ variant: 'secondary' }), 'mt-3 rounded-full')}>
+							Go to studio
+						</Link>
+					) : (
+						<SubscriptionButton isSubscribed={isSubscribed} disabled={!loaded} onClick={onClick} className='mt-3' />
+					)}
+				</div>
+			</div>
 		</div>
 	);
 };
