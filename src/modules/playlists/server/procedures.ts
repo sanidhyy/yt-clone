@@ -230,6 +230,15 @@ export const playlistsRouter = createTRPCRouter({
 			const data = await db
 				.select({
 					...getTableColumns(playlists),
+					// TODO: Try to use drizzle functions instead of raw sql.
+					thumbnailUrl: sql<string | null>`(
+						SELECT v.thumbnail_url
+						FROM ${playlistVideos} pv
+						JOIN ${videos} v ON v.id = pv.video_id
+						WHERE pv.playlist_id = ${playlists.id}
+						ORDER BY pv.updated_at DESC
+						LIMIT 1
+					)`,
 					user: users, // TODO: Remove if not used
 					videoCount: db.$count(playlistVideos, eq(playlists.id, playlistVideos.playlistId)),
 				})
