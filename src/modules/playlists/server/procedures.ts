@@ -1,5 +1,5 @@
 import { TRPCError } from '@trpc/server';
-import { and, desc, eq, getTableColumns, lt, or, sql } from 'drizzle-orm';
+import { and, desc, eq, getTableColumns, inArray, lt, or, sql } from 'drizzle-orm';
 import { z } from 'zod';
 
 import { playlistCreateSchema } from '@/modules/playlists/schemas/playlist-create-schema';
@@ -359,8 +359,25 @@ export const playlistsRouter = createTRPCRouter({
 				playlistId: z.string().uuid(),
 			})
 		)
-		.query(async ({ input }) => {
+		.query(async ({ ctx, input }) => {
+			const { clerkUserId } = ctx;
 			const { cursor, limit, playlistId } = input;
+
+			const [existingPlaylist] = await db
+				.select({ userId: playlists.userId })
+				.from(playlists)
+				.where(eq(playlists.id, playlistId));
+
+			if (!existingPlaylist) throw new TRPCError({ code: 'NOT_FOUND', message: 'Playlist not found!' });
+
+			let currentUserId: string | undefined;
+
+			const [user] = await db
+				.select({ id: users.id })
+				.from(users)
+				.where(inArray(users.clerkId, clerkUserId ? [clerkUserId] : []));
+
+			if (user) currentUserId = user.id;
 
 			const videosFromPlaylist = db.$with('playlist_videos').as(
 				db
@@ -391,7 +408,10 @@ export const playlistsRouter = createTRPCRouter({
 				.innerJoin(videosFromPlaylist, eq(videos.id, videosFromPlaylist.videoId))
 				.where(
 					and(
-						eq(videos.visibility, VideoVisibility.PUBLIC),
+						or(
+							eq(videos.visibility, VideoVisibility.PUBLIC),
+							currentUserId ? eq(videos.userId, currentUserId) : undefined
+						),
 						cursor
 							? or(
 									lt(videos.updatedAt, cursor.updatedAt),

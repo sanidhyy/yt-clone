@@ -7,6 +7,8 @@ import MediaThemeYt from 'player.style/yt/react';
 
 import { THUMBNAIL_FALLBACK } from '@/modules/videos/constants';
 
+import type { VideoVisibility } from '@/db/schema';
+
 import { VideoThumbnail } from './video-thumbnail';
 
 import '@/modules/videos/ui/css/mux-player.css';
@@ -23,6 +25,7 @@ interface VideoPlayerProps {
 	thumbnailUrl?: string | null;
 	previewUrl?: string | null;
 	title: string;
+	visibility: VideoVisibility;
 }
 
 export const VideoPlayer = ({
@@ -33,6 +36,7 @@ export const VideoPlayer = ({
 	thumbnailUrl,
 	previewUrl,
 	title,
+	visibility,
 }: VideoPlayerProps) => {
 	const [isMounted, setIsMounted] = useState(false);
 
@@ -48,6 +52,7 @@ export const VideoPlayer = ({
 				title={title}
 				imageUrl={thumbnailUrl}
 				previewUrl={previewUrl}
+				visibility={visibility}
 			/>
 		);
 	}

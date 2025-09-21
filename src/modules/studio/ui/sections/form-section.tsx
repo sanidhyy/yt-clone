@@ -472,6 +472,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 										thumbnailUrl={video.thumbnailUrl}
 										previewUrl={video.previewUrl}
 										title={video.title}
+										visibility={video.visibility}
 									/>
 								</div>
 

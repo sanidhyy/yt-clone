@@ -53,6 +53,10 @@ export const PlaylistAddModal = ({ onOpenChange, open, videoId }: PlaylistAddMod
 					</div>
 				)}
 
+				{!isLoading && !playlists?.pages[0].items.length && (
+					<p className='mt-4 text-center text-sm text-muted-foreground'>No playlists yet.</p>
+				)}
+
 				{!isLoading &&
 					playlists?.pages
 						.flatMap((page) => page.items)

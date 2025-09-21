@@ -29,6 +29,7 @@ export const VideoGridCard = ({ data, onRemove }: VideoGridCardProps) => {
 					title={data.title}
 					imageUrl={data.thumbnailUrl}
 					previewUrl={data.previewUrl}
+					visibility={data.visibility}
 				/>
 			</Link>
 

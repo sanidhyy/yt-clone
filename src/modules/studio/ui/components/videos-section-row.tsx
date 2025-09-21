@@ -47,6 +47,7 @@ export const VideosSectionRow = ({ video }: VideosSectionRowProps) => {
 								imageUrl={video.thumbnailUrl}
 								previewUrl={video.previewUrl}
 								title={video.title}
+								visibility={video.visibility}
 							/>
 						</div>
 

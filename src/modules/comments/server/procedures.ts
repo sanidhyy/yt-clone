@@ -48,7 +48,7 @@ export const commentsRouter = createTRPCRouter({
 			const { clerkUserId } = ctx;
 			const { cursor, limit, parentId, videoId } = input;
 
-			let userId;
+			let userId: string | undefined;
 
 			const [user] = await db
 				.select({ id: users.id })

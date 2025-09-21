@@ -102,6 +102,7 @@ export const VideoRowCard = ({ data, onRemove, size = 'default' }: VideoRowCardP
 					title={data.title}
 					imageUrl={data.thumbnailUrl}
 					previewUrl={data.previewUrl}
+					visibility={data.visibility}
 				/>
 			</Link>
 

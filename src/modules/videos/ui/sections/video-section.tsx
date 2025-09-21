@@ -50,6 +50,7 @@ const VideoSectionSuspense = ({ videoId }: VideoSectionProps) => {
 					previewUrl={video.previewUrl}
 					duration={video.duration}
 					title={video.title}
+					visibility={video.visibility}
 				/>
 			</div>
 

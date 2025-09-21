@@ -1,8 +1,11 @@
 import Image from 'next/image';
 
+import { LockIcon } from 'lucide-react';
+
 import { THUMBNAIL_FALLBACK } from '@/modules/videos/constants';
 
 import { Skeleton } from '@/components/ui/skeleton';
+import { VideoVisibility } from '@/db/schema';
 import { cn, formatDuration } from '@/lib/utils';
 
 interface VideoThumbnailProps {
@@ -11,6 +14,7 @@ interface VideoThumbnailProps {
 	title: string;
 	imageUrl?: string | null;
 	previewUrl?: string | null;
+	visibility: VideoVisibility;
 }
 
 export const VideoThumbnailSkeleton = () => {
@@ -21,7 +25,14 @@ export const VideoThumbnailSkeleton = () => {
 	);
 };
 
-export const VideoThumbnail = ({ className, duration, title, imageUrl, previewUrl }: VideoThumbnailProps) => {
+export const VideoThumbnail = ({
+	className,
+	duration,
+	title,
+	imageUrl,
+	previewUrl,
+	visibility,
+}: VideoThumbnailProps) => {
 	return (
 		<div className='group relative'>
 			{/* Thumbnail wrapper */}
@@ -43,9 +54,16 @@ export const VideoThumbnail = ({ className, duration, title, imageUrl, previewUr
 			</div>
 
 			{/* Video duration box */}
-			<div className='absolute bottom-2 right-2 rounded bg-black/80 px-1 py-0.5 text-xs font-medium text-white'>
+			<div className='absolute bottom-2 right-2 rounded bg-black/80 px-1 py-0.5 text-xs font-medium text-white opacity-100 transition-opacity duration-100 group-hover:opacity-0'>
 				{formatDuration(duration)}
 			</div>
+
+			{/* Video visibility box for private videos */}
+			{visibility === VideoVisibility.PRIVATE && (
+				<div className='absolute right-2 top-2 rounded bg-black/80 px-1 py-0.5 text-xs font-medium text-white opacity-100 transition-opacity duration-100 group-hover:opacity-0'>
+					<LockIcon className='size-4' />
+				</div>
+			)}
 		</div>
 	);
 };
