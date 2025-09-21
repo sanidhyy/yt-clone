@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { useClerk } from '@clerk/nextjs';
 import { ListPlusIcon, MoreVerticalIcon, ShareIcon, Trash2Icon } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -21,6 +22,8 @@ interface VideoMenuProps {
 }
 
 export const VideoMenu = ({ videoId, onRemove, variant = 'ghost' }: VideoMenuProps) => {
+	const { loaded, user, openSignIn } = useClerk();
+
 	const [openPlaylistAddModal, setOpenPlaylistAddModal] = useState(false);
 
 	const fullUrl = absoluteUrl(`/videos/${videoId}`);
@@ -35,12 +38,18 @@ export const VideoMenu = ({ videoId, onRemove, variant = 'ghost' }: VideoMenuPro
 		}
 	};
 
+	const handleOpenPlaylistAddModal = () => {
+		if (loaded && !user) return openSignIn();
+
+		setOpenPlaylistAddModal(true);
+	};
+
 	return (
 		<>
 			<PlaylistAddModal open={openPlaylistAddModal} onOpenChange={setOpenPlaylistAddModal} videoId={videoId} />
 
 			<DropdownMenu>
-				<DropdownMenuTrigger asChild>
+				<DropdownMenuTrigger disabled={!loaded} asChild>
 					<Button variant={variant} size='icon' className='rounded-full'>
 						<MoreVerticalIcon />
 						<span className='sr-only'>More {!!onRemove ? 'playlist' : 'video'} options</span>
@@ -53,7 +62,7 @@ export const VideoMenu = ({ videoId, onRemove, variant = 'ghost' }: VideoMenuPro
 						Share
 					</DropdownMenuItem>
 
-					<DropdownMenuItem onClick={() => setOpenPlaylistAddModal(true)}>
+					<DropdownMenuItem onClick={handleOpenPlaylistAddModal}>
 						<ListPlusIcon className='size-4' />
 						Add to playlist
 					</DropdownMenuItem>
