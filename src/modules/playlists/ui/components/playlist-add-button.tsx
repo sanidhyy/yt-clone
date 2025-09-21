@@ -23,7 +23,8 @@ export const PlaylistAddButton = ({ playlist, videoId }: PlaylistAddButtonProps)
 		onSuccess: () => {
 			utils.playlists.getMany.invalidate();
 			utils.playlists.getManyForVideo.invalidate({ videoId });
-			// TODO: Invalidate playlist get one
+			utils.playlists.getOne.invalidate({ id: playlist.id });
+			utils.playlists.getVideos.invalidate({ playlistId: playlist.id });
 		},
 	});
 
@@ -34,7 +35,8 @@ export const PlaylistAddButton = ({ playlist, videoId }: PlaylistAddButtonProps)
 		onSuccess: () => {
 			utils.playlists.getMany.invalidate();
 			utils.playlists.getManyForVideo.invalidate({ videoId });
-			// TODO: Invalidate playlist get one
+			utils.playlists.getOne.invalidate({ id: playlist.id });
+			utils.playlists.getVideos.invalidate({ playlistId: playlist.id });
 		},
 	});
 

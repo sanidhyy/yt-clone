@@ -67,8 +67,9 @@ export const VideoMenu = ({ videoId, onRemove, variant = 'ghost' }: VideoMenuPro
 						Add to playlist
 					</DropdownMenuItem>
 
+					{/* TODO: Add confirm delete dialog */}
 					{!!onRemove && (
-						<DropdownMenuItem onClick={() => {}}>
+						<DropdownMenuItem onClick={onRemove} variant='destructive'>
 							<Trash2Icon className='size-4' />
 							Remove
 						</DropdownMenuItem>

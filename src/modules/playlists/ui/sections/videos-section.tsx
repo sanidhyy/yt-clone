@@ -2,7 +2,9 @@
 
 import { Suspense } from 'react';
 
+import { useAuth } from '@clerk/nextjs';
 import { ErrorBoundary } from 'react-error-boundary';
+import toast from 'react-hot-toast';
 
 import { VideoGridCard, VideoGridCardSkeleton } from '@/modules/videos/ui/components/video-grid-card';
 import { VideoRowCard, VideoRowCardSkeleton } from '@/modules/videos/ui/components/video-row-card';
@@ -44,6 +46,9 @@ const VideosSectionSkeleton = () => {
 };
 
 const VideosSectionSuspense = ({ playlistId }: VideosSectionProps) => {
+	const utils = trpc.useUtils();
+	const { userId, isLoaded } = useAuth();
+
 	const [videos, query] = trpc.playlists.getVideos.useSuspenseInfiniteQuery(
 		{
 			limit: DEFAULT_LIMIT,
@@ -54,13 +59,35 @@ const VideosSectionSuspense = ({ playlistId }: VideosSectionProps) => {
 		}
 	);
 
+	const [playlist] = trpc.playlists.getOne.useSuspenseQuery({ id: playlistId });
+
+	const removeVideo = trpc.playlists.removeVideo.useMutation({
+		onError: (error) => {
+			toast.error(error.message || 'Failed to remove video from playlist!');
+		},
+		onSuccess: (data) => {
+			utils.playlists.getMany.invalidate();
+			utils.playlists.getManyForVideo.invalidate({ videoId: data.videoId });
+			utils.playlists.getOne.invalidate({ id: playlistId });
+			utils.playlists.getVideos.invalidate({ playlistId });
+		},
+	});
+
 	return (
 		<>
 			<div className='flex flex-col gap-x-4 gap-y-10 md:hidden'>
 				{videos.pages
 					.flatMap((page) => page.items)
 					.map((video) => (
-						<VideoGridCard key={video.id} data={video} />
+						<VideoGridCard
+							key={video.id}
+							data={video}
+							onRemove={
+								isLoaded && userId && playlist.user.clerkId === userId
+									? () => removeVideo.mutate({ playlistId, videoId: video.id })
+									: undefined
+							}
+						/>
 					))}
 			</div>
 
@@ -68,7 +95,16 @@ const VideosSectionSuspense = ({ playlistId }: VideosSectionProps) => {
 				{videos.pages
 					.flatMap((page) => page.items)
 					.map((video) => (
-						<VideoRowCard key={video.id} data={video} size='compact' />
+						<VideoRowCard
+							key={video.id}
+							data={video}
+							size='compact'
+							onRemove={
+								isLoaded && userId && playlist.user.clerkId === userId
+									? () => removeVideo.mutate({ playlistId, videoId: video.id })
+									: undefined
+							}
+						/>
 					))}
 			</div>
 
