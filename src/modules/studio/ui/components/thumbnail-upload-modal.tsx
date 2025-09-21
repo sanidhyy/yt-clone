@@ -32,6 +32,10 @@ export const ThumbnailUploadModal = ({ onOpenChange, open, videoId }: ThumbnailU
 		>
 			<UploadDropzone
 				endpoint='thumbnailUploader'
+				appearance={{
+					button: 'bg-primary ut-ready:bg-primary ut-uploading:bg-primary',
+					container: 'cursor-pointer',
+				}}
 				input={{ videoId }}
 				onUploadBegin={(files) => {
 					setIsUploading(true);
