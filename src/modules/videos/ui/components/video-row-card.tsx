@@ -114,7 +114,7 @@ export const VideoRowCard = ({ data, onRemove, size = 'default' }: VideoRowCardP
 						{!isCompact && (
 							<>
 								<p className='mt-1 text-xs text-muted-foreground'>
-									{compactViews} view{data.viewCount === 1 ? '' : 's'} • {compactLikes} like
+									{compactViews} view{data.viewCount === 1 ? '' : 's'} &bull; {compactLikes} like
 									{data.likeCount === 1 ? '' : 's'}
 								</p>
 
@@ -147,7 +147,7 @@ export const VideoRowCard = ({ data, onRemove, size = 'default' }: VideoRowCardP
 								<UserInfo size='sm' name={data.user.name} />
 
 								<p className='mt-1 text-xs text-muted-foreground'>
-									{compactViews} view{data.viewCount === 1 ? '' : 's'} • {compactLikes} like
+									{compactViews} view{data.viewCount === 1 ? '' : 's'} &bull; {compactLikes} like
 									{data.likeCount === 1 ? '' : 's'}
 								</p>
 							</>

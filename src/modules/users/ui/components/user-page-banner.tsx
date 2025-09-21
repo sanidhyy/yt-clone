@@ -7,15 +7,15 @@ import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 
-export const UserBannerSkeleton = () => {
+export const UserPageBannerSkeleton = () => {
 	return <Skeleton className='h-[15vh] max-h-[200px] w-full md:h-[25vh]' />;
 };
 
-interface UserBannerProps {
+interface UserPageBannerProps {
 	user: UserGetOneOutput;
 }
 
-export const UserBanner = ({ user }: UserBannerProps) => {
+export const UserPageBanner = ({ user }: UserPageBannerProps) => {
 	const { userId } = useAuth();
 	return (
 		<div className='group relative'>

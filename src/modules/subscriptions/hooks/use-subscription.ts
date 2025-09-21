@@ -50,7 +50,7 @@ export const useSubscription = ({ isSubscribed, userId, initialSubscriberCount }
 			}
 		},
 		onSuccess: () => {
-			// TODO: Reinvalidate users.getOne
+			// TODO: Reinvalidate subscriptions.getMany
 			utils.videos.getManySubscribed.invalidate();
 		},
 	});
@@ -70,7 +70,7 @@ export const useSubscription = ({ isSubscribed, userId, initialSubscriberCount }
 			}
 		},
 		onSuccess: () => {
-			// TODO: Reinvalidate users.getOne
+			// TODO: Reinvalidate subscriptions.getMany
 			utils.videos.getManySubscribed.invalidate();
 		},
 	});

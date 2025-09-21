@@ -4,7 +4,8 @@ import { Suspense } from 'react';
 
 import { ErrorBoundary } from 'react-error-boundary';
 
-import { UserBanner } from '@/modules/users/ui/components/user-banner';
+import { UserPageBanner } from '@/modules/users/ui/components/user-page-banner';
+import { UserPageInfo } from '@/modules/users/ui/components/user-page-info';
 
 import { trpc } from '@/trpc/client';
 
@@ -27,7 +28,8 @@ const UserSectionSuspense = ({ userId }: UserSectionProps) => {
 
 	return (
 		<div className='flex flex-col'>
-			<UserBanner user={user} />
+			<UserPageBanner user={user} />
+			<UserPageInfo user={user} />
 		</div>
 	);
 };

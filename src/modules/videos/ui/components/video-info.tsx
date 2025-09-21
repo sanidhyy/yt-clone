@@ -57,7 +57,7 @@ export const VideoInfo = ({ data, onRemove }: VideoInfoProps) => {
 
 				<Link href={`/videos/${data.id}`}>
 					<p className='line-clamp-1 text-sm text-gray-600'>
-						{compactViews} view{data.viewCount === 1 ? '' : 's'} • {compactDate}
+						{compactViews} view{data.viewCount === 1 ? '' : 's'} &bull; {compactDate}
 					</p>
 				</Link>
 			</div>

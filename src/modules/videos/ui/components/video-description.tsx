@@ -59,7 +59,7 @@ export const VideoDescription = ({
 							<span className='font-medium'>
 								{expandedViews} view{views !== 1 && 's'}
 							</span>
-							<span className='font-medium'>•</span>
+							<span className='font-medium'>&bull;</span>
 							<span className='font-medium'>{expandedDate}</span>
 						</div>
 					</TooltipContent>
