@@ -117,10 +117,23 @@ export const videosRouter = createTRPCRouter({
 					})
 					.nullish(),
 				limit: z.number().min(1).max(100),
+				userId: z.string().uuid().nullish(),
 			})
 		)
-		.query(async ({ input }) => {
-			const { categoryId, cursor, limit } = input;
+		.query(async ({ ctx, input }) => {
+			const { clerkUserId } = ctx;
+			const { categoryId, cursor, limit, userId } = input;
+
+			let currentUserId: string | undefined;
+
+			const [user] = await db
+				.select({ id: users.id })
+				.from(users)
+				.where(inArray(users.clerkId, clerkUserId ? [clerkUserId] : []));
+
+			if (user) currentUserId = user.id;
+
+			const isCurrentUser = !!userId && !!currentUserId && currentUserId === userId;
 
 			const data = await db
 				.select({
@@ -140,8 +153,9 @@ export const videosRouter = createTRPCRouter({
 				.innerJoin(users, eq(videos.userId, users.id))
 				.where(
 					and(
-						eq(videos.visibility, VideoVisibility.PUBLIC),
+						!isCurrentUser ? eq(videos.visibility, VideoVisibility.PUBLIC) : undefined,
 						categoryId ? eq(videos.categoryId, categoryId) : undefined,
+						userId ? eq(videos.userId, userId) : undefined,
 						cursor
 							? or(
 									lt(videos.updatedAt, cursor.updatedAt),
