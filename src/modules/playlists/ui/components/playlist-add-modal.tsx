@@ -41,7 +41,7 @@ export const PlaylistAddModal = ({ onOpenChange, open, videoId }: PlaylistAddMod
 
 	return (
 		<ResponsiveModal
-			title='Addd to playlist'
+			title='Add to playlist'
 			description='Add new video to an existing playlist.'
 			open={open}
 			onOpenChange={handleOpenChange}
