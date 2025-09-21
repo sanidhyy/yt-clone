@@ -17,6 +17,8 @@ interface PlaylistCreateModalProps {
 }
 
 export const PlaylistCreateModal = ({ onOpenChange, open }: PlaylistCreateModalProps) => {
+	const utils = trpc.useUtils();
+
 	const form = useForm<z.infer<typeof playlistCreateSchema>>({
 		defaultValues: {
 			name: '',
@@ -32,6 +34,8 @@ export const PlaylistCreateModal = ({ onOpenChange, open }: PlaylistCreateModalP
 			form.reset();
 			onOpenChange(false);
 			toast.success('Playlist created!');
+
+			utils.playlists.getMany.invalidate();
 		},
 	});
 
