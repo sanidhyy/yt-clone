@@ -3,7 +3,7 @@ import { and, desc, eq, getTableColumns, lt, or } from 'drizzle-orm';
 import { z } from 'zod';
 
 import { db } from '@/db';
-import { ReactionType, comments, users, videoReactions, videoViews, videos } from '@/db/schema';
+import { ReactionType, comments, videoReactions, videoViews, videos } from '@/db/schema';
 import { createTRPCRouter, protectedProcedure } from '@/trpc/init';
 
 export const studioRouter = createTRPCRouter({
