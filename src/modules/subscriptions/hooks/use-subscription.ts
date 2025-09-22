@@ -50,8 +50,8 @@ export const useSubscription = ({ isSubscribed, userId, initialSubscriberCount }
 			}
 		},
 		onSuccess: () => {
-			// TODO: Reinvalidate subscriptions.getMany
 			utils.videos.getManySubscribed.invalidate();
+			utils.subscriptions.getMany.invalidate();
 		},
 	});
 
@@ -70,8 +70,8 @@ export const useSubscription = ({ isSubscribed, userId, initialSubscriberCount }
 			}
 		},
 		onSuccess: () => {
-			// TODO: Reinvalidate subscriptions.getMany
 			utils.videos.getManySubscribed.invalidate();
+			utils.subscriptions.getMany.invalidate();
 		},
 	});
 

@@ -4,11 +4,12 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { useAuth, useClerk } from '@clerk/nextjs';
-import { FlameIcon, HomeIcon, PlaySquareIcon } from 'lucide-react';
+import { HistoryIcon, ListVideoIcon, ThumbsUpIcon } from 'lucide-react';
 
 import {
 	SidebarGroup,
 	SidebarGroupContent,
+	SidebarGroupLabel,
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
@@ -16,30 +17,34 @@ import {
 
 const NAV_ITEMS = [
 	{
-		icon: HomeIcon,
-		title: 'Home',
-		url: '/',
+		auth: true,
+		icon: HistoryIcon,
+		title: 'History',
+		url: '/playlists/history',
 	},
 	{
 		auth: true,
-		icon: PlaySquareIcon,
-		title: 'Subscriptions',
-		url: '/feed/subscriptions',
+		icon: ThumbsUpIcon,
+		title: 'Liked videos',
+		url: '/playlists/liked',
 	},
 	{
-		icon: FlameIcon,
-		title: 'Trending',
-		url: '/feed/trending',
+		auth: true,
+		icon: ListVideoIcon,
+		title: 'All playlists',
+		url: '/playlists',
 	},
 ];
 
-export const MainSection = () => {
-	const { isSignedIn } = useAuth();
+export const PersonalItems = () => {
 	const clerk = useClerk();
 	const pathname = usePathname();
+	const { isSignedIn } = useAuth();
 
 	return (
 		<SidebarGroup>
+			<SidebarGroupLabel>You</SidebarGroupLabel>
+
 			<SidebarGroupContent>
 				<SidebarMenu>
 					{NAV_ITEMS.map(({ auth, icon: Icon, title, url }) => (
