@@ -17,6 +17,7 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { UserAvatar } from '@/components/user-avatar';
+import { useConfirm } from '@/hooks/use-confirm';
 import { cn } from '@/lib/utils';
 import { trpc } from '@/trpc/client';
 
@@ -29,9 +30,15 @@ interface CommentItemProps {
 }
 
 export const CommentItem = ({ comment, variant = 'comment' }: CommentItemProps) => {
+	const isReply = variant === 'reply';
+
 	const utils = trpc.useUtils();
 	const { userId } = useAuth();
 	const clerk = useClerk();
+	const [ConfirmDialog, confirm] = useConfirm({
+		message: `Are you sure you want to delete this ${isReply ? 'reply' : 'comment'}? This action cannot be undone.`,
+		title: `Delete ${isReply ? 'reply' : 'comment'}`,
+	});
 
 	const [isReplyOpen, setIsReplyOpen] = useState(false);
 	const [isRepliesOpen, setIsRepliesOpen] = useState(false);
@@ -50,16 +57,24 @@ export const CommentItem = ({ comment, variant = 'comment' }: CommentItemProps) 
 		},
 	});
 
+	const handleRemove = async () => {
+		const ok = await confirm();
+
+		if (!ok) return;
+
+		remove.mutate({ id: comment.id });
+	};
+
 	const compactReplyCount = useMemo(() => {
 		return Intl.NumberFormat('en', {
 			notation: 'compact',
 		}).format(comment.replyCount);
 	}, [comment.replyCount]);
 
-	const isReply = variant === 'reply';
-
 	return (
 		<div>
+			<ConfirmDialog />
+
 			<div className={cn('flex gap-4', isReply && 'gap-2')}>
 				<Link prefetch href={`/users/${comment.userId}`}>
 					<UserAvatar size={isReply ? 'sm' : 'lg'} imageUrl={comment.user.imageUrl} name={comment.user.name} />
@@ -112,9 +127,8 @@ export const CommentItem = ({ comment, variant = 'comment' }: CommentItemProps) 
 								</DropdownMenuItem>
 							)}
 
-							{/* TODO: Add confirm delete dialog */}
 							{comment.user.clerkId === userId && (
-								<DropdownMenuItem onClick={() => remove.mutate({ id: comment.id })} variant='destructive'>
+								<DropdownMenuItem onClick={handleRemove} variant='destructive'>
 									<Trash2Icon className='size-4' />
 									Delete
 								</DropdownMenuItem>

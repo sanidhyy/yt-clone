@@ -10,6 +10,7 @@ import toast from 'react-hot-toast';
 
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useConfirm } from '@/hooks/use-confirm';
 import { trpc } from '@/trpc/client';
 
 interface PlaylistHeaderSectionProps {
@@ -36,6 +37,11 @@ export const PlaylistHeaderSection = ({ playlistId }: PlaylistHeaderSectionProps
 };
 
 const PlaylistHeaderSectionSuspense = ({ playlistId }: PlaylistHeaderSectionProps) => {
+	const [ConfirmDialog, confirm] = useConfirm({
+		message: 'Are you sure you want to delete this playlist? This action cannot be undone.',
+		title: 'Delete playlist',
+	});
+
 	const utils = trpc.useUtils();
 	const router = useRouter();
 	const { userId } = useAuth();
@@ -55,28 +61,39 @@ const PlaylistHeaderSectionSuspense = ({ playlistId }: PlaylistHeaderSectionProp
 		},
 	});
 
+	const handleRemove = async () => {
+		const ok = await confirm();
+
+		if (!ok) return;
+
+		remove.mutate({ id: playlistId });
+	};
+
 	const isPending = remove.isPending;
 
 	return (
-		<div className='flex items-center justify-between'>
-			<div>
-				<h1 className='text-2xl font-bold'>{playlist.name}</h1>
-				<p className='text-xl text-muted-foreground'>Videos from the playlist</p>
-			</div>
+		<>
+			<ConfirmDialog />
 
-			{/* TODO: Add confirm delete dialog */}
-			{userId === playlist.user.clerkId && (
-				<Button
-					disabled={isPending}
-					variant='outline'
-					size='icon'
-					className='rounded-full text-destructive hover:text-destructive/75'
-					onClick={() => remove.mutate({ id: playlistId })}
-				>
-					<Trash2Icon />
-					<span className='sr-only'>Delete playlist</span>
-				</Button>
-			)}
-		</div>
+			<div className='flex items-center justify-between'>
+				<div>
+					<h1 className='text-2xl font-bold'>{playlist.name}</h1>
+					<p className='text-xl text-muted-foreground'>Videos from the playlist</p>
+				</div>
+
+				{userId === playlist.user.clerkId && (
+					<Button
+						disabled={isPending}
+						variant='outline'
+						size='icon'
+						className='rounded-full text-destructive hover:text-destructive/75'
+						onClick={handleRemove}
+					>
+						<Trash2Icon />
+						<span className='sr-only'>Delete playlist</span>
+					</Button>
+				)}
+			</div>
+		</>
 	);
 };

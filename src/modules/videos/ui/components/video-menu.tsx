@@ -13,6 +13,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useConfirm } from '@/hooks/use-confirm';
 import { absoluteUrl } from '@/lib/utils';
 
 interface VideoMenuProps {
@@ -23,6 +24,11 @@ interface VideoMenuProps {
 
 export const VideoMenu = ({ videoId, onRemove, variant = 'ghost' }: VideoMenuProps) => {
 	const { loaded, user, openSignIn } = useClerk();
+
+	const [ConfirmDialog, confirm] = useConfirm({
+		message: 'Are you sure you want to remove this video from playlist? This action cannot be undone.',
+		title: 'Remove video from playlist',
+	});
 
 	const [openPlaylistAddModal, setOpenPlaylistAddModal] = useState(false);
 
@@ -44,8 +50,19 @@ export const VideoMenu = ({ videoId, onRemove, variant = 'ghost' }: VideoMenuPro
 		setOpenPlaylistAddModal(true);
 	};
 
+	const handleRemove = async () => {
+		if (!onRemove) return;
+
+		const ok = await confirm();
+		if (!ok) return;
+
+		onRemove();
+	};
+
 	return (
 		<>
+			<ConfirmDialog />
+
 			<PlaylistAddModal open={openPlaylistAddModal} onOpenChange={setOpenPlaylistAddModal} videoId={videoId} />
 
 			<DropdownMenu>
@@ -69,7 +86,7 @@ export const VideoMenu = ({ videoId, onRemove, variant = 'ghost' }: VideoMenuPro
 
 					{/* TODO: Add confirm delete dialog */}
 					{!!onRemove && (
-						<DropdownMenuItem onClick={onRemove} variant='destructive'>
+						<DropdownMenuItem onClick={handleRemove} variant='destructive'>
 							<Trash2Icon className='size-4' />
 							Remove
 						</DropdownMenuItem>

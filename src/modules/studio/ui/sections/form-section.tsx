@@ -43,6 +43,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Skeleton } from '@/components/ui/skeleton';
 import { Textarea } from '@/components/ui/textarea';
 import { MuxStatus, VideoUpdateSchema, VideoVisibility } from '@/db/schema';
+import { useConfirm } from '@/hooks/use-confirm';
 import { absoluteUrl, cn, snakeCaseToTitle } from '@/lib/utils';
 import { trpc } from '@/trpc/client';
 
@@ -135,6 +136,15 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 	const router = useRouter();
 	const utils = trpc.useUtils();
 
+	const [ConfirmRemoveDialog, confirmRemove] = useConfirm({
+		message: 'Are you sure you want to delete this video? This action cannot be undone.',
+		title: 'Delete video',
+	});
+	const [ConfirmRestoreDialog, confirmRestore] = useConfirm({
+		message: 'Are you sure you want to restore this video thumbnail?',
+		title: 'Delete video',
+	});
+
 	const [isCopied, setIsCopied] = useState(false);
 	const [thumbnailUploadModalOpen, setThumbnailUploadModalOpen] = useState(false);
 	const [thumbnailGenerateModalOpen, setThumbnailGenerateModalOpen] = useState(false);
@@ -221,7 +231,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 
 	const fullUrl = absoluteUrl(`/videos/${videoId}`);
 
-	const onCopy = async () => {
+	const handleCopy = async () => {
 		try {
 			await navigator.clipboard.writeText(fullUrl);
 			setIsCopied(true);
@@ -235,6 +245,22 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 		}
 	};
 
+	const handleRemove = async () => {
+		const ok = await confirmRemove();
+
+		if (!ok) return;
+
+		remove.mutate({ id: videoId });
+	};
+
+	const handleRestore = async () => {
+		const ok = await confirmRestore();
+
+		if (!ok) return;
+
+		restoreThumbnail.mutate({ id: videoId });
+	};
+
 	const isUpdating = update.isPending;
 	const isRemoving = remove.isPending;
 	const isRestoring = restoreThumbnail.isPending;
@@ -246,6 +272,9 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 
 	return (
 		<>
+			<ConfirmRemoveDialog />
+			<ConfirmRestoreDialog />
+
 			<ThumbnailGenerateModal
 				open={thumbnailGenerateModalOpen}
 				onOpenChange={setThumbnailGenerateModalOpen}
@@ -293,8 +322,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 									</Button>
 								</DropdownMenuTrigger>
 
-								{/* TODO: Add confirm delete dialog */}
-								<DropdownMenuContent onClick={() => remove.mutate({ id: videoId })} align='end'>
+								<DropdownMenuContent onClick={handleRemove} align='end'>
 									<DropdownMenuItem variant='destructive' disabled={isPending}>
 										<Trash2Icon className='size-4' />
 										Delete
@@ -416,8 +444,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 															AI-generated
 														</DropdownMenuItem>
 
-														{/* TODO: Add confirm restore dialog */}
-														<DropdownMenuItem onClick={() => restoreThumbnail.mutate({ id: videoId })}>
+														<DropdownMenuItem onClick={handleRestore}>
 															<RotateCcwIcon className='size-4' />
 															Restore
 														</DropdownMenuItem>
@@ -491,7 +518,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 													variant='ghost'
 													size='icon'
 													className='shrink-0'
-													onClick={onCopy}
+													onClick={handleCopy}
 													disabled={isCopied}
 												>
 													{isCopied ? <CopyCheckIcon className='size-4' /> : <CopyIcon className='size-4' />}
