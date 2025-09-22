@@ -9,6 +9,7 @@ import {
 	VideoAssetTrackReadyWebhookEvent,
 } from '@mux/mux-node/resources/webhooks';
 import { eq } from 'drizzle-orm';
+import { UTApi } from 'uploadthing/server';
 
 import { updateVideoAsset } from '@/modules/videos/server/actions';
 
@@ -100,7 +101,14 @@ export const POST = async (req: NextRequest) => {
 				return new NextResponse('No upload id found!', { status: NOT_FOUND });
 			}
 
-			await db.delete(videos).where(eq(videos.muxUploadId, data.upload_id));
+			const utapi = new UTApi();
+
+			const [removedVideo] = await db.delete(videos).where(eq(videos.muxUploadId, data.upload_id)).returning();
+
+			if (!!removedVideo) {
+				if (removedVideo.thumbnailKey) await utapi.deleteFiles(removedVideo.thumbnailKey);
+				if (removedVideo.previewKey) await utapi.deleteFiles(removedVideo.previewKey);
+			}
 
 			break;
 		}
