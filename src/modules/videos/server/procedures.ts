@@ -377,13 +377,16 @@ export const videosRouter = createTRPCRouter({
 		const { id: userId } = ctx.user;
 		const { id } = input;
 
+		const utapi = new UTApi();
+
 		const [removedVideo] = await db
 			.delete(videos)
 			.where(and(eq(videos.id, id), eq(videos.userId, userId)))
 			.returning();
 
-		// TODO: Remove thumbnail and preview from uploadthing
-		// TODO: Remove video from mux
+		if (removedVideo.thumbnailKey) await utapi.deleteFiles(removedVideo.thumbnailKey);
+		if (removedVideo.previewKey) await utapi.deleteFiles(removedVideo.previewKey);
+		if (removedVideo.muxAssetId) await mux.video.assets.delete(removedVideo.muxAssetId);
 
 		if (!removedVideo) throw new TRPCError({ code: 'NOT_FOUND', message: 'Video not found!' });
 
