@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { TRPCError } from '@trpc/server';
+import toast from 'react-hot-toast';
 
 import { ResponsiveModal } from '@/components/responsive-modal';
 import { UploadDropzone } from '@/lib/uploadthing';
@@ -33,7 +34,7 @@ export const ThumbnailUploadModal = ({ onOpenChange, open, videoId }: ThumbnailU
 			<UploadDropzone
 				endpoint='thumbnailUploader'
 				appearance={{
-					button: 'bg-primary ut-ready:bg-primary ut-uploading:bg-primary',
+					button: 'bg-primary ut-ready:bg-primary ut-uploading:bg-primary after:bg-gray-700',
 					container: 'cursor-pointer',
 				}}
 				input={{ videoId }}
@@ -44,6 +45,11 @@ export const ThumbnailUploadModal = ({ onOpenChange, open, videoId }: ThumbnailU
 				onBeforeUploadBegin={(files) => {
 					const file = files?.[0];
 					if (!file) throw new TRPCError({ code: 'NOT_FOUND', message: 'Image to upload not found!' });
+
+					if (file.size > 4 * 1024 * 1024) {
+						toast.error('File size exceeds 4MB!');
+						throw new TRPCError({ code: 'BAD_REQUEST', message: 'Image size exceeds 4MB!' });
+					}
 
 					const blob = file.slice(0, file.size, file.type);
 					const extension = file.name.split('.').at(-1);
