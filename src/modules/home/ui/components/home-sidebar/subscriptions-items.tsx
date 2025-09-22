@@ -15,7 +15,6 @@ import {
 } from '@/components/ui/sidebar';
 import { Skeleton } from '@/components/ui/skeleton';
 import { UserAvatar } from '@/components/user-avatar';
-import { DEFAULT_LIMIT } from '@/constants';
 import { trpc } from '@/trpc/client';
 
 export const SubscriptionsItemsSkeleton = () => {
@@ -37,7 +36,7 @@ export const SubscriptionsItems = () => {
 	const pathname = usePathname();
 	const { data: subscriptions, isLoading } = trpc.subscriptions.getMany.useInfiniteQuery(
 		{
-			limit: DEFAULT_LIMIT,
+			limit: 5,
 		},
 		{
 			getNextPageParam: (lastPage) => lastPage.nextCursor,

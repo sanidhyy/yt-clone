@@ -7,7 +7,7 @@ import { ChevronDownIcon, ChevronUpIcon, MessageSquareIcon, MoreVerticalIcon, Tr
 import toast from 'react-hot-toast';
 
 import { CommentReactions } from '@/modules/comment-reactions/ui/components/comment-reactions';
-import { CommentsGetManyOutput } from '@/modules/comments/types';
+import type { CommentsGetManyOutput } from '@/modules/comments/types';
 
 import { Button } from '@/components/ui/button';
 import {

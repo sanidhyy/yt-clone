@@ -3,7 +3,7 @@
 import { Loader2Icon, SquareCheckIcon, SquareIcon } from 'lucide-react';
 import toast from 'react-hot-toast';
 
-import { PlaylistGetManyForVideoOuput } from '@/modules/playlists/types';
+import type { PlaylistGetManyForVideoOuput } from '@/modules/playlists/types';
 
 import { Button } from '@/components/ui/button';
 import { trpc } from '@/trpc/client';

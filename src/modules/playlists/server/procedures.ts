@@ -230,7 +230,6 @@ export const playlistsRouter = createTRPCRouter({
 			const data = await db
 				.select({
 					...getTableColumns(playlists),
-					// TODO: Try to use drizzle functions instead of raw sql.
 					thumbnailUrl: sql<string | null>`(
 						SELECT v.thumbnail_url
 						FROM ${playlistVideos} pv
@@ -240,11 +239,9 @@ export const playlistsRouter = createTRPCRouter({
 						ORDER BY pv.updated_at DESC
 						LIMIT 1
 					)`,
-					user: users, // TODO: Remove if not used
 					videoCount: db.$count(playlistVideos, eq(playlists.id, playlistVideos.playlistId)),
 				})
 				.from(playlists)
-				.innerJoin(users, eq(playlists.userId, users.id)) // TODO: Remove if not used
 				.where(
 					and(
 						eq(playlists.userId, userId),
@@ -298,11 +295,9 @@ export const playlistsRouter = createTRPCRouter({
 						.where(and(eq(playlistVideos.playlistId, playlists.id), eq(playlistVideos.videoId, videoId)))})`.as(
 						'contains_video'
 					),
-					user: users, // TODO: Remove if not used
 					videoCount: db.$count(playlistVideos, eq(playlists.id, playlistVideos.playlistId)),
 				})
 				.from(playlists)
-				.innerJoin(users, eq(playlists.userId, users.id)) // TODO: Remove if not used
 				.where(
 					and(
 						eq(playlists.userId, userId),

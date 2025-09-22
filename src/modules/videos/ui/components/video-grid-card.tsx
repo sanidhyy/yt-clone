@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { VideoGetManyOutput } from '@/modules/videos/types';
+import type { VideoGetManyOutput } from '@/modules/videos/types';
 
 import { VideoInfo, VideoInfoSkeleton } from './video-info';
 import { VideoThumbnail, VideoThumbnailSkeleton } from './video-thumbnail';

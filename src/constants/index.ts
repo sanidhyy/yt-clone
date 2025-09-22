@@ -1,5 +1,4 @@
-// TODO: Change to higher value
-export const DEFAULT_LIMIT = 5 as const; // number between 1 and 100
+export const DEFAULT_LIMIT = 20 as const; // number between 1 and 100
 
 export const TITLE_SYSTEM_PROMPT =
 	`Your task is to generate an SEO-focused title for a YouTube video based on its transcript. Please follow these guidelines:

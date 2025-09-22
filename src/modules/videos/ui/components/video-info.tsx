@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { formatDistanceToNow } from 'date-fns';
 
 import { UserInfo } from '@/modules/users/ui/components/user-info';
-import { VideoGetManyOutput } from '@/modules/videos/types';
+import type { VideoGetManyOutput } from '@/modules/videos/types';
 
 import { Skeleton } from '@/components/ui/skeleton';
 import { UserAvatar } from '@/components/user-avatar';

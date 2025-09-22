@@ -4,7 +4,7 @@ import { useClerk } from '@clerk/nextjs';
 import { ThumbsDownIcon, ThumbsUpIcon } from 'lucide-react';
 import toast from 'react-hot-toast';
 
-import { VideoGetOneOutput } from '@/modules/videos/types';
+import type { VideoGetOneOutput } from '@/modules/videos/types';
 
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';

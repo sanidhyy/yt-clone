@@ -7,7 +7,7 @@ import { useClerk } from '@clerk/nextjs';
 
 import { useSubscription } from '@/modules/subscriptions/hooks/use-subscription';
 import { SubscriptionButton } from '@/modules/subscriptions/ui/components/subscription-button';
-import { UserGetOneOutput } from '@/modules/users/types';
+import type { UserGetOneOutput } from '@/modules/users/types';
 
 import { buttonVariants } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { UserInfo } from '@/modules/users/ui/components/user-info';
-import { VideoGetManyOutput } from '@/modules/videos/types';
+import type { VideoGetManyOutput } from '@/modules/videos/types';
 
 import { Skeleton } from '@/components/ui/skeleton';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';

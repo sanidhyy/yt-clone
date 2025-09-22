@@ -29,7 +29,6 @@ export const StudioSidebarHeader = () => {
 		return (
 			<SidebarMenuItem>
 				<SidebarMenuButton tooltip='Your Profile' asChild>
-					{/* TODO: Fix if this doesnt work */}
 					<Link prefetch href='/users/current'>
 						<UserAvatar imageUrl={user.imageUrl} name={user.fullName || 'User'} size='xs' />
 						<span className='text-sm'>Your Profile</span>
@@ -41,7 +40,6 @@ export const StudioSidebarHeader = () => {
 
 	return (
 		<SidebarHeader className='flex items-center justify-center pb-4'>
-			{/* TODO: Fix if this doesnt work */}
 			<Link prefetch href='/users/current'>
 				<UserAvatar
 					imageUrl={user.imageUrl}

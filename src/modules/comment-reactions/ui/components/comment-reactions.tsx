@@ -4,7 +4,7 @@ import { useClerk } from '@clerk/nextjs';
 import { ThumbsDownIcon, ThumbsUpIcon } from 'lucide-react';
 import toast from 'react-hot-toast';
 
-import { CommentsGetManyOutput } from '@/modules/comments/types';
+import type { CommentsGetManyOutput } from '@/modules/comments/types';
 
 import { Button } from '@/components/ui/button';
 import { ReactionType } from '@/db/schema';
