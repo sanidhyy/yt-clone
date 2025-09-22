@@ -37,7 +37,7 @@ export const VideosSectionRow = ({ video }: VideosSectionRowProps) => {
 	}, [video.likeCount]);
 
 	return (
-		<Link href={`/studio/videos/${video.id}`} key={video.id} legacyBehavior>
+		<Link prefetch href={`/studio/videos/${video.id}`} key={video.id} legacyBehavior>
 			<TableRow className='cursor-pointer'>
 				<TableCell className='w-[510px] pl-6'>
 					<div className='flex items-center gap-4'>

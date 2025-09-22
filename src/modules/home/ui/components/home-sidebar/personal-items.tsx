@@ -60,7 +60,7 @@ export const PersonalItems = () => {
 									}
 								}}
 							>
-								<Link href={url} className='flex items-center gap-4'>
+								<Link prefetch href={url} className='flex items-center gap-4'>
 									<Icon />
 									<span className='text-sm font-medium'>{title}</span>
 								</Link>

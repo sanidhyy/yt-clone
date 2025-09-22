@@ -14,7 +14,7 @@ export const StudioNavbar = () => {
 				<div className='flex shrink-0 items-center'>
 					<SidebarTrigger />
 
-					<Link href='/studio'>
+					<Link prefetch href='/studio'>
 						<div className='flex items-center gap-1 p-4'>
 							<Image src='/logo.svg' alt='NewTube Logo' width={32} height={32} />
 							<p className='text-xl font-semibold tracking-tight'>Studio</p>

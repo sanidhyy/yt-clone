@@ -61,7 +61,7 @@ export const SubscriptionsItems = () => {
 										asChild
 										isActive={pathname === `/users/${subscription.user.id}`}
 									>
-										<Link href={`/users/${subscription.user.id}`} className='flex items-center gap-4'>
+										<Link prefetch href={`/users/${subscription.user.id}`} className='flex items-center gap-4'>
 											<UserAvatar size='xs' imageUrl={subscription.user.imageUrl} name={subscription.user.name} />
 											<span className='text-sm font-medium'>{subscription.user.name}</span>
 										</Link>
@@ -72,7 +72,7 @@ export const SubscriptionsItems = () => {
 					{!isLoading && (
 						<SidebarMenuItem>
 							<SidebarMenuButton isActive={pathname === '/subscriptions'} asChild>
-								<Link href='/subscriptions' className='flex items-center gap-4'>
+								<Link prefetch href='/subscriptions' className='flex items-center gap-4'>
 									<ListIcon className='size-4' />
 									<span className='text-sm'>All subscriptions</span>
 								</Link>

@@ -35,7 +35,7 @@ export const VideoOwner = ({ user, videoId }: VideoOwnerProps) => {
 
 	return (
 		<div className='flex min-w-0 items-center justify-between gap-3 sm:items-start sm:justify-start'>
-			<Link href={`/users/${user.id}`}>
+			<Link prefetch href={`/users/${user.id}`}>
 				<div className='flex min-w-0 items-center gap-3'>
 					<UserAvatar size='lg' imageUrl={user.imageUrl} name={user.name} />
 
@@ -50,6 +50,7 @@ export const VideoOwner = ({ user, videoId }: VideoOwnerProps) => {
 
 			{clerkUserId === user.clerkId ? (
 				<Link
+					prefetch
 					href={`/studio/videos/${videoId}`}
 					className={cn(buttonVariants({ variant: 'secondary' }), 'rounded-full')}
 				>

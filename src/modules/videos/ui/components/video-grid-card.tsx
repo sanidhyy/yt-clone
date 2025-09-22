@@ -23,7 +23,7 @@ export const VideoGridCard = ({ data, onRemove }: VideoGridCardProps) => {
 	return (
 		<div className='group flex w-full flex-col gap-2'>
 			{/* Thumbnail */}
-			<Link href={`/videos/${data.id}`}>
+			<Link prefetch href={`/videos/${data.id}`}>
 				<VideoThumbnail
 					duration={data.duration}
 					title={data.title}
