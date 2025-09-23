@@ -27,7 +27,9 @@ export const StudioUploader = ({ onSuccess, endpoint }: StudioUploaderProps) => 
 
 					<div className='flex flex-col gap-2 text-center'>
 						<p className='text-sm'>Drag & Drop video files to upload</p>
-						<p>Your videos will be private until you publish them.</p>
+						<p className='text-xs text-muted-foreground'>
+							Your videos will be trimmed to 10 seconds and auto-deleted after 24 hours due to Mux free plan limits.
+						</p>
 					</div>
 
 					<MuxUploaderFileSelect muxUploader={MUX_UPLOADER_ID}>
