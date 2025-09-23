@@ -1,9 +1,17 @@
+import { cookies } from 'next/headers';
+
 import { TRPCError } from '@trpc/server';
 import { and, desc, eq, getTableColumns, lt, or } from 'drizzle-orm';
+import { OpenAI, OpenAIError } from 'openai';
 import { z } from 'zod';
+
+import { OPENAI_API_KEY_COOKIE_NAME } from '@/modules/studio/constants';
+import { AISettingsSchema } from '@/modules/studio/schemas/ai-settings-schema';
 
 import { db } from '@/db';
 import { ReactionType, comments, videoReactions, videoViews, videos } from '@/db/schema';
+import { env } from '@/env/server';
+import { encrypt } from '@/lib/encryption';
 import { createTRPCRouter, protectedProcedure } from '@/trpc/init';
 
 export const studioRouter = createTRPCRouter({
@@ -73,5 +81,49 @@ export const studioRouter = createTRPCRouter({
 		if (!video) throw new TRPCError({ code: 'NOT_FOUND', message: 'Video not found!' });
 
 		return video;
+	}),
+	removeAISettings: protectedProcedure.mutation(async () => {
+		const cookieStore = await cookies();
+
+		cookieStore.delete(OPENAI_API_KEY_COOKIE_NAME);
+
+		return { success: true };
+	}),
+	saveAISettings: protectedProcedure.input(AISettingsSchema).mutation(async ({ input }) => {
+		const { apiKey } = input;
+
+		const openai = new OpenAI({
+			apiKey,
+		});
+
+		try {
+			await openai.models.list();
+		} catch (error) {
+			console.error(error);
+			throw new TRPCError({
+				cause: error instanceof Error ? error.cause : undefined,
+				code: 'BAD_REQUEST',
+				message:
+					error instanceof OpenAIError
+						? 'Invalid API Key!'
+						: error instanceof Error
+							? error.message
+							: 'Failed to verify API key!',
+			});
+		}
+
+		const encryptedApiKey = encrypt(apiKey);
+
+		const cookieStore = await cookies();
+
+		cookieStore.set(OPENAI_API_KEY_COOKIE_NAME, encryptedApiKey, {
+			httpOnly: true,
+			maxAge: 60 * 60 * 24 * 30, // 30 days
+			path: '/',
+			sameSite: 'lax',
+			secure: env.NODE_ENV === 'production',
+		});
+
+		return { success: true };
 	}),
 });

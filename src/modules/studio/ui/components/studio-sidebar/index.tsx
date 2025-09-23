@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { LogOutIcon, VideoIcon } from 'lucide-react';
+import { LogOutIcon, SparklesIcon, VideoIcon } from 'lucide-react';
 
 import { Separator } from '@/components/ui/separator';
 import {
@@ -32,6 +32,15 @@ export const StudioSidebar = () => {
 								<Link prefetch href='/studio'>
 									<VideoIcon className='size-5' />
 									<span className='text-sm'>Content</span>
+								</Link>
+							</SidebarMenuButton>
+						</SidebarMenuItem>
+
+						<SidebarMenuItem>
+							<SidebarMenuButton isActive={pathname === '/studio/ai'} tooltip='AI Settings' asChild>
+								<Link prefetch href='/studio/ai'>
+									<SparklesIcon className='size-5' />
+									<span className='text-sm'>AI Settings</span>
 								</Link>
 							</SidebarMenuButton>
 						</SidebarMenuItem>

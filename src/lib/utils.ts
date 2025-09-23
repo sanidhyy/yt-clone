@@ -13,7 +13,7 @@ export const absoluteUrl = (path: string): string => {
 
 	let baseUrl = env.NEXT_PUBLIC_APP_BASE_URL || 'http://localhost:3000';
 
-	if (process.env.NEXT_PUBLIC_VERCEL_URL) baseUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+	if (process.env.NEXT_PUBLIC_VERCEL_URL) baseUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`; // Note: Don't use env from @/server/env here.
 
 	return `${baseUrl}${formattedPath.startsWith('/') ? '' : '/'}${formattedPath}`;
 };

@@ -5,8 +5,10 @@ import { UTApi } from 'uploadthing/server';
 import { db } from '@/db';
 import { videos } from '@/db/schema';
 import { env } from '@/env/server';
+import { decrypt } from '@/lib/encryption';
 
 interface InputType {
+	apiKey: string;
 	prompt: string;
 	userId: string;
 	videoId: string;
@@ -16,7 +18,7 @@ export const { POST } = serve(async (ctx) => {
 	const utapi = new UTApi();
 
 	const input = ctx.requestPayload as InputType;
-	const { prompt, userId, videoId } = input;
+	const { apiKey, prompt, userId, videoId } = input;
 
 	const video = await ctx.run('get-video', async () => {
 		const [existingVideo] = await db
@@ -37,7 +39,7 @@ export const { POST } = serve(async (ctx) => {
 			size: '1792x1024',
 		},
 		headers: {
-			authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+			authorization: `Bearer ${decrypt(apiKey)}`,
 		},
 		method: 'POST',
 		url: `${env.OPENAI_API_BASE_URL}/images/generations`,

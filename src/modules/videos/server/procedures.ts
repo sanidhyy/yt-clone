@@ -1,11 +1,14 @@
 /* eslint-disable camelcase */
 
+import { cookies } from 'next/headers';
+
 import type { Upload } from '@mux/mux-node/resources/video';
 import { TRPCError } from '@trpc/server';
 import { and, desc, eq, getTableColumns, inArray, isNotNull, lt, or } from 'drizzle-orm';
 import { UTApi } from 'uploadthing/server';
 import { z } from 'zod';
 
+import { OPENAI_API_KEY_COOKIE_NAME } from '@/modules/studio/constants';
 import { thumbnailGenerateSchema } from '@/modules/studio/schemas/thumbnail-generate-schema';
 
 import { db } from '@/db';
@@ -75,8 +78,17 @@ export const videosRouter = createTRPCRouter({
 			const { id: userId } = ctx.user;
 			const { id: videoId } = input;
 
+			const cookieStore = await cookies();
+
+			const openaiApiKey = cookieStore.get(OPENAI_API_KEY_COOKIE_NAME)?.value?.trim();
+			if (!openaiApiKey)
+				throw new TRPCError({
+					code: 'BAD_REQUEST',
+					message: 'OpenAI API key not setup! Please setup in the studio dashboard > AI settings.',
+				});
+
 			const { workflowRunId } = await qstash.trigger({
-				body: { userId, videoId },
+				body: { apiKey: openaiApiKey, userId, videoId },
 				url: `${env.UPSTASH_WORKFLOW_URL}/api/videos/workflows/description`,
 			});
 
@@ -88,8 +100,17 @@ export const videosRouter = createTRPCRouter({
 			const { id: userId } = ctx.user;
 			const { id: videoId, prompt } = input;
 
+			const cookieStore = await cookies();
+
+			const openaiApiKey = cookieStore.get(OPENAI_API_KEY_COOKIE_NAME)?.value?.trim();
+			if (!openaiApiKey)
+				throw new TRPCError({
+					code: 'BAD_REQUEST',
+					message: 'OpenAI API key not setup! Please setup in the studio dashboard > AI settings.',
+				});
+
 			const { workflowRunId } = await qstash.trigger({
-				body: { prompt, userId, videoId },
+				body: { apiKey: openaiApiKey, prompt, userId, videoId },
 				url: `${env.UPSTASH_WORKFLOW_URL}/api/videos/workflows/thumbnail`,
 			});
 
@@ -99,8 +120,17 @@ export const videosRouter = createTRPCRouter({
 		const { id: userId } = ctx.user;
 		const { id: videoId } = input;
 
+		const cookieStore = await cookies();
+
+		const openaiApiKey = cookieStore.get(OPENAI_API_KEY_COOKIE_NAME)?.value?.trim();
+		if (!openaiApiKey)
+			throw new TRPCError({
+				code: 'BAD_REQUEST',
+				message: 'OpenAI API key not setup! Please setup in the studio dashboard > AI settings.',
+			});
+
 		const { workflowRunId } = await qstash.trigger({
-			body: { userId, videoId },
+			body: { apiKey: openaiApiKey, userId, videoId },
 			url: `${env.UPSTASH_WORKFLOW_URL}/api/videos/workflows/title`,
 		});
 

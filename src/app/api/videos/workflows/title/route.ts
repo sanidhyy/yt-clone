@@ -5,16 +5,17 @@ import { TITLE_SYSTEM_PROMPT } from '@/constants';
 import { db } from '@/db';
 import { videos } from '@/db/schema';
 import { env as clientEnv } from '@/env/client';
-import { env } from '@/env/server';
+import { decrypt } from '@/lib/encryption';
 
 interface InputType {
+	apiKey: string;
 	userId: string;
 	videoId: string;
 }
 
 export const { POST } = serve(async (ctx) => {
 	const input = ctx.requestPayload as InputType;
-	const { videoId, userId } = input;
+	const { apiKey, videoId, userId } = input;
 
 	const video = await ctx.run('get-video', async () => {
 		const [existingVideo] = await db
@@ -54,7 +55,7 @@ export const { POST } = serve(async (ctx) => {
 			model: 'gpt-4o',
 		},
 		operation: 'chat.completions.create',
-		token: env.OPENAI_API_KEY,
+		token: decrypt(apiKey),
 	});
 
 	const title = body.choices[0]?.message.content || video.title;
