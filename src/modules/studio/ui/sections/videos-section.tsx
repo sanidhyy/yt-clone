@@ -2,6 +2,7 @@
 
 import { Suspense } from 'react';
 
+import { TriangleAlertIcon } from 'lucide-react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { VideosSectionRow } from '@/modules/studio/ui/components/videos-section-row';
@@ -15,7 +16,13 @@ import { trpc } from '@/trpc/client';
 export const VideosSection = () => {
 	return (
 		<Suspense fallback={<VideosSectionSkeleton />}>
-			<ErrorBoundary fallback={<p>Error...</p>}>
+			<ErrorBoundary
+				fallback={
+					<p className='text-sm text-destructive'>
+						<TriangleAlertIcon className='-mt-0.5 mr-1 inline size-4' /> Failed to fetch videos!
+					</p>
+				}
+			>
 				<VideosSectionSuspense />
 			</ErrorBoundary>
 		</Suspense>

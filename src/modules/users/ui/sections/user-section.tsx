@@ -2,6 +2,7 @@
 
 import { Suspense } from 'react';
 
+import { TriangleAlertIcon } from 'lucide-react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { UserPageBanner, UserPageBannerSkeleton } from '@/modules/users/ui/components/user-page-banner';
@@ -27,7 +28,13 @@ const UserSectionSkeleton = () => {
 export const UserSection = ({ userId }: UserSectionProps) => {
 	return (
 		<Suspense fallback={<UserSectionSkeleton />}>
-			<ErrorBoundary fallback={<p>Error...</p>}>
+			<ErrorBoundary
+				fallback={
+					<p className='text-sm text-destructive'>
+						<TriangleAlertIcon className='-mt-0.5 mr-1 inline size-4' /> Failed to fetch user!
+					</p>
+				}
+			>
 				<UserSectionSuspense userId={userId} />
 			</ErrorBoundary>
 		</Suspense>

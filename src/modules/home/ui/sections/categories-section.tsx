@@ -3,6 +3,7 @@
 import { Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 
+import { TriangleAlertIcon } from 'lucide-react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { FilterCarousel } from '@/components/filter-carousel';
@@ -20,7 +21,13 @@ interface CategoriesSectionProps {
 export const CategoriesSection = ({ categoryId }: CategoriesSectionProps) => {
 	return (
 		<Suspense fallback={<CategoriesSkeleton />}>
-			<ErrorBoundary fallback={<p>Error...</p>}>
+			<ErrorBoundary
+				fallback={
+					<p className='text-sm text-destructive'>
+						<TriangleAlertIcon className='-mt-0.5 mr-1 inline size-4' /> Failed to fetch categories!
+					</p>
+				}
+			>
 				<CategoriesSectionSuspense categoryId={categoryId} />
 			</ErrorBoundary>
 		</Suspense>

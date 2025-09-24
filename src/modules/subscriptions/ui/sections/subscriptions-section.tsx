@@ -3,6 +3,7 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
 
+import { TriangleAlertIcon } from 'lucide-react';
 import { ErrorBoundary } from 'react-error-boundary';
 import toast from 'react-hot-toast';
 
@@ -15,7 +16,13 @@ import { trpc } from '@/trpc/client';
 export const SubscriptionsSection = () => {
 	return (
 		<Suspense fallback={<SubscriptionsSectionSkeleton />}>
-			<ErrorBoundary fallback={<p>Error...</p>}>
+			<ErrorBoundary
+				fallback={
+					<p className='text-sm text-destructive'>
+						<TriangleAlertIcon className='-mt-0.5 mr-1 inline size-4' /> Failed to fetch subscriptions!
+					</p>
+				}
+			>
 				<SubscriptionsSectionSuspense />
 			</ErrorBoundary>
 		</Suspense>

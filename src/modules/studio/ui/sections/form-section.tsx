@@ -19,6 +19,7 @@ import {
 	RotateCcwIcon,
 	SparklesIcon,
 	Trash2Icon,
+	TriangleAlertIcon,
 } from 'lucide-react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useForm } from 'react-hook-form';
@@ -54,7 +55,13 @@ interface FormSectionProps {
 export const FormSection = ({ videoId }: FormSectionProps) => {
 	return (
 		<Suspense fallback={<FormSectionSkeleton />}>
-			<ErrorBoundary fallback={<p>Error...</p>}>
+			<ErrorBoundary
+				fallback={
+					<p className='text-sm text-destructive'>
+						<TriangleAlertIcon className='-mt-0.5 mr-1 inline size-4' /> Failed to fetch video!
+					</p>
+				}
+			>
 				<FormSectionSuspense videoId={videoId} />
 			</ErrorBoundary>
 		</Suspense>

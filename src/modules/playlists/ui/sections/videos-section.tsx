@@ -3,6 +3,7 @@
 import { Suspense } from 'react';
 
 import { useAuth } from '@clerk/nextjs';
+import { TriangleAlertIcon } from 'lucide-react';
 import { ErrorBoundary } from 'react-error-boundary';
 import toast from 'react-hot-toast';
 
@@ -20,7 +21,13 @@ interface VideosSectionProps {
 export const VideosSection = ({ playlistId }: VideosSectionProps) => {
 	return (
 		<Suspense fallback={<VideosSectionSkeleton />}>
-			<ErrorBoundary fallback={<p>Error...</p>}>
+			<ErrorBoundary
+				fallback={
+					<p className='text-sm text-destructive'>
+						<TriangleAlertIcon className='-mt-0.5 mr-1 inline size-4' /> Failed to fetch videos!
+					</p>
+				}
+			>
 				<VideosSectionSuspense playlistId={playlistId} />
 			</ErrorBoundary>
 		</Suspense>

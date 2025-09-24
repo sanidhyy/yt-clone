@@ -2,6 +2,7 @@
 
 import { Suspense } from 'react';
 
+import { TriangleAlertIcon } from 'lucide-react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { VideoGridCard, VideoGridCardSkeleton } from '@/modules/videos/ui/components/video-grid-card';
@@ -17,7 +18,13 @@ interface VideosSectionProps {
 export const VideosSection = ({ categoryId }: VideosSectionProps) => {
 	return (
 		<Suspense key={categoryId} fallback={<VideosSectionSkeleton />}>
-			<ErrorBoundary fallback={<p>Error...</p>}>
+			<ErrorBoundary
+				fallback={
+					<p className='text-sm text-destructive'>
+						<TriangleAlertIcon className='-mt-0.5 mr-1 inline size-4' /> Failed to fetch videos!
+					</p>
+				}
+			>
 				<VideosSectionSuspense categoryId={categoryId} />
 			</ErrorBoundary>
 		</Suspense>

@@ -2,6 +2,7 @@
 
 import { Suspense } from 'react';
 
+import { TriangleAlertIcon } from 'lucide-react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { VideoGridCard, VideoGridCardSkeleton } from '@/modules/videos/ui/components/video-grid-card';
@@ -19,7 +20,13 @@ interface ResultsSectionProps {
 export const ResultsSection = ({ query, categoryId }: ResultsSectionProps) => {
 	return (
 		<Suspense key={`${query}-${categoryId}`} fallback={<ResultsSectionSkeleton />}>
-			<ErrorBoundary fallback={<p>Error...</p>}>
+			<ErrorBoundary
+				fallback={
+					<p className='text-sm text-destructive'>
+						<TriangleAlertIcon className='-mt-0.5 mr-1 inline size-4' /> Failed to fetch search results!
+					</p>
+				}
+			>
 				<ResultsSectionSuspense query={query} categoryId={categoryId} />
 			</ErrorBoundary>
 		</Suspense>

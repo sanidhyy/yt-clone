@@ -2,7 +2,7 @@
 
 import { Suspense } from 'react';
 
-import { Loader2Icon } from 'lucide-react';
+import { Loader2Icon, TriangleAlertIcon } from 'lucide-react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { CommentForm } from '@/modules/comments/ui/components/comment-form';
@@ -19,7 +19,13 @@ interface CommentsSectionProps {
 export const CommentsSection = ({ videoId }: CommentsSectionProps) => {
 	return (
 		<Suspense fallback={<CommentsSectionSkeleton />}>
-			<ErrorBoundary fallback={<p>Error...</p>}>
+			<ErrorBoundary
+				fallback={
+					<p className='text-sm text-destructive'>
+						<TriangleAlertIcon className='-mt-0.5 mr-1 inline size-4' /> Failed to fetch comments!
+					</p>
+				}
+			>
 				<CommentsSectionSuspense videoId={videoId} />
 			</ErrorBoundary>
 		</Suspense>

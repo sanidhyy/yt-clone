@@ -2,6 +2,7 @@
 
 import { Suspense } from 'react';
 
+import { TriangleAlertIcon } from 'lucide-react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { PlaylistGridCard, PlaylistGridCardSkeleton } from '@/modules/playlists/ui/components/playlist-grid-card';
@@ -13,7 +14,13 @@ import { trpc } from '@/trpc/client';
 export const PlaylistsSection = () => {
 	return (
 		<Suspense fallback={<PlaylistsSectionSkeleton />}>
-			<ErrorBoundary fallback={<p>Error...</p>}>
+			<ErrorBoundary
+				fallback={
+					<p className='text-sm text-destructive'>
+						<TriangleAlertIcon className='-mt-0.5 mr-1 inline size-4' /> Failed to fetch playlists!
+					</p>
+				}
+			>
 				<PlaylistsSectionSuspense />
 			</ErrorBoundary>
 		</Suspense>

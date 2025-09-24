@@ -3,6 +3,7 @@
 import { Suspense } from 'react';
 
 import { useAuth } from '@clerk/nextjs';
+import { TriangleAlertIcon } from 'lucide-react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { VideoBanner } from '@/modules/videos/ui/components/video-banner';
@@ -72,7 +73,13 @@ const VideoSectionSkeleton = () => {
 export const VideoSection = ({ videoId }: VideoSectionProps) => {
 	return (
 		<Suspense fallback={<VideoSectionSkeleton />}>
-			<ErrorBoundary fallback={<p>Error...</p>}>
+			<ErrorBoundary
+				fallback={
+					<p className='text-sm text-destructive'>
+						<TriangleAlertIcon className='-mt-0.5 mr-1 inline size-4' /> Failed to fetch video!
+					</p>
+				}
+			>
 				<VideoSectionSuspense videoId={videoId} />
 			</ErrorBoundary>
 		</Suspense>

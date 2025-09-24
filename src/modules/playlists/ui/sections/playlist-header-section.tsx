@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { useAuth } from '@clerk/nextjs';
-import { ShareIcon, Trash2Icon } from 'lucide-react';
+import { ShareIcon, Trash2Icon, TriangleAlertIcon } from 'lucide-react';
 import { ErrorBoundary } from 'react-error-boundary';
 import toast from 'react-hot-toast';
 
@@ -30,7 +30,13 @@ const PlaylistHeaderSectionSkeleton = () => {
 export const PlaylistHeaderSection = ({ playlistId }: PlaylistHeaderSectionProps) => {
 	return (
 		<Suspense fallback={<PlaylistHeaderSectionSkeleton />}>
-			<ErrorBoundary fallback={<p>Error...</p>}>
+			<ErrorBoundary
+				fallback={
+					<p className='text-sm text-destructive'>
+						<TriangleAlertIcon className='-mt-0.5 mr-1 inline size-4' /> Failed to fetch playlist!
+					</p>
+				}
+			>
 				<PlaylistHeaderSectionSuspense playlistId={playlistId} />
 			</ErrorBoundary>
 		</Suspense>
