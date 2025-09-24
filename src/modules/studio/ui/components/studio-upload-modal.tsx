@@ -53,7 +53,7 @@ export const StudioUploadModal = () => {
 				className='gap-1'
 			>
 				<PlusIcon strokeWidth={2.1} />
-				Create
+				<span className='hidden md:inline'>Create</span>
 			</Button>
 		</>
 	);

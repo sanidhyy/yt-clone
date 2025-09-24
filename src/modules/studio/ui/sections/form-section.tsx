@@ -142,7 +142,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 	});
 	const [ConfirmRestoreDialog, confirmRestore] = useConfirm({
 		message: 'Are you sure you want to restore this video thumbnail?',
-		title: 'Delete video',
+		title: 'Restore video thumbnail',
 	});
 
 	const [isCopied, setIsCopied] = useState(false);
@@ -287,7 +287,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 			/>
 
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)}>
+				<form onSubmit={form.handleSubmit(onSubmit)} className='pb-2'>
 					<div className='mb-6 flex items-center justify-between'>
 						<div>
 							<h1 className='text-2xl font-bold'>Video details</h1>
@@ -333,7 +333,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 					</div>
 
 					<div className='grid grid-cols-1 gap-6 lg:grid-cols-5'>
-						<div className='col-span-3 space-y-8'>
+						<div className='space-y-8 lg:col-span-3'>
 							<FormField
 								disabled={isPending}
 								control={form.control}
@@ -517,7 +517,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 													type='button'
 													variant='ghost'
 													size='icon'
-													className='shrink-0'
+													className='hidden shrink-0 md:block'
 													onClick={handleCopy}
 													disabled={isCopied}
 												>

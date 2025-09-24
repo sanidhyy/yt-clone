@@ -25,7 +25,7 @@ export const ResponsiveModal = ({
 	if (isMobile) {
 		return (
 			<Drawer open={open} onOpenChange={onOpenChange}>
-				<DrawerContent>
+				<DrawerContent className='px-4 py-2'>
 					<DrawerHeader>
 						<DrawerTitle>{title}</DrawerTitle>
 
