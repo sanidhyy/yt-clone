@@ -1,6 +1,6 @@
 {
 	"name": "yt-clone",
-	"version": "0.1.0",
+	"version": "1.0.1",
 	"private": true,
 	"type": "module",
 	"scripts": {
@@ -19,6 +19,75 @@
 		"seed:categories": "bun ./src/scripts/seed-categories.ts",
 		"postinstall": "drizzle-kit generate"
 	},
+	"author": {
+		"name": "Sanidhya Kumar Verma",
+		"email": "sanidhya.verma12345@gmail.com",
+		"url": "https://github.com/sanidhyy"
+	},
+	"description": "AI-Powered YouTube Clone using Next.js 15 and Mux.",
+	"keywords": [
+		"reactjs",
+		"nextjs",
+		"youtube",
+		"youtube-clone",
+		"yt-clone",
+		"clerk-auth",
+		"lucide-icons",
+		"react-icons",
+		"mux",
+		"mux-player",
+		"shadcn-ui",
+		"radix-ui",
+		"tailwindcss",
+		"uploadthing",
+		"upstash",
+		"upstash-ratelimit",
+		"upstash-redis",
+		"ratelimit",
+		"redis",
+		"react-query",
+		"openai",
+		"player-style",
+		"trpc",
+		"drizzle-orm",
+		"zod",
+		"sonner",
+		"typescript",
+		"javascript",
+		"vercel",
+		"postcss",
+		"prettier",
+		"eslint",
+		"react",
+		"react-dom",
+		"html",
+		"css",
+		"date-fns",
+		"cn",
+		"clsx",
+		"lucide-react",
+		"neon-db"
+	],
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sanidhyy/yt-clone.git"
+	},
+	"homepage": "https://github.com/sanidhyy/yt-clone#readme",
+	"bugs": {
+		"url": "https://github.com/sanidhyy/yt-clone/issues",
+		"email": "sanidhya.verma12345@gmail.com"
+	},
+	"funding": [
+		{
+			"type": "patreon",
+			"url": "https://www.patreon.com/sanidhy"
+		},
+		{
+			"type": "Buy me a coffee",
+			"url": "https://www.buymeacoffee.com/sanidhy"
+		}
+	],
 	"dependencies": {
 		"@clerk/nextjs": "^6.22.0",
 		"@hookform/resolvers": "^5.1.1",
