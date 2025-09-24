@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 
 export const siteConfig: Metadata = {
+	appleWebApp: {
+		title: 'NewTube',
+	},
 	authors: {
 		name: 'Sanidhya Kumar Verma',
 		url: 'https://github.com/sanidhyy',
