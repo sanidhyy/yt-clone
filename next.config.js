@@ -10,10 +10,7 @@ await jiti.import('./src/env/server');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	devIndicators: {
-		appIsrStatus: false,
-		buildActivity: false,
-	},
+	devIndicators: false,
 	images: {
 		remotePatterns: [
 			{
