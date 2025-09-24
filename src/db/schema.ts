@@ -139,7 +139,6 @@ export const playlists = pgTable('playlist', {
 	id: uuid('id').primaryKey().defaultRandom(),
 
 	name: text('name').notNull(),
-	description: text('description'),
 
 	userId: uuid('user_id')
 		.notNull()
