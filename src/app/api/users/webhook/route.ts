@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
 
 import { verifyWebhook, type WebhookEvent } from '@clerk/nextjs/webhooks';
 import { eq } from 'drizzle-orm';

@@ -1,5 +1,5 @@
 import { headers } from 'next/headers';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
 
 import {
 	VideoAssetCreatedWebhookEvent,
@@ -8,7 +8,7 @@ import {
 	VideoAssetReadyWebhookEvent,
 	VideoAssetTrackReadyWebhookEvent,
 } from '@mux/mux-node/resources/webhooks';
-import { eq } from 'drizzle-orm';
+import { and, eq } from 'drizzle-orm';
 import { UTApi } from 'uploadthing/server';
 
 import { updateVideoAsset } from '@/modules/videos/server/actions';
@@ -56,15 +56,22 @@ export const POST = async (req: NextRequest) => {
 				return new NextResponse('No upload id found!', { status: NOT_FOUND });
 			}
 
-			await db
-				.update(videos)
-				.set({
-					muxAssetId: data.id,
-					muxStatus: Object.values(MuxStatus).includes(data.status as MuxStatus)
-						? (data.status as MuxStatus)
-						: MuxStatus.CANCELLED,
-				})
-				.where(eq(videos.muxUploadId, data.upload_id));
+			const existingReadyVideoCount = await db.$count(
+				videos,
+				and(eq(videos.muxAssetId, data.id), eq(videos.muxStatus, MuxStatus.READY))
+			);
+
+			if (!existingReadyVideoCount) {
+				await db
+					.update(videos)
+					.set({
+						muxAssetId: data.id,
+						muxStatus: Object.values(MuxStatus).includes(data.status as MuxStatus)
+							? (data.status as MuxStatus)
+							: MuxStatus.CANCELLED,
+					})
+					.where(eq(videos.muxUploadId, data.upload_id));
+			}
 
 			break;
 		}
