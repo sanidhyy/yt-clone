@@ -8,13 +8,11 @@ import { cn } from '@/lib/utils';
 import './globals.css';
 
 import { Providers } from '@/components/providers';
+import { siteConfig } from '@/config';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
-export const metadata: Metadata = {
-	description: 'Full-Stack YouTube Clone using Next.js',
-	title: 'NewTube',
-};
+export const metadata: Metadata = siteConfig;
 
 const RootLayout = ({
 	children,
