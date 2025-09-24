@@ -29,7 +29,11 @@ export const CommentsSection = ({ videoId }: CommentsSectionProps) => {
 const CommentsSectionSkeleton = () => {
 	return (
 		<div className='mt-6 flex items-center justify-center'>
-			<Loader2Icon className='size-7 animate-spin text-muted-foreground' />
+			<Loader2Icon
+				className='size-7 animate-spin text-muted-foreground'
+				aria-label='Loading comments...'
+				strokeWidth={2.5}
+			/>
 		</div>
 	);
 };

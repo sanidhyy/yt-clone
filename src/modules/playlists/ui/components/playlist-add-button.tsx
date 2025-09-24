@@ -59,7 +59,11 @@ export const PlaylistAddButton = ({ playlist, videoId }: PlaylistAddButtonProps)
 			onClick={handleAction}
 		>
 			{isPending ? (
-				<Loader2Icon className='animate-spin' />
+				<Loader2Icon
+					className='animate-spin'
+					aria-label={removeVideo.isPending ? 'Removing video from playlist...' : 'Adding video to playlist...'}
+					strokeWidth={2.5}
+				/>
 			) : playlist.containsVideo ? (
 				<SquareCheckIcon />
 			) : (

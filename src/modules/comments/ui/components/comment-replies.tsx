@@ -28,7 +28,11 @@ export const CommentReplies = ({ parentId, videoId }: CommentRepliesProps) => {
 			<div className='mt-2 flex flex-col gap-4'>
 				{isLoading && (
 					<div className='flex items-center justify-center'>
-						<Loader2Icon className='size-6 animate-spin text-muted-foreground' />
+						<Loader2Icon
+							className='size-6 animate-spin text-muted-foreground'
+							aria-label='Loading replies...'
+							strokeWidth={2.5}
+						/>
 					</div>
 				)}
 

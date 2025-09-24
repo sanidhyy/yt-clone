@@ -42,7 +42,7 @@ export const StudioUploadModal = () => {
 				{create.data?.url ? (
 					<StudioUploader endpoint={create.data.url} onSuccess={onSuccess} />
 				) : (
-					<Loader2Icon className='size-5 animate-spin' />
+					<Loader2Icon className='size-5 animate-spin' aria-label='Loading video...' strokeWidth={2.5} />
 				)}
 			</ResponsiveModal>
 

@@ -314,7 +314,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 								<DropdownMenuTrigger asChild>
 									<Button type='button' variant='ghost' size='icon' disabled={isPending}>
 										{isRemoving ? (
-											<Loader2Icon className='size-4 animate-spin' />
+											<Loader2Icon className='size-4 animate-spin' aria-label='Deleting video...' strokeWidth={2.5} />
 										) : (
 											<MoreVerticalIcon className='size-4' />
 										)}

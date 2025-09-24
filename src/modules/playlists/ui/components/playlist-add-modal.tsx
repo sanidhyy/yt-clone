@@ -49,7 +49,11 @@ export const PlaylistAddModal = ({ onOpenChange, open, videoId }: PlaylistAddMod
 			<div className='flex flex-col gap-2'>
 				{isLoading && (
 					<div className='flex justify-center p-4'>
-						<Loader2Icon className='size-5 animate-spin text-muted-foreground' />
+						<Loader2Icon
+							className='size-5 animate-spin text-muted-foreground'
+							aria-label='Loading playlists...'
+							strokeWidth={2.5}
+						/>
 					</div>
 				)}
 
