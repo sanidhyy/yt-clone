@@ -25,6 +25,7 @@ export const env = createEnv({
 		MUX_WEBHOOK_SECRET: z.string().trim().min(1),
 		NODE_ENV: z.enum(['development', 'production', 'test']).default('development').optional(),
 		OPENAI_API_BASE_URL: z.string().url(),
+		OPENAI_API_KEY_COOKIE_NAME: z.string().min(1),
 		QSTASH_CURRENT_SIGNING_KEY: z.string().trim().min(1).startsWith('sig_'),
 		QSTASH_NEXT_SIGNING_KEY: z.string().trim().min(1).startsWith('sig_'),
 		QSTASH_TOKEN: z.string().trim().min(1),

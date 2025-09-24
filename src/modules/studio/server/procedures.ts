@@ -5,7 +5,6 @@ import { and, desc, eq, getTableColumns, lt, or } from 'drizzle-orm';
 import { OpenAI, OpenAIError } from 'openai';
 import { z } from 'zod';
 
-import { OPENAI_API_KEY_COOKIE_NAME } from '@/modules/studio/constants';
 import { AISettingsSchema } from '@/modules/studio/schemas/ai-settings-schema';
 
 import { db } from '@/db';
@@ -85,7 +84,7 @@ export const studioRouter = createTRPCRouter({
 	removeAISettings: protectedProcedure.mutation(async () => {
 		const cookieStore = await cookies();
 
-		cookieStore.delete(OPENAI_API_KEY_COOKIE_NAME);
+		cookieStore.delete(env.OPENAI_API_KEY_COOKIE_NAME);
 
 		return { success: true };
 	}),
@@ -116,7 +115,7 @@ export const studioRouter = createTRPCRouter({
 
 		const cookieStore = await cookies();
 
-		cookieStore.set(OPENAI_API_KEY_COOKIE_NAME, encryptedApiKey, {
+		cookieStore.set(env.OPENAI_API_KEY_COOKIE_NAME, encryptedApiKey, {
 			httpOnly: true,
 			maxAge: 60 * 60 * 24 * 30, // 30 days
 			path: '/',

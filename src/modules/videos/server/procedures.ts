@@ -8,7 +8,6 @@ import { and, desc, eq, getTableColumns, inArray, isNotNull, lt, or } from 'driz
 import { UTApi } from 'uploadthing/server';
 import { z } from 'zod';
 
-import { OPENAI_API_KEY_COOKIE_NAME } from '@/modules/studio/constants';
 import { thumbnailGenerateSchema } from '@/modules/studio/schemas/thumbnail-generate-schema';
 
 import { db } from '@/db';
@@ -80,7 +79,7 @@ export const videosRouter = createTRPCRouter({
 
 			const cookieStore = await cookies();
 
-			const openaiApiKey = cookieStore.get(OPENAI_API_KEY_COOKIE_NAME)?.value?.trim();
+			const openaiApiKey = cookieStore.get(env.OPENAI_API_KEY_COOKIE_NAME)?.value?.trim();
 			if (!openaiApiKey)
 				throw new TRPCError({
 					code: 'BAD_REQUEST',
@@ -102,7 +101,7 @@ export const videosRouter = createTRPCRouter({
 
 			const cookieStore = await cookies();
 
-			const openaiApiKey = cookieStore.get(OPENAI_API_KEY_COOKIE_NAME)?.value?.trim();
+			const openaiApiKey = cookieStore.get(env.OPENAI_API_KEY_COOKIE_NAME)?.value?.trim();
 			if (!openaiApiKey)
 				throw new TRPCError({
 					code: 'BAD_REQUEST',
@@ -122,7 +121,7 @@ export const videosRouter = createTRPCRouter({
 
 		const cookieStore = await cookies();
 
-		const openaiApiKey = cookieStore.get(OPENAI_API_KEY_COOKIE_NAME)?.value?.trim();
+		const openaiApiKey = cookieStore.get(env.OPENAI_API_KEY_COOKIE_NAME)?.value?.trim();
 		if (!openaiApiKey)
 			throw new TRPCError({
 				code: 'BAD_REQUEST',
