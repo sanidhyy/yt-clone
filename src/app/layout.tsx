@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 
 import { ClerkProvider } from '@clerk/nextjs';
@@ -13,6 +13,10 @@ import { siteConfig } from '@/config';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = siteConfig;
+
+export const viewport: Viewport = {
+	themeColor: '#ff2056',
+};
 
 const RootLayout = ({
 	children,
