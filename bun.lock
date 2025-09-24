@@ -23,7 +23,7 @@
         "@tanstack/react-query": "^5.80.7",
         "@trpc/client": "^11.4.1",
         "@trpc/react-query": "^11.4.1",
-        "@trpc/server": "^11.4.1",
+        "@trpc/server": "^11.5.1",
         "@uploadthing/react": "^7.3.2",
         "@upstash/ratelimit": "^2.0.5",
         "@upstash/redis": "^1.35.0",
@@ -450,7 +450,7 @@
 
     "@trpc/react-query": ["@trpc/react-query@11.4.1", "", { "peerDependencies": { "@tanstack/react-query": "^5.80.3", "@trpc/client": "11.4.1", "@trpc/server": "11.4.1", "react": ">=18.2.0", "react-dom": ">=18.2.0", "typescript": ">=5.7.2" } }, "sha512-DpwmD9EkFX+dcpY0wH0T8MsNLERs8r1EJ4yyZy7o3v/g3DgcrfxGOeM3CNChEgSX2CcjBJsmhpQPz4spoy9wGA=="],
 
-    "@trpc/server": ["@trpc/server@11.4.1", "", { "peerDependencies": { "typescript": ">=5.7.2" } }, "sha512-2C7VWfOzjZUoQpQEhBTNNbyzPW429ielchJdUGPhaczWhlHH4+9M7KLIZDkxmBdx/DkDwPxdA2OX5No3TfmJkQ=="],
+    "@trpc/server": ["@trpc/server@11.5.1", "", { "peerDependencies": { "typescript": ">=5.7.2" } }, "sha512-KIDzHRS5m8U1ncPwjgtOtPWK9lNO0kYL7b+lnvKXRqowSAQIEC/z6y7g/dkt4Aqv3DKI/STLydt2/afrP1QrxQ=="],
 
     "@types/diff-match-patch": ["@types/diff-match-patch@1.0.36", "", {}, "sha512-xFdR6tkm0MWvBfO8xXCSsinYxHcqkQUlcHeSpMC2ukzOb6lwQAfDmW+Qt0AvlGd8HpsS28qKsB+oPeJn9I39jg=="],
 
