@@ -4,6 +4,7 @@ import { Separator } from '@/components/ui/separator';
 import { Sidebar, SidebarContent } from '@/components/ui/sidebar';
 
 import { MainItems } from './main-items';
+import { OtherItems } from './other-items';
 import { PersonalItems } from './personal-items';
 import { SubscriptionsItems } from './subscriptions-items';
 
@@ -20,6 +21,8 @@ export const HomeSidebar = () => {
 						<SubscriptionsItems />
 					</>
 				</SignedIn>
+
+				<OtherItems />
 			</SidebarContent>
 		</Sidebar>
 	);
