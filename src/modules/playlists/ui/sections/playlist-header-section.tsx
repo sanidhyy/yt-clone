@@ -4,13 +4,14 @@ import { Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { useAuth } from '@clerk/nextjs';
-import { Trash2Icon } from 'lucide-react';
+import { ShareIcon, Trash2Icon } from 'lucide-react';
 import { ErrorBoundary } from 'react-error-boundary';
 import toast from 'react-hot-toast';
 
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useConfirm } from '@/hooks/use-confirm';
+import { absoluteUrl } from '@/lib/utils';
 import { trpc } from '@/trpc/client';
 
 interface PlaylistHeaderSectionProps {
@@ -69,6 +70,18 @@ const PlaylistHeaderSectionSuspense = ({ playlistId }: PlaylistHeaderSectionProp
 		remove.mutate({ id: playlistId });
 	};
 
+	const fullUrl = absoluteUrl(`/playlists/${playlistId}`);
+
+	const handleSharePlaylist = async () => {
+		try {
+			await navigator.clipboard.writeText(fullUrl);
+
+			toast.success('Link copied to the copied!');
+		} catch (error) {
+			toast.error(error instanceof Error ? error.message : 'Failed to copy video url!');
+		}
+	};
+
 	const isPending = remove.isPending;
 
 	return (
@@ -81,18 +94,31 @@ const PlaylistHeaderSectionSuspense = ({ playlistId }: PlaylistHeaderSectionProp
 					<p className='text-xl text-muted-foreground'>Videos from the playlist</p>
 				</div>
 
-				{userId === playlist.user.clerkId && (
+				<div className='flex items-center gap-2'>
+					{userId === playlist.user.clerkId && (
+						<Button
+							disabled={isPending}
+							variant='outline'
+							size='icon'
+							className='rounded-full text-destructive hover:text-destructive/75'
+							onClick={handleRemove}
+						>
+							<Trash2Icon />
+							<span className='sr-only'>Delete playlist</span>
+						</Button>
+					)}
+
 					<Button
 						disabled={isPending}
 						variant='outline'
 						size='icon'
-						className='rounded-full text-destructive hover:text-destructive/75'
-						onClick={handleRemove}
+						className='rounded-full'
+						onClick={handleSharePlaylist}
 					>
-						<Trash2Icon />
-						<span className='sr-only'>Delete playlist</span>
+						<ShareIcon />
+						<span className='sr-only'>Share playlist</span>
 					</Button>
-				)}
+				</div>
 			</div>
 		</>
 	);
