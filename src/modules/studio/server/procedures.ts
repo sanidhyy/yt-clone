@@ -11,6 +11,7 @@ import { db } from '@/db';
 import { ReactionType, comments, videoReactions, videoViews, videos } from '@/db/schema';
 import { env } from '@/env/server';
 import { encrypt } from '@/lib/encryption';
+import { getSecureCookieName } from '@/lib/utils';
 import { createTRPCRouter, protectedProcedure } from '@/trpc/init';
 
 export const studioRouter = createTRPCRouter({
@@ -84,7 +85,7 @@ export const studioRouter = createTRPCRouter({
 	removeAISettings: protectedProcedure.mutation(async () => {
 		const cookieStore = await cookies();
 
-		cookieStore.delete(env.OPENAI_API_KEY_COOKIE_NAME);
+		cookieStore.delete(getSecureCookieName(env.OPENAI_API_KEY_COOKIE_NAME));
 
 		return { success: true };
 	}),
@@ -115,7 +116,7 @@ export const studioRouter = createTRPCRouter({
 
 		const cookieStore = await cookies();
 
-		cookieStore.set(env.OPENAI_API_KEY_COOKIE_NAME, encryptedApiKey, {
+		cookieStore.set(getSecureCookieName(env.OPENAI_API_KEY_COOKIE_NAME), encryptedApiKey, {
 			httpOnly: true,
 			maxAge: 60 * 60 * 24 * 30, // 30 days
 			path: '/',

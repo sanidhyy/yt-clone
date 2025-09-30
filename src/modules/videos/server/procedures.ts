@@ -26,7 +26,7 @@ import { env as clientEnv } from '@/env/client';
 import { env } from '@/env/server';
 import { mux } from '@/lib/mux';
 import { qstash } from '@/lib/qstash';
-import { absoluteUrl } from '@/lib/utils';
+import { absoluteUrl, getSecureCookieName } from '@/lib/utils';
 import { baseProcedure, createTRPCRouter, protectedProcedure } from '@/trpc/init';
 
 import { updateVideoAsset } from './actions';
@@ -79,7 +79,7 @@ export const videosRouter = createTRPCRouter({
 
 			const cookieStore = await cookies();
 
-			const openaiApiKey = cookieStore.get(env.OPENAI_API_KEY_COOKIE_NAME)?.value?.trim();
+			const openaiApiKey = cookieStore.get(getSecureCookieName(env.OPENAI_API_KEY_COOKIE_NAME))?.value?.trim();
 			if (!openaiApiKey)
 				throw new TRPCError({
 					code: 'BAD_REQUEST',
@@ -101,7 +101,7 @@ export const videosRouter = createTRPCRouter({
 
 			const cookieStore = await cookies();
 
-			const openaiApiKey = cookieStore.get(env.OPENAI_API_KEY_COOKIE_NAME)?.value?.trim();
+			const openaiApiKey = cookieStore.get(getSecureCookieName(env.OPENAI_API_KEY_COOKIE_NAME))?.value?.trim();
 			if (!openaiApiKey)
 				throw new TRPCError({
 					code: 'BAD_REQUEST',
@@ -121,7 +121,7 @@ export const videosRouter = createTRPCRouter({
 
 		const cookieStore = await cookies();
 
-		const openaiApiKey = cookieStore.get(env.OPENAI_API_KEY_COOKIE_NAME)?.value?.trim();
+		const openaiApiKey = cookieStore.get(getSecureCookieName(env.OPENAI_API_KEY_COOKIE_NAME))?.value?.trim();
 		if (!openaiApiKey)
 			throw new TRPCError({
 				code: 'BAD_REQUEST',

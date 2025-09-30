@@ -3,9 +3,9 @@ import { twMerge } from 'tailwind-merge';
 
 import { env } from '@/env/client';
 
-export function cn(...inputs: ClassValue[]) {
+export const cn = (...inputs: ClassValue[]) => {
 	return twMerge(clsx(inputs));
-}
+};
 
 export const absoluteUrl = (path: string): string => {
 	const formattedPath = path.trim();
@@ -22,13 +22,20 @@ export const absoluteUrl = (path: string): string => {
 	return `${baseUrl}${formattedPath.startsWith('/') ? '' : '/'}${formattedPath}`;
 };
 
-export function formatDuration(duration: number) {
+export const getSecureCookieName = (cookieName: string) => {
+	const baseUrl = absoluteUrl('');
+	const isSecure = baseUrl.startsWith('https://');
+
+	return isSecure ? `__Secure-${cookieName}` : cookieName;
+};
+
+export const formatDuration = (duration: number) => {
 	const seconds = Math.floor((duration % 60000) / 1000);
 	const minutes = Math.floor(duration / 60000);
 
 	return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-}
+};
 
-export function snakeCaseToTitle(str: string) {
+export const snakeCaseToTitle = (str: string) => {
 	return str.replaceAll(/_/g, ' ').replaceAll(/\b\w/g, (char) => char.toUpperCase());
-}
+};
