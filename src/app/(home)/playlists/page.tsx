@@ -14,4 +14,5 @@ const PlaylistsPage = async () => {
 		</HydrateClient>
 	);
 };
+
 export default PlaylistsPage;

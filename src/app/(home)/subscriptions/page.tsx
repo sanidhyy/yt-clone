@@ -12,4 +12,5 @@ const SubscriptionsPage = async () => {
 		</HydrateClient>
 	);
 };
+
 export default SubscriptionsPage;

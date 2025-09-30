@@ -14,4 +14,5 @@ const HistoryPage = () => {
 		</HydrateClient>
 	);
 };
+
 export default HistoryPage;

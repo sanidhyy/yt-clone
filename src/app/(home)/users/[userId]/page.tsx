@@ -21,4 +21,5 @@ const UserIdPage = async ({ params }: UserIdPageProps) => {
 		</HydrateClient>
 	);
 };
+
 export default UserIdPage;

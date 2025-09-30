@@ -14,4 +14,5 @@ const LikedPage = () => {
 		</HydrateClient>
 	);
 };
+
 export default LikedPage;

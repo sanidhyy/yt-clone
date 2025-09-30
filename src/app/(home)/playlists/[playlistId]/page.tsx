@@ -21,4 +21,5 @@ const PlaylistIdPage = async ({ params }: PlaylistIdPageProps) => {
 		</HydrateClient>
 	);
 };
+
 export default PlaylistIdPage;

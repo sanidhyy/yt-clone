@@ -32,4 +32,5 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
 		</HydrateClient>
 	);
 };
+
 export default SearchPage;

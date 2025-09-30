@@ -14,4 +14,5 @@ const StudioPage = async () => {
 		</HydrateClient>
 	);
 };
+
 export default StudioPage;

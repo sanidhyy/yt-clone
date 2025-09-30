@@ -24,4 +24,5 @@ const VideoIdPage = async ({ params }: VideoIdPageProps) => {
 		</HydrateClient>
 	);
 };
+
 export default VideoIdPage;
