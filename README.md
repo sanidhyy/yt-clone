@@ -166,8 +166,6 @@ yt-clone/
 4. Contents of `.env.local`:
 
 ```env
-# .env.local
-
 # disable telemetry
 DO_NOT_TRACK="1"
 CLERK_TELEMETRY_DISABLED="1"
