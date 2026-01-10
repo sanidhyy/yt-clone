@@ -93,7 +93,7 @@
 		"@hookform/resolvers": "^5.1.1",
 		"@mux/mux-node": "^12.8.0",
 		"@mux/mux-uploader-react": "^1.2.0",
-		"@mux/mux-video-react": "^0.26.0",
+		"@mux/mux-video-react": "^0.29.0",
 		"@neondatabase/serverless": "^1.0.1",
 		"@radix-ui/react-avatar": "^1.1.10",
 		"@radix-ui/react-dialog": "^1.1.14",
