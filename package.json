@@ -111,7 +111,7 @@
 		"@trpc/server": "^11.6.0",
 		"@uploadthing/react": "^7.3.2",
 		"@upstash/ratelimit": "^2.0.5",
-		"@upstash/redis": "^1.36.1",
+		"@upstash/redis": "^1.36.2",
 		"@upstash/workflow": "^0.2.14",
 		"class-variance-authority": "^0.7.1",
 		"client-only": "^0.0.1",
