@@ -1,25 +1,30 @@
+import { createRequire } from 'module';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-import { FlatCompat } from '@eslint/eslintrc';
+import nextVitals from 'eslint-config-next/core-web-vitals';
+import nextTypescript from 'eslint-config-next/typescript';
+import eslintConfigPrettier from 'eslint-config-prettier/flat';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import { defineConfig, globalIgnores } from 'eslint/config';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const require = createRequire(import.meta.url);
 
-const compat = new FlatCompat({
-	baseDirectory: __dirname,
-});
+const tailwindPlugin = require('eslint-plugin-tailwindcss');
+const tailwindFlatRecommended = tailwindPlugin.configs['flat/recommended'];
 
-const eslintConfig = [
-	...compat.extends(
-		'next',
-		'next/core-web-vitals',
-		'next/typescript',
-		'plugin:prettier/recommended',
-		'plugin:tailwindcss/recommended'
-	),
-	...compat.config({
+const eslintConfig = defineConfig([
+	globalIgnores(['node_modules/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts', 'migrations/**']),
+	...nextVitals,
+	...nextTypescript,
+	...tailwindFlatRecommended,
+	eslintConfigPrettier,
+	eslintPluginPrettierRecommended,
+	{
 		rules: {
+			'@next/next/no-img-element': 'off',
 			'@typescript-eslint/no-unused-vars': [
 				'warn',
 				{
@@ -38,28 +43,19 @@ const eslintConfig = [
 					endOfLine: 'auto',
 				},
 			],
+			'react-hooks/set-state-in-effect': 'off',
 			'sort-keys': 'warn',
 			'sort-vars': 'warn',
+			'tailwindcss/classnames-order': 'off',
 			'tailwindcss/no-custom-classname': 'warn',
 		},
 		settings: {
 			tailwindcss: {
-				callees: [
-					'cva', // https://cva.style
-
-					// a project is typically configured with one of these, the shape of arguments match `classnames`
-					'classnames',
-					'classNames',
-					'clsx',
-					'cn',
-					'cns',
-					'cx',
-				],
-				config: './tailwind.config.ts',
+				callees: ['cva', 'classnames', 'classNames', 'clsx', 'cn', 'cns', 'cx'],
+				config: `${__dirname}/tailwind.config.ts`,
 			},
 		},
-	}),
-	...compat.plugins('tailwindcss'),
-];
+	},
+]);
 
 export default eslintConfig;

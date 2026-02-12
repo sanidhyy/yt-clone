@@ -138,7 +138,7 @@ yt-clone/
         |--- init.ts
         |--- query-client.ts
         |--- server.tsx
-    |-- middleware.ts
+    |-- proxy.ts
   |- .env.example
   |- .env.local
   |- .gitignore

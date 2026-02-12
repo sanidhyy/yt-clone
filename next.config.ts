@@ -1,15 +1,9 @@
-import { fileURLToPath } from 'node:url';
+import type { NextConfig } from 'next';
 
-import { createJiti } from 'jiti';
+import '@/env/client';
+import '@/env/server';
 
-const jiti = createJiti(fileURLToPath(import.meta.url));
-
-// validate env during build
-await jiti.import('./src/env/client');
-await jiti.import('./src/env/server');
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
 	devIndicators: false,
 	images: {
 		remotePatterns: [
