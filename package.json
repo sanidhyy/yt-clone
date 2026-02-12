@@ -89,7 +89,7 @@
 		}
 	],
 	"dependencies": {
-		"@clerk/nextjs": "^6.34.5",
+		"@clerk/nextjs": "^6.37.3",
 		"@hookform/resolvers": "^5.1.1",
 		"@mux/mux-node": "^12.8.0",
 		"@mux/mux-uploader-react": "^1.2.0",
