@@ -133,7 +133,7 @@
 		"react-hot-toast": "^2.5.2",
 		"server-only": "^0.0.1",
 		"superjson": "^2.2.6",
-		"tailwind-merge": "^3.0.1",
+		"tailwind-merge": "^3.4.1",
 		"tailwindcss-animate": "^1.0.7",
 		"uploadthing": "^7.7.3",
 		"vaul": "^1.1.2",
