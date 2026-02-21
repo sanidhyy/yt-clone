@@ -47,26 +47,6 @@ Here is the folder structure of this app.
 ```bash
 yt-clone/
   |- migrations/
-    |-- meta/
-    |-- 0000_brainy_franklin_richards.sql
-    |-- 0001_amusing_iron_fist.sql
-    |-- 0002_wide_iceman.sql
-    |-- 0003_fast_wrecker.sql
-    |-- 0004_hard_mathemanic.sql
-    |-- 0005_loud_the_professor.sql
-    |-- 0006_lively_thor_girl.sql
-    |-- 0007_soft_maggott.sql
-    |-- 0008_first_madame_web.sql
-    |-- 0009_flaky_raza.sql
-    |-- 0010_odd_justice.sql
-    |-- 0011_heavy_supreme_intelligence.sql
-    |-- 0012_cultured_unicorn.sql
-    |-- 0013_cute_ken_ellis.sql
-    |-- 0014_aspiring_anthem.sql
-    |-- 0015_dapper_cargill.sql
-    |-- 0016_premium_ikaris.sql
-    |-- 0017_overjoyed_moon_knight.sql
-    |-- 0018_rainy_thing.sql
   |- public/
   |- src/
     |-- app/
