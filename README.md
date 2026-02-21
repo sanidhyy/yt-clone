@@ -95,6 +95,7 @@ yt-clone/
   |- postcss.config.mjs
   |- tailwind.config.ts
   |- tsconfig.json
+  |- vercel.ts
 ```
 <!--- FOLDER_STRUCTURE_END --->
 
@@ -330,6 +331,7 @@ Useful resources and dependencies that are used in NewTube.
 - [@upstash/ratelimit](https://www.npmjs.com/package/@upstash/ratelimit): ^2.0.5
 - [@upstash/redis](https://www.npmjs.com/package/@upstash/redis): ^1.36.2
 - [@upstash/workflow](https://www.npmjs.com/package/@upstash/workflow): ^0.2.14
+- [@vercel/config](https://www.npmjs.com/package/@vercel/config): ^0.0.33
 - [class-variance-authority](https://www.npmjs.com/package/class-variance-authority): ^0.7.1
 - [client-only](https://www.npmjs.com/package/client-only): ^0.0.1
 - [clsx](https://www.npmjs.com/package/clsx): ^2.1.1
