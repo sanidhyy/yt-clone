@@ -43,6 +43,7 @@
 
 Here is the folder structure of this app.
 
+<!--- FOLDER_STRUCTURE_START --->
 ```bash
 yt-clone/
   |- migrations/
@@ -155,6 +156,7 @@ yt-clone/
   |- tailwind.config.ts
   |- tsconfig.json
 ```
+<!--- FOLDER_STRUCTURE_END --->
 
 <br />
 
@@ -356,6 +358,7 @@ You might encounter some bugs while using this app. You are more than welcome to
 Useful resources and dependencies that are used in NewTube.
 
 - Thanks to CodeWithAntonio: https://codewithantonio.com/
+<!--- DEPENDENCIES_START --->
 - [@clerk/nextjs](https://www.npmjs.com/package/@clerk/nextjs): ^6.22.0
 - [@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers): ^5.1.1
 - [@mux/mux-node](https://www.npmjs.com/package/@mux/mux-node): ^11.1.0
@@ -424,6 +427,7 @@ Useful resources and dependencies that are used in NewTube.
 - [prettier-plugin-tailwindcss](https://www.npmjs.com/package/prettier-plugin-tailwindcss): ^0.6.11
 - [tailwindcss](https://www.npmjs.com/package/tailwindcss): ^3.4.1
 - [typescript](https://www.npmjs.com/package/typescript): ^5
+<!--- DEPENDENCIES_END --->
 
 ## :coffee: Buy Me a Coffee
 
