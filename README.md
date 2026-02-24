@@ -300,7 +300,7 @@ Useful resources and dependencies that are used in NewTube.
 - [@radix-ui/react-visually-hidden](https://www.npmjs.com/package/@radix-ui/react-visually-hidden): ^1.2.4
 - [@t3-oss/env-nextjs](https://www.npmjs.com/package/@t3-oss/env-nextjs): ^0.13.8
 - [@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query): ^5.80.7
-- [@trivago/prettier-plugin-sort-imports](https://www.npmjs.com/package/@trivago/prettier-plugin-sort-imports): ^5.2.2
+- [@trivago/prettier-plugin-sort-imports](https://www.npmjs.com/package/@trivago/prettier-plugin-sort-imports): ^6.0.2
 - [@trpc/client](https://www.npmjs.com/package/@trpc/client): ^11.7.2
 - [@trpc/react-query](https://www.npmjs.com/package/@trpc/react-query): ^11.7.2
 - [@trpc/server](https://www.npmjs.com/package/@trpc/server): ^11.6.0
