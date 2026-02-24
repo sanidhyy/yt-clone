@@ -50,16 +50,72 @@ yt-clone/
   |- public/
   |- src/
     |-- app/
+      |--- (auth)/
+      |--- (home)/
+      |--- (studio)/
+      |--- api/
+      |--- apple-icon.png
+      |--- error.tsx
+      |--- favicon.ico
+      |--- globals.css
+      |--- icon0.svg
+      |--- icon1.png
+      |--- layout.tsx
+      |--- manifest.json
+      |--- not-found.tsx
     |-- components/
+      |--- providers/
+      |--- ui/
+      |--- filter-carousel.tsx
+      |--- infinite-scroll.tsx
+      |--- responsive-modal.tsx
+      |--- user-avatar.tsx
     |-- config/
+      |--- http-status-codes.ts
+      |--- index.ts
     |-- constants/
+      |--- index.ts
     |-- db/
+      |--- index.ts
+      |--- schema.ts
     |-- env/
+      |--- client.ts
+      |--- server.ts
     |-- hooks/
+      |--- use-confirm.tsx
+      |--- use-intersection-observer.ts
+      |--- use-mobile.tsx
     |-- lib/
+      |--- encryption.ts
+      |--- mux.ts
+      |--- qstash.ts
+      |--- ratelimit.ts
+      |--- redis.ts
+      |--- uploadthing.ts
+      |--- utils.ts
     |-- modules/
+      |--- auth/
+      |--- categories/
+      |--- comment-reactions/
+      |--- comments/
+      |--- home/
+      |--- playlists/
+      |--- search/
+      |--- studio/
+      |--- subscriptions/
+      |--- suggestions/
+      |--- users/
+      |--- video-reactions/
+      |--- video-views/
+      |--- videos/
     |-- scripts/
+      |--- seed-categories.ts
     |-- trpc/
+      |--- routers/
+      |--- client.tsx
+      |--- init.ts
+      |--- query-client.ts
+      |--- server.tsx
     |-- proxy.ts
   |- .env.example
   |- .env/.env.local
