@@ -341,7 +341,7 @@ Useful resources and dependencies that are used in NewTube.
 - [@eslint/eslintrc](https://www.npmjs.com/package/@eslint/eslintrc): ^3
 - [@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers): ^5.1.1
 - [@ianvs/prettier-plugin-sort-imports](https://www.npmjs.com/package/@ianvs/prettier-plugin-sort-imports): ^4.7.1
-- [@mux/mux-node](https://www.npmjs.com/package/@mux/mux-node): ^12.8.0
+- [@mux/mux-node](https://www.npmjs.com/package/@mux/mux-node): ^12.8.1
 - [@mux/mux-uploader-react](https://www.npmjs.com/package/@mux/mux-uploader-react): ^1.4.1
 - [@mux/mux-video-react](https://www.npmjs.com/package/@mux/mux-video-react): ^0.29.0
 - [@neondatabase/serverless](https://www.npmjs.com/package/@neondatabase/serverless): ^1.0.2
@@ -364,7 +364,7 @@ Useful resources and dependencies that are used in NewTube.
 - [@types/react-dom](https://www.npmjs.com/package/@types/react-dom): 19.2.3
 - [@uploadthing/react](https://www.npmjs.com/package/@uploadthing/react): ^7.3.2
 - [@upstash/ratelimit](https://www.npmjs.com/package/@upstash/ratelimit): ^2.0.5
-- [@upstash/redis](https://www.npmjs.com/package/@upstash/redis): ^1.36.2
+- [@upstash/redis](https://www.npmjs.com/package/@upstash/redis): ^1.36.3
 - [@upstash/workflow](https://www.npmjs.com/package/@upstash/workflow): ^0.2.14
 - [@vercel/config](https://www.npmjs.com/package/@vercel/config): ^0.0.33
 - [class-variance-authority](https://www.npmjs.com/package/class-variance-authority): ^0.7.1
