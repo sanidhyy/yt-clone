@@ -49,7 +49,7 @@ export const appFileRouter = {
 			minFileCount: 1,
 		},
 	})
-		.input(z.object({ videoId: z.string().uuid() }))
+		.input(z.object({ videoId: z.uuid() }))
 		.middleware(async ({ input }) => {
 			const { userId: clerkUserId } = await auth();
 

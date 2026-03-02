@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import { LockIcon } from 'lucide-react';
 
 import { THUMBNAIL_FALLBACK } from '@/modules/videos/constants';
@@ -37,18 +35,15 @@ export const VideoThumbnail = ({
 		<div className='group relative'>
 			{/* Thumbnail wrapper */}
 			<div className={cn('relative aspect-video w-full overflow-hidden rounded-xl', className)}>
-				<Image
+				<img
 					src={imageUrl || THUMBNAIL_FALLBACK}
 					alt={`Thumbnail of ${title}`}
-					fill
 					className='size-full object-cover group-hover:opacity-0'
 				/>
 
-				<Image
-					unoptimized={!!previewUrl?.trim()}
+				<img
 					src={previewUrl || THUMBNAIL_FALLBACK}
 					alt={`Preview of ${title}`}
-					fill
 					className='size-full object-cover opacity-0 group-hover:opacity-100'
 				/>
 			</div>

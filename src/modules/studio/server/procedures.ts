@@ -20,7 +20,7 @@ export const studioRouter = createTRPCRouter({
 			z.object({
 				cursor: z
 					.object({
-						id: z.string().uuid(),
+						id: z.uuid(),
 						updatedAt: z.date(),
 					})
 					.nullish(),
@@ -69,7 +69,7 @@ export const studioRouter = createTRPCRouter({
 				nextCursor,
 			};
 		}),
-	getOne: protectedProcedure.input(z.object({ id: z.string().uuid() })).query(async ({ ctx, input }) => {
+	getOne: protectedProcedure.input(z.object({ id: z.uuid() })).query(async ({ ctx, input }) => {
 		const { id: userId } = ctx.user;
 		const { id } = input;
 

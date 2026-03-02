@@ -6,7 +6,7 @@ import { ReactionType, videoReactions } from '@/db/schema';
 import { createTRPCRouter, protectedProcedure } from '@/trpc/init';
 
 export const videoReactionsRouter = createTRPCRouter({
-	dislike: protectedProcedure.input(z.object({ videoId: z.string().uuid() })).mutation(async ({ ctx, input }) => {
+	dislike: protectedProcedure.input(z.object({ videoId: z.uuid() })).mutation(async ({ ctx, input }) => {
 		const { id: userId } = ctx.user;
 		const { videoId } = input;
 
@@ -44,7 +44,7 @@ export const videoReactionsRouter = createTRPCRouter({
 
 		return videoReaction;
 	}),
-	like: protectedProcedure.input(z.object({ videoId: z.string().uuid() })).mutation(async ({ ctx, input }) => {
+	like: protectedProcedure.input(z.object({ videoId: z.uuid() })).mutation(async ({ ctx, input }) => {
 		const { id: userId } = ctx.user;
 		const { videoId } = input;
 

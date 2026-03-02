@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import Image from 'next/image';
 
 import { ListVideoIcon, PlayIcon } from 'lucide-react';
 
@@ -40,12 +39,7 @@ export const PlaylistThumbnail = ({ title, videoCount, className, imageUrl }: Pl
 
 				{/* Main image */}
 				<div className='relative aspect-video w-full overflow-hidden rounded-xl'>
-					<Image
-						src={imageUrl || THUMBNAIL_FALLBACK}
-						alt={`Thumbnail of ${title}`}
-						className='size-full object-cover'
-						fill
-					/>
+					<img src={imageUrl || THUMBNAIL_FALLBACK} alt={`Thumbnail of ${title}`} className='size-full object-cover' />
 
 					{/* Hover overlay */}
 					<div className='absolute inset-0 flex items-center justify-center bg-black/70 opacity-0 transition-opacity group-hover:opacity-100'>

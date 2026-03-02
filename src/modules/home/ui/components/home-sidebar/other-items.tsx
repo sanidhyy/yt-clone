@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { Separator } from '@/components/ui/separator';
@@ -26,7 +25,7 @@ export const OtherItems = () => {
 									rel='noopener noreferrer'
 									className='flex items-center gap-4'
 								>
-									<Image src='/github.svg' alt='GitHub' height={16} width={16} />
+									<img src='/github.svg' alt='GitHub' className='size-4' />
 									<span className='text-sm font-medium'>Source Code</span>
 								</Link>
 							</SidebarMenuButton>

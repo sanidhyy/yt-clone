@@ -7,7 +7,7 @@ import { subscriptions, users, videos } from '@/db/schema';
 import { baseProcedure, createTRPCRouter } from '@/trpc/init';
 
 export const usersRouter = createTRPCRouter({
-	getOne: baseProcedure.input(z.object({ id: z.string().uuid() })).query(async ({ ctx, input }) => {
+	getOne: baseProcedure.input(z.object({ id: z.uuid() })).query(async ({ ctx, input }) => {
 		const { clerkUserId } = ctx;
 
 		let userId: string | undefined;

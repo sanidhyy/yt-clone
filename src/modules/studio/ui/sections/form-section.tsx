@@ -1,7 +1,6 @@
 'use client';
 
 import { Suspense, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -420,10 +419,10 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 
 										<FormControl>
 											<div className='group relative h-[84px] w-[153px] border border-dashed bg-neutral-400 p-0.5'>
-												<Image
+												<img
 													src={video.thumbnailUrl || THUMBNAIL_FALLBACK}
 													alt={`Thumbnail of ${video.title}`}
-													fill
+													className='size-full object-cover'
 												/>
 
 												<DropdownMenu>

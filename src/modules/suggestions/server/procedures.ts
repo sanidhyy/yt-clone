@@ -12,12 +12,12 @@ export const suggestionsRouter = createTRPCRouter({
 			z.object({
 				cursor: z
 					.object({
-						id: z.string().uuid(),
+						id: z.uuid(),
 						updatedAt: z.date(),
 					})
 					.nullish(),
 				limit: z.number().min(1).max(100),
-				videoId: z.string().uuid(),
+				videoId: z.uuid(),
 			})
 		)
 		.query(async ({ input }) => {

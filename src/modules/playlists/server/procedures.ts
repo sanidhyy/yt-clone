@@ -21,8 +21,8 @@ export const playlistsRouter = createTRPCRouter({
 	addVideo: protectedProcedure
 		.input(
 			z.object({
-				playlistId: z.string().uuid(),
-				videoId: z.string().uuid(),
+				playlistId: z.uuid(),
+				videoId: z.uuid(),
 			})
 		)
 		.mutation(async ({ ctx, input }) => {
@@ -72,7 +72,7 @@ export const playlistsRouter = createTRPCRouter({
 			z.object({
 				cursor: z
 					.object({
-						id: z.string().uuid(),
+						id: z.uuid(),
 						viewedAt: z.date(),
 					})
 					.nullish(),
@@ -144,7 +144,7 @@ export const playlistsRouter = createTRPCRouter({
 			z.object({
 				cursor: z
 					.object({
-						id: z.string().uuid(),
+						id: z.uuid(),
 						likedAt: z.date(),
 					})
 					.nullish(),
@@ -216,7 +216,7 @@ export const playlistsRouter = createTRPCRouter({
 			z.object({
 				cursor: z
 					.object({
-						id: z.string().uuid(),
+						id: z.uuid(),
 						updatedAt: z.date(),
 					})
 					.nullish(),
@@ -274,12 +274,12 @@ export const playlistsRouter = createTRPCRouter({
 			z.object({
 				cursor: z
 					.object({
-						id: z.string().uuid(),
+						id: z.uuid(),
 						updatedAt: z.date(),
 					})
 					.nullish(),
 				limit: z.number().min(1).max(100),
-				videoId: z.string().uuid(),
+				videoId: z.uuid(),
 			})
 		)
 		.query(async ({ ctx, input }) => {
@@ -325,7 +325,7 @@ export const playlistsRouter = createTRPCRouter({
 				nextCursor,
 			};
 		}),
-	getOne: baseProcedure.input(z.object({ id: z.string().uuid() })).query(async ({ input }) => {
+	getOne: baseProcedure.input(z.object({ id: z.uuid() })).query(async ({ input }) => {
 		const { id } = input;
 
 		const [playlist] = await db
@@ -346,12 +346,12 @@ export const playlistsRouter = createTRPCRouter({
 			z.object({
 				cursor: z
 					.object({
-						id: z.string().uuid(),
+						id: z.uuid(),
 						updatedAt: z.date(),
 					})
 					.nullish(),
 				limit: z.number().min(1).max(100),
-				playlistId: z.string().uuid(),
+				playlistId: z.uuid(),
 			})
 		)
 		.query(async ({ ctx, input }) => {
@@ -431,7 +431,7 @@ export const playlistsRouter = createTRPCRouter({
 				nextCursor,
 			};
 		}),
-	remove: protectedProcedure.input(z.object({ id: z.string().uuid() })).mutation(async ({ ctx, input }) => {
+	remove: protectedProcedure.input(z.object({ id: z.uuid() })).mutation(async ({ ctx, input }) => {
 		const { id } = input;
 		const { id: userId } = ctx.user;
 
@@ -447,8 +447,8 @@ export const playlistsRouter = createTRPCRouter({
 	removeVideo: protectedProcedure
 		.input(
 			z.object({
-				playlistId: z.string().uuid(),
-				videoId: z.string().uuid(),
+				playlistId: z.uuid(),
+				videoId: z.uuid(),
 			})
 		)
 		.mutation(async ({ ctx, input }) => {

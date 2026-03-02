@@ -71,30 +71,28 @@ export const videosRouter = createTRPCRouter({
 
 		return { url: upload.url, video };
 	}),
-	generateDescription: protectedProcedure
-		.input(z.object({ id: z.string().uuid() }))
-		.mutation(async ({ ctx, input }) => {
-			const { id: userId } = ctx.user;
-			const { id: videoId } = input;
+	generateDescription: protectedProcedure.input(z.object({ id: z.uuid() })).mutation(async ({ ctx, input }) => {
+		const { id: userId } = ctx.user;
+		const { id: videoId } = input;
 
-			const cookieStore = await cookies();
+		const cookieStore = await cookies();
 
-			const openaiApiKey = cookieStore.get(getSecureCookieName(env.OPENAI_API_KEY_COOKIE_NAME))?.value?.trim();
-			if (!openaiApiKey)
-				throw new TRPCError({
-					code: 'BAD_REQUEST',
-					message: 'OpenAI API key not setup! Please setup in the studio dashboard > AI settings.',
-				});
-
-			const { workflowRunId } = await qstash.trigger({
-				body: { apiKey: openaiApiKey, userId, videoId },
-				url: `${env.UPSTASH_WORKFLOW_URL}/api/videos/workflows/description`,
+		const openaiApiKey = cookieStore.get(getSecureCookieName(env.OPENAI_API_KEY_COOKIE_NAME))?.value?.trim();
+		if (!openaiApiKey)
+			throw new TRPCError({
+				code: 'BAD_REQUEST',
+				message: 'OpenAI API key not setup! Please setup in the studio dashboard > AI settings.',
 			});
 
-			return workflowRunId;
-		}),
+		const { workflowRunId } = await qstash.trigger({
+			body: { apiKey: openaiApiKey, userId, videoId },
+			url: `${env.UPSTASH_WORKFLOW_URL}/api/videos/workflows/description`,
+		});
+
+		return workflowRunId;
+	}),
 	generateThumbnail: protectedProcedure
-		.input(z.object({ id: z.string().uuid(), ...thumbnailGenerateSchema.shape }))
+		.input(z.object({ id: z.uuid(), ...thumbnailGenerateSchema.shape }))
 		.mutation(async ({ ctx, input }) => {
 			const { id: userId } = ctx.user;
 			const { id: videoId, prompt } = input;
@@ -115,7 +113,7 @@ export const videosRouter = createTRPCRouter({
 
 			return workflowRunId;
 		}),
-	generateTitle: protectedProcedure.input(z.object({ id: z.string().uuid() })).mutation(async ({ ctx, input }) => {
+	generateTitle: protectedProcedure.input(z.object({ id: z.uuid() })).mutation(async ({ ctx, input }) => {
 		const { id: userId } = ctx.user;
 		const { id: videoId } = input;
 
@@ -138,15 +136,15 @@ export const videosRouter = createTRPCRouter({
 	getMany: baseProcedure
 		.input(
 			z.object({
-				categoryId: z.string().uuid().nullish(),
+				categoryId: z.uuid().nullish(),
 				cursor: z
 					.object({
-						id: z.string().uuid(),
+						id: z.uuid(),
 						updatedAt: z.date(),
 					})
 					.nullish(),
 				limit: z.number().min(1).max(100),
-				userId: z.string().uuid().nullish(),
+				userId: z.uuid().nullish(),
 			})
 		)
 		.query(async ({ ctx, input }) => {
@@ -214,7 +212,7 @@ export const videosRouter = createTRPCRouter({
 			z.object({
 				cursor: z
 					.object({
-						id: z.string().uuid(),
+						id: z.uuid(),
 						updatedAt: z.date(),
 					})
 					.nullish(),
@@ -284,7 +282,7 @@ export const videosRouter = createTRPCRouter({
 			z.object({
 				cursor: z
 					.object({
-						id: z.string().uuid(),
+						id: z.uuid(),
 						viewCount: z.number(),
 					})
 					.nullish(),
@@ -339,7 +337,7 @@ export const videosRouter = createTRPCRouter({
 				nextCursor,
 			};
 		}),
-	getOne: baseProcedure.input(z.object({ id: z.string().uuid() })).query(async ({ ctx, input }) => {
+	getOne: baseProcedure.input(z.object({ id: z.uuid() })).query(async ({ ctx, input }) => {
 		const { clerkUserId } = ctx;
 
 		let userId: string | undefined;
@@ -402,7 +400,7 @@ export const videosRouter = createTRPCRouter({
 
 		return existingVideo;
 	}),
-	remove: protectedProcedure.input(z.object({ id: z.string().uuid() })).mutation(async ({ ctx, input }) => {
+	remove: protectedProcedure.input(z.object({ id: z.uuid() })).mutation(async ({ ctx, input }) => {
 		const { id: userId } = ctx.user;
 		const { id } = input;
 
@@ -421,7 +419,7 @@ export const videosRouter = createTRPCRouter({
 
 		return removedVideo;
 	}),
-	restoreThumbnail: protectedProcedure.input(z.object({ id: z.string().uuid() })).mutation(async ({ ctx, input }) => {
+	restoreThumbnail: protectedProcedure.input(z.object({ id: z.uuid() })).mutation(async ({ ctx, input }) => {
 		const { id: userId } = ctx.user;
 		const { id } = input;
 
@@ -460,7 +458,7 @@ export const videosRouter = createTRPCRouter({
 
 		return updatedVideo;
 	}),
-	revalidate: protectedProcedure.input(z.object({ id: z.string().uuid() })).mutation(async ({ ctx, input }) => {
+	revalidate: protectedProcedure.input(z.object({ id: z.uuid() })).mutation(async ({ ctx, input }) => {
 		const { id: userId } = ctx.user;
 		const { id } = input;
 

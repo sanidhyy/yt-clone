@@ -6,7 +6,7 @@ import { ReactionType, commentReactions } from '@/db/schema';
 import { createTRPCRouter, protectedProcedure } from '@/trpc/init';
 
 export const commentReactionsRouter = createTRPCRouter({
-	dislike: protectedProcedure.input(z.object({ commentId: z.string().uuid() })).mutation(async ({ ctx, input }) => {
+	dislike: protectedProcedure.input(z.object({ commentId: z.uuid() })).mutation(async ({ ctx, input }) => {
 		const { id: userId } = ctx.user;
 		const { commentId } = input;
 
@@ -44,7 +44,7 @@ export const commentReactionsRouter = createTRPCRouter({
 
 		return commentReaction;
 	}),
-	like: protectedProcedure.input(z.object({ commentId: z.string().uuid() })).mutation(async ({ ctx, input }) => {
+	like: protectedProcedure.input(z.object({ commentId: z.uuid() })).mutation(async ({ ctx, input }) => {
 		const { id: userId } = ctx.user;
 		const { commentId } = input;
 

@@ -7,7 +7,7 @@ import { subscriptions, users } from '@/db/schema';
 import { createTRPCRouter, protectedProcedure } from '@/trpc/init';
 
 export const subscriptionsRouter = createTRPCRouter({
-	create: protectedProcedure.input(z.object({ userId: z.string().uuid() })).mutation(async ({ ctx, input }) => {
+	create: protectedProcedure.input(z.object({ userId: z.uuid() })).mutation(async ({ ctx, input }) => {
 		const { userId } = input;
 
 		if (userId === ctx.user.id)
@@ -26,7 +26,7 @@ export const subscriptionsRouter = createTRPCRouter({
 			z.object({
 				cursor: z
 					.object({
-						creatorId: z.string().uuid(),
+						creatorId: z.uuid(),
 						updatedAt: z.date(),
 					})
 					.nullish(),
@@ -74,7 +74,7 @@ export const subscriptionsRouter = createTRPCRouter({
 				nextCursor,
 			};
 		}),
-	remove: protectedProcedure.input(z.object({ userId: z.string().uuid() })).mutation(async ({ ctx, input }) => {
+	remove: protectedProcedure.input(z.object({ userId: z.uuid() })).mutation(async ({ ctx, input }) => {
 		const { userId } = input;
 
 		if (userId === ctx.user.id)

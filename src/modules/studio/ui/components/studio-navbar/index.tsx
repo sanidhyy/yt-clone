@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { AuthButton } from '@/modules/auth/ui/components/auth-button';
@@ -16,7 +15,7 @@ export const StudioNavbar = () => {
 
 					<Link prefetch href='/studio'>
 						<div className='flex items-center gap-1 p-4'>
-							<Image src='/logo.svg' alt='NewTube Logo' width={32} height={32} />
+							<img src='/logo.svg' alt='NewTube Logo' className='size-8' />
 							<p className='text-xl font-semibold tracking-tight'>Studio</p>
 						</div>
 					</Link>
