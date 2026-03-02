@@ -356,9 +356,9 @@ Useful resources and dependencies that are used in NewTube.
 - [@radix-ui/react-visually-hidden](https://www.npmjs.com/package/@radix-ui/react-visually-hidden): ^1.2.4
 - [@t3-oss/env-nextjs](https://www.npmjs.com/package/@t3-oss/env-nextjs): ^0.13.8
 - [@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query): ^5.80.7
-- [@trpc/client](https://www.npmjs.com/package/@trpc/client): ^11.10.0
-- [@trpc/react-query](https://www.npmjs.com/package/@trpc/react-query): ^11.7.2
-- [@trpc/server](https://www.npmjs.com/package/@trpc/server): ^11.6.0
+- [@trpc/client](https://www.npmjs.com/package/@trpc/client): ^11.11.0
+- [@trpc/react-query](https://www.npmjs.com/package/@trpc/react-query): ^11.11.0
+- [@trpc/server](https://www.npmjs.com/package/@trpc/server): ^11.11.0
 - [@types/node](https://www.npmjs.com/package/@types/node): ^25
 - [@types/react](https://www.npmjs.com/package/@types/react): 19.2.14
 - [@types/react-dom](https://www.npmjs.com/package/@types/react-dom): 19.2.3
