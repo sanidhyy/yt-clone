@@ -32,12 +32,12 @@ export const { POST } = serve(async (ctx) => {
 	});
 
 	const { body } = await ctx.call<{ data: { url: string }[] }>('generate-thumbnail', {
-		body: {
+		body: JSON.stringify({
 			model: 'dall-e-3',
 			n: 1,
 			prompt,
 			size: '1792x1024',
-		},
+		}),
 		headers: {
 			authorization: `Bearer ${decrypt(apiKey)}`,
 		},
