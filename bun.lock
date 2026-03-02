@@ -7,7 +7,7 @@
       "dependencies": {
         "@clerk/nextjs": "^6.37.4",
         "@hookform/resolvers": "^5.1.1",
-        "@mux/mux-node": "^12.8.0",
+        "@mux/mux-node": "^12.8.1",
         "@mux/mux-uploader-react": "^1.4.1",
         "@mux/mux-video-react": "^0.29.0",
         "@neondatabase/serverless": "^1.0.2",
@@ -315,7 +315,7 @@
 
     "@msgpackr-extract/msgpackr-extract-win32-x64": ["@msgpackr-extract/msgpackr-extract-win32-x64@3.0.3", "", { "os": "win32", "cpu": "x64" }, "sha512-x0fWaQtYp4E6sktbsdAqnehxDgEc/VwM7uLsRCYWaiGu0ykYdZPiS8zCWdnjHwyiumousxfBm4SO31eXqwEZhQ=="],
 
-    "@mux/mux-node": ["@mux/mux-node@12.8.0", "", { "dependencies": { "@types/node": "^18.11.18", "@types/node-fetch": "^2.6.4", "abort-controller": "^3.0.0", "agentkeepalive": "^4.2.1", "form-data-encoder": "1.7.2", "formdata-node": "^4.3.2", "jose": "^4.14.4", "node-fetch": "^2.6.7" } }, "sha512-J7Qe1JGlOWle+5huN27hBcAKujx0xgC8d3qQ1s9emyEETR+ubxlRf/9UOlN+GoPtoMPIDa5fWDRf2LDWzsiBOA=="],
+    "@mux/mux-node": ["@mux/mux-node@12.8.1", "", { "dependencies": { "@types/node": "^18.11.18", "@types/node-fetch": "^2.6.4", "abort-controller": "^3.0.0", "agentkeepalive": "^4.2.1", "form-data-encoder": "1.7.2", "formdata-node": "^4.3.2", "jose": "^4.14.4", "node-fetch": "^2.6.7" } }, "sha512-ey2eKn7iwVrjRVJfB/yF9HPDVpEl+fZV00ydx0kc9/BMs+wjBi0KgU0HMqUjTgEoyMUTlHmJ3U3BfDvreyg5iQ=="],
 
     "@mux/mux-uploader": ["@mux/mux-uploader@1.4.1", "", { "dependencies": { "@mux/upchunk": "^3.5.0" } }, "sha512-7ZOrXuv6iODhAcGkj0OI8FINGOF4EKXm4bB4vnQhqgwjP4BsKZr5qFvg78e8oHR3CEA7fNZobk/x4Qtnr4Fnhg=="],
 
