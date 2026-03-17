@@ -385,7 +385,7 @@ Useful resources and dependencies that are used in NewTube.
 - [jiti](https://www.npmjs.com/package/jiti): ^2.6.1
 - [lucide-react](https://www.npmjs.com/package/lucide-react): ^0.564.0
 - [next](https://www.npmjs.com/package/next): ^15.5.12
-- [openai](https://www.npmjs.com/package/openai): ^5.22.1
+- [openai](https://www.npmjs.com/package/openai): ^6.29.0
 - [player.style](https://www.npmjs.com/package/player.style): ^0.3.0
 - [postcss](https://www.npmjs.com/package/postcss): ^8
 - [prettier](https://www.npmjs.com/package/prettier): ^3.8.1
