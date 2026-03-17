@@ -397,7 +397,7 @@ Useful resources and dependencies that are used in NewTube.
 - [react-hot-toast](https://www.npmjs.com/package/react-hot-toast): ^2.5.2
 - [server-only](https://www.npmjs.com/package/server-only): ^0.0.1
 - [superjson](https://www.npmjs.com/package/superjson): ^2.2.6
-- [tailwind-merge](https://www.npmjs.com/package/tailwind-merge): ^3.4.1
+- [tailwind-merge](https://www.npmjs.com/package/tailwind-merge): ^3.5.0
 - [tailwindcss](https://www.npmjs.com/package/tailwindcss): ^3.4.1
 - [tailwindcss-animate](https://www.npmjs.com/package/tailwindcss-animate): ^1.0.7
 - [typescript](https://www.npmjs.com/package/typescript): ^5
