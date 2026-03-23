@@ -383,7 +383,7 @@ Useful resources and dependencies that are used in NewTube.
 - [eslint-plugin-prettier](https://www.npmjs.com/package/eslint-plugin-prettier): ^5.5.5
 - [eslint-plugin-tailwindcss](https://www.npmjs.com/package/eslint-plugin-tailwindcss): ^3.18.0
 - [jiti](https://www.npmjs.com/package/jiti): ^2.6.1
-- [lucide-react](https://www.npmjs.com/package/lucide-react): ^0.564.0
+- [lucide-react](https://www.npmjs.com/package/lucide-react): ^0.577.0
 - [next](https://www.npmjs.com/package/next): ^15.5.12
 - [openai](https://www.npmjs.com/package/openai): ^6.32.0
 - [player.style](https://www.npmjs.com/package/player.style): ^0.3.0
@@ -392,7 +392,7 @@ Useful resources and dependencies that are used in NewTube.
 - [prettier-plugin-tailwindcss](https://www.npmjs.com/package/prettier-plugin-tailwindcss): ^0.7.2
 - [react](https://www.npmjs.com/package/react): 19.2.4
 - [react-dom](https://www.npmjs.com/package/react-dom): 19.2.4
-- [react-error-boundary](https://www.npmjs.com/package/react-error-boundary): ^6.0.0
+- [react-error-boundary](https://www.npmjs.com/package/react-error-boundary): ^6.1.1
 - [react-hook-form](https://www.npmjs.com/package/react-hook-form): ^7.71.2
 - [react-hot-toast](https://www.npmjs.com/package/react-hot-toast): ^2.5.2
 - [server-only](https://www.npmjs.com/package/server-only): ^0.0.1
