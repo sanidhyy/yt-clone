@@ -363,7 +363,7 @@ Useful resources and dependencies that are used in NewTube.
 - [@types/react](https://www.npmjs.com/package/@types/react): 19.2.14
 - [@types/react-dom](https://www.npmjs.com/package/@types/react-dom): 19.2.3
 - [@uploadthing/react](https://www.npmjs.com/package/@uploadthing/react): ^7.3.2
-- [@upstash/ratelimit](https://www.npmjs.com/package/@upstash/ratelimit): ^2.0.5
+- [@upstash/ratelimit](https://www.npmjs.com/package/@upstash/ratelimit): ^2.0.8
 - [@upstash/redis](https://www.npmjs.com/package/@upstash/redis): ^1.36.3
 - [@upstash/workflow](https://www.npmjs.com/package/@upstash/workflow): ^1.1.1
 - [@vercel/config](https://www.npmjs.com/package/@vercel/config): ^0.0.37
