@@ -110,7 +110,7 @@
 		"@trpc/react-query": "^11.12.0",
 		"@trpc/server": "^11.11.0",
 		"@uploadthing/react": "^7.3.2",
-		"@upstash/ratelimit": "^2.0.5",
+		"@upstash/ratelimit": "^2.0.8",
 		"@upstash/redis": "^1.36.3",
 		"@upstash/workflow": "^1.1.1",
 		"@vercel/config": "^0.0.37",
