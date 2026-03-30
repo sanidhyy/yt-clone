@@ -400,7 +400,7 @@ Useful resources and dependencies that are used in NewTube.
 - [tailwind-merge](https://www.npmjs.com/package/tailwind-merge): ^3.5.0
 - [tailwindcss](https://www.npmjs.com/package/tailwindcss): ^3.4.1
 - [tailwindcss-animate](https://www.npmjs.com/package/tailwindcss-animate): ^1.0.7
-- [typescript](https://www.npmjs.com/package/typescript): ^5
+- [typescript](https://www.npmjs.com/package/typescript): ^6
 - [uploadthing](https://www.npmjs.com/package/uploadthing): ^7.7.3
 - [vaul](https://www.npmjs.com/package/vaul): ^1.1.2
 - [zod](https://www.npmjs.com/package/zod): ^4.1.13
