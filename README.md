@@ -44,7 +44,6 @@
 Here is the folder structure of this app.
 
 <!--- FOLDER_STRUCTURE_START --->
-
 ```bash
 yt-clone/
   |- migrations/
@@ -115,7 +114,7 @@ yt-clone/
       |--- init.ts
       |--- query-client.ts
       |--- server.tsx
-    |-- middleware.ts
+    |-- proxy.ts
   |- .env.example
   |- .env/.env.local
   |- .gitignore
@@ -132,7 +131,6 @@ yt-clone/
   |- tsconfig.json
   |- vercel.ts
 ```
-
 <!--- FOLDER_STRUCTURE_END --->
 
 <br />
@@ -361,14 +359,14 @@ Useful resources and dependencies that are used in NewTube.
 - [drizzle-orm](https://www.npmjs.com/package/drizzle-orm): ^0.45.1
 - [drizzle-zod](https://www.npmjs.com/package/drizzle-zod): ^0.8.2
 - [embla-carousel-react](https://www.npmjs.com/package/embla-carousel-react): ^8.6.0
-- [eslint](https://www.npmjs.com/package/eslint): ^10.1.0
-- [eslint-config-next](https://www.npmjs.com/package/eslint-config-next): 15.5.12
-- [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier): ^10.0.1
+- [eslint](https://www.npmjs.com/package/eslint): ^9
+- [eslint-config-next](https://www.npmjs.com/package/eslint-config-next): 16.2.3
+- [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier): ^10.1.8
 - [eslint-plugin-prettier](https://www.npmjs.com/package/eslint-plugin-prettier): ^5.5.5
 - [eslint-plugin-tailwindcss](https://www.npmjs.com/package/eslint-plugin-tailwindcss): ^3.18.0
 - [jiti](https://www.npmjs.com/package/jiti): ^2.6.1
 - [lucide-react](https://www.npmjs.com/package/lucide-react): ^1.7.0
-- [next](https://www.npmjs.com/package/next): ^15.5.12
+- [next](https://www.npmjs.com/package/next): ^16.2.3
 - [openai](https://www.npmjs.com/package/openai): ^6.32.0
 - [player.style](https://www.npmjs.com/package/player.style): ^0.3.0
 - [postcss](https://www.npmjs.com/package/postcss): ^8
