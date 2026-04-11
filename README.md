@@ -44,7 +44,6 @@
 Here is the folder structure of this app.
 
 <!--- FOLDER_STRUCTURE_START --->
-
 ```bash
 yt-clone/
   |- migrations/
@@ -90,8 +89,6 @@ yt-clone/
       |--- encryption.ts
       |--- mux.ts
       |--- qstash.ts
-      |--- ratelimit.ts
-      |--- redis.ts
       |--- uploadthing.ts
       |--- utils.ts
     |-- modules/
@@ -134,7 +131,6 @@ yt-clone/
   |- tsconfig.json
   |- vercel.ts
 ```
-
 <!--- FOLDER_STRUCTURE_END --->
 
 <br />
@@ -325,7 +321,7 @@ Useful resources and dependencies that are used in NewTube.
 - Thanks to CodeWithAntonio: https://codewithantonio.com/
 <!--- DEPENDENCIES_START --->
 - [@babel/eslint-parser](https://www.npmjs.com/package/@babel/eslint-parser): ^7.28.6
-- [@clerk/nextjs](https://www.npmjs.com/package/@clerk/nextjs): ^6.37.4
+- [@clerk/nextjs](https://www.npmjs.com/package/@clerk/nextjs): ^7.0.12
 - [@eslint/eslintrc](https://www.npmjs.com/package/@eslint/eslintrc): ^3
 - [@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers): ^5.1.1
 - [@ianvs/prettier-plugin-sort-imports](https://www.npmjs.com/package/@ianvs/prettier-plugin-sort-imports): ^4.7.1
@@ -351,8 +347,6 @@ Useful resources and dependencies that are used in NewTube.
 - [@types/react](https://www.npmjs.com/package/@types/react): 19.2.14
 - [@types/react-dom](https://www.npmjs.com/package/@types/react-dom): 19.2.3
 - [@uploadthing/react](https://www.npmjs.com/package/@uploadthing/react): ^7.3.2
-- [@upstash/ratelimit](https://www.npmjs.com/package/@upstash/ratelimit): ^2.0.8
-- [@upstash/redis](https://www.npmjs.com/package/@upstash/redis): ^1.36.3
 - [@upstash/workflow](https://www.npmjs.com/package/@upstash/workflow): ^1.1.1
 - [@vercel/config](https://www.npmjs.com/package/@vercel/config): ^0.0.37
 - [class-variance-authority](https://www.npmjs.com/package/class-variance-authority): ^0.7.1
