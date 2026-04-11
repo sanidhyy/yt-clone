@@ -44,6 +44,7 @@
 Here is the folder structure of this app.
 
 <!--- FOLDER_STRUCTURE_START --->
+
 ```bash
 yt-clone/
   |- migrations/
@@ -133,6 +134,7 @@ yt-clone/
   |- tsconfig.json
   |- vercel.ts
 ```
+
 <!--- FOLDER_STRUCTURE_END --->
 
 <br />
@@ -169,10 +171,6 @@ NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL="/"
 
 # neon db uri
 DATABASE_URL="postgresql://<username>:<password>@<hostname>/NewTube?sslmode=require"
-
-# upstash redis url and token
-UPSTASH_REDIS_REST_URL="https://<db-slug>.upstash.io"
-UPSTASH_REDIS_REST_TOKEN="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
 # qstash token, url and keys
 QSTASH_TOKEN="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
@@ -250,17 +248,7 @@ NEXT_PUBLIC_APP_BASE_URL="http://localhost:3000"
 
 ---
 
-### 9. Upstash Redis (API Ratelimit)
-
-- Sign up at [Upstash](https://upstash.com/).
-- Create a **Redis database**.
-- In the database dashboard:
-  - Copy the **REST URL** → `UPSTASH_REDIS_REST_URL`
-  - Copy the **REST Token** → `UPSTASH_REDIS_REST_TOKEN`
-
----
-
-### 10. Upstash QStash (AI Workflows)
+### 9. Upstash QStash (AI Workflows)
 
 - In your [Upstash Dashboard](https://console.upstash.com/), create a **QStash project**.
 - Copy the **QStash Token** → `QSTASH_TOKEN`.
@@ -271,7 +259,7 @@ NEXT_PUBLIC_APP_BASE_URL="http://localhost:3000"
 
 ---
 
-### 11. Mux (Video Uploads)
+### 10. Mux (Video Uploads)
 
 - Sign up at [Mux](https://mux.com/) and create a new project.
 - In your **Dashboard → Settings → API Access Tokens**:
@@ -282,7 +270,7 @@ NEXT_PUBLIC_APP_BASE_URL="http://localhost:3000"
 
 ---
 
-### 12. UploadThing (File Uploads)
+### 11. UploadThing (File Uploads)
 
 - Sign up at [UploadThing](https://uploadthing.com/).
 - Create a new app.
@@ -291,7 +279,7 @@ NEXT_PUBLIC_APP_BASE_URL="http://localhost:3000"
 
 ---
 
-### 13. OpenAI (AI Features)
+### 12. OpenAI (AI Features)
 
 - Store it in your cookies under the name specified by `OPENAI_API_KEY_COOKIE_NAME`.
 - Generate both **verification secret** and **cookie name** (for cryptographic signing):
@@ -304,9 +292,9 @@ NEXT_PUBLIC_APP_BASE_URL="http://localhost:3000"
 
 ---
 
-14. Install Project Dependencies using `npm install --legacy-peer-deps` or `yarn install --legacy-peer-deps` or `bun install --legacy-peer-deps`.
+13. Install Project Dependencies using `npm install --legacy-peer-deps` or `yarn install --legacy-peer-deps` or `bun install --legacy-peer-deps`.
 
-15. Now app is fully configured 👍 and you can start using this app using either one of `npm run dev` or `yarn dev` or `bun dev`.
+14. Now app is fully configured 👍 and you can start using this app using either one of `npm run dev` or `yarn dev` or `bun dev`.
 
 **NOTE:** Please make sure to keep your API keys and configuration values secure and do not expose them publicly.
 

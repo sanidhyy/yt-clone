@@ -7,7 +7,6 @@ import superjson from 'superjson';
 
 import { db } from '@/db';
 import { users } from '@/db/schema';
-import { ratelimit } from '@/lib/ratelimit';
 
 export const createTRPCContext = cache(async () => {
 	const { userId } = await auth();
@@ -36,10 +35,6 @@ export const protectedProcedure = t.procedure.use(async (opts) => {
 	const [user] = await db.select().from(users).where(eq(users.clerkId, ctx.clerkUserId)).limit(1);
 
 	if (!user) throw new TRPCError({ code: 'UNAUTHORIZED' });
-
-	const { success } = await ratelimit.limit(user.id);
-
-	if (!success) throw new TRPCError({ code: 'TOO_MANY_REQUESTS' });
 
 	return opts.next({
 		ctx: {

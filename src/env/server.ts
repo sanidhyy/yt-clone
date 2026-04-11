@@ -31,8 +31,6 @@ export const env = createEnv({
 		QSTASH_TOKEN: z.string().trim().min(1),
 		UPLOADTHING_APP_ID: z.string().trim().min(1),
 		UPLOADTHING_TOKEN: z.string().trim().min(1),
-		UPSTASH_REDIS_REST_TOKEN: z.string().trim().min(1),
-		UPSTASH_REDIS_REST_URL: z.url(),
 		UPSTASH_WORKFLOW_URL: z.url(),
 		VERIFICATION_SECRET: z.string().min(1),
 	},

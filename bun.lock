@@ -26,8 +26,6 @@
         "@trpc/react-query": "^11.16.0",
         "@trpc/server": "^11.16.0",
         "@uploadthing/react": "^7.3.2",
-        "@upstash/ratelimit": "^2.0.8",
-        "@upstash/redis": "^1.36.3",
         "@upstash/workflow": "^1.1.1",
         "@vercel/config": "^0.0.37",
         "class-variance-authority": "^0.7.1",
@@ -77,16 +75,6 @@
         "typescript": "^6",
       },
     },
-  },
-  "trustedDependencies": [
-    "esbuild",
-    "sharp",
-    "msgpackr-extract",
-    "@clerk/shared",
-  ],
-  "overrides": {
-    "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3",
   },
   "packages": {
     "@alloc/quick-lru": ["@alloc/quick-lru@5.2.0", "", {}, "sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw=="],
@@ -499,11 +487,7 @@
 
     "@uploadthing/shared": ["@uploadthing/shared@7.1.10", "", { "dependencies": { "@uploadthing/mime-types": "0.3.6", "effect": "3.17.7", "sqids": "^0.3.0" } }, "sha512-R/XSA3SfCVnLIzFpXyGaKPfbwlYlWYSTuGjTFHuJhdAomuBuhopAHLh2Ois5fJibAHzi02uP1QCKbgTAdmArqg=="],
 
-    "@upstash/core-analytics": ["@upstash/core-analytics@0.0.10", "", { "dependencies": { "@upstash/redis": "^1.28.3" } }, "sha512-7qJHGxpQgQr9/vmeS1PktEwvNAF7TI4iJDi8Pu2CFZ9YUGHZH4fOP5TfYlZ4aVxfopnELiE4BS4FBjyK7V1/xQ=="],
-
     "@upstash/qstash": ["@upstash/qstash@2.9.0-rc", "", { "dependencies": { "crypto-js": ">=4.2.0", "jose": "^5.2.3", "neverthrow": "^7.0.1" } }, "sha512-T2VGOuK/XOFe+kppsANdiaXxpqPvnXl8XWmZzAtqZKsHWkBXPYqAvr/Pek8TZEKeOLAgc7wrl4Rm0KNqec9Fww=="],
-
-    "@upstash/ratelimit": ["@upstash/ratelimit@2.0.8", "", { "dependencies": { "@upstash/core-analytics": "^0.0.10" }, "peerDependencies": { "@upstash/redis": "^1.34.3" } }, "sha512-YSTMBJ1YIxsoPkUMX/P4DDks/xV5YYCswWMamU8ZIfK9ly6ppjRnVOyBhMDXBmzjODm4UQKcxsJPvaeFAijp5w=="],
 
     "@upstash/redis": ["@upstash/redis@1.36.3", "", { "dependencies": { "uncrypto": "^0.1.3" } }, "sha512-wxo1ei4OHDHm4UGMgrNVz9QUEela9N/Iwi4p1JlHNSowQiPi+eljlGnfbZVkV0V4PIrjGtGFJt5GjWM5k28enA=="],
 
@@ -1478,8 +1462,6 @@
     "@typescript-eslint/typescript-estree/tinyglobby": ["tinyglobby@0.2.15", "", { "dependencies": { "fdir": "^6.5.0", "picomatch": "^4.0.3" } }, "sha512-j2Zq4NyQYG5XMST4cbs02Ak8iJUdxRM0XI5QyxXuZOzKOINmWurp3smXu3y5wDcJrptwpSjgXHzIQxR0omXljQ=="],
 
     "@typescript-eslint/visitor-keys/eslint-visitor-keys": ["eslint-visitor-keys@4.2.1", "", {}, "sha512-Uhdk5sfqcee/9H/rCOJikYz67o0a2Tw2hGRPOG2Y1R2dg7brRe1uG0yaNQDHu+TO/uQPF/5eCapvYSmHUjt7JQ=="],
-
-    "@upstash/core-analytics/@upstash/redis": ["@upstash/redis@1.35.0", "", { "dependencies": { "uncrypto": "^0.1.3" } }, "sha512-WUm0Jz1xN4DBDGeJIi2Y0kVsolWRB2tsVds4SExaiLg4wBdHFMB+8IfZtBWr+BP0FvhuBr5G1/VLrJ9xzIWHsg=="],
 
     "@upstash/qstash/jose": ["jose@5.10.0", "", {}, "sha512-s+3Al/p9g32Iq+oqXxkW//7jk2Vig6FF1CFqzVXoTUXt2qz89YWbL+OwS17NFYEvxC35n0FKeGO2LGYSxeM2Gg=="],
 
