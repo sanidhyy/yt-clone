@@ -41,10 +41,6 @@
 		"tailwindcss",
 		"uploadthing",
 		"upstash",
-		"upstash-ratelimit",
-		"upstash-redis",
-		"ratelimit",
-		"redis",
 		"react-query",
 		"openai",
 		"player-style",
@@ -89,7 +85,7 @@
 		}
 	],
 	"dependencies": {
-		"@clerk/nextjs": "^6.37.4",
+		"@clerk/nextjs": "^7.0.12",
 		"@hookform/resolvers": "^5.1.1",
 		"@mux/mux-node": "^12.8.1",
 		"@mux/mux-uploader-react": "^1.4.1",
@@ -110,8 +106,6 @@
 		"@trpc/react-query": "^11.16.0",
 		"@trpc/server": "^11.16.0",
 		"@uploadthing/react": "^7.3.2",
-		"@upstash/ratelimit": "^2.0.8",
-		"@upstash/redis": "^1.36.3",
 		"@upstash/workflow": "^1.1.1",
 		"@vercel/config": "^0.0.37",
 		"class-variance-authority": "^0.7.1",
@@ -159,15 +153,5 @@
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"tailwindcss": "^3.4.1",
 		"typescript": "^6"
-	},
-	"trustedDependencies": [
-		"@clerk/shared",
-		"esbuild",
-		"msgpackr-extract",
-		"sharp"
-	],
-	"overrides": {
-		"@types/react": "19.2.14",
-		"@types/react-dom": "19.2.3"
 	}
 }

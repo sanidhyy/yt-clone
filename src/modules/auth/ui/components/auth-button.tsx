@@ -1,6 +1,6 @@
 'use client';
 
-import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { Show, SignInButton, UserButton } from '@clerk/nextjs';
 import { ClapperboardIcon, UserCircleIcon, UserIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 export const AuthButton = () => {
 	return (
 		<>
-			<SignedIn>
+			<Show when='signed-in'>
 				<UserButton>
 					<UserButton.MenuItems>
 						<UserButton.Link label='My Profile' href='/users/current' labelIcon={<UserIcon className='size-4' />} />
@@ -16,9 +16,9 @@ export const AuthButton = () => {
 						<UserButton.Action label='manageAccount' />
 					</UserButton.MenuItems>
 				</UserButton>
-			</SignedIn>
+			</Show>
 
-			<SignedOut>
+			<Show when='signed-out'>
 				<SignInButton mode='modal'>
 					<Button
 						variant='outline'
@@ -28,7 +28,7 @@ export const AuthButton = () => {
 						Sign in
 					</Button>
 				</SignInButton>
-			</SignedOut>
+			</Show>
 		</>
 	);
 };
