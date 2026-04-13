@@ -106,7 +106,7 @@
 		"@trpc/react-query": "^11.16.0",
 		"@trpc/server": "^11.16.0",
 		"@uploadthing/react": "^7.3.2",
-		"@upstash/workflow": "^1.1.1",
+		"@upstash/workflow": "^1.2.0",
 		"@vercel/config": "^0.0.37",
 		"class-variance-authority": "^0.7.1",
 		"client-only": "^0.0.1",

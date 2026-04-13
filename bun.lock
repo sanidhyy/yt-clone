@@ -26,7 +26,7 @@
         "@trpc/react-query": "^11.16.0",
         "@trpc/server": "^11.16.0",
         "@uploadthing/react": "^7.3.2",
-        "@upstash/workflow": "^1.1.1",
+        "@upstash/workflow": "^1.2.0",
         "@vercel/config": "^0.0.37",
         "class-variance-authority": "^0.7.1",
         "client-only": "^0.0.1",
@@ -489,11 +489,11 @@
 
     "@uploadthing/shared": ["@uploadthing/shared@7.1.10", "", { "dependencies": { "@uploadthing/mime-types": "0.3.6", "effect": "3.17.7", "sqids": "^0.3.0" } }, "sha512-R/XSA3SfCVnLIzFpXyGaKPfbwlYlWYSTuGjTFHuJhdAomuBuhopAHLh2Ois5fJibAHzi02uP1QCKbgTAdmArqg=="],
 
-    "@upstash/qstash": ["@upstash/qstash@2.9.0-rc", "", { "dependencies": { "crypto-js": ">=4.2.0", "jose": "^5.2.3", "neverthrow": "^7.0.1" } }, "sha512-T2VGOuK/XOFe+kppsANdiaXxpqPvnXl8XWmZzAtqZKsHWkBXPYqAvr/Pek8TZEKeOLAgc7wrl4Rm0KNqec9Fww=="],
+    "@upstash/qstash": ["@upstash/qstash@2.10.1", "", { "dependencies": { "crypto-js": ">=4.2.0", "jose": "^5.2.3", "neverthrow": "^7.0.1" } }, "sha512-LsTAPxPk0dFvhlEnRqwObRS94b8mmDHYaBlF3IaONUL+Scq6i9cZraA6936KSUVe+Vq3eNQle3CjOZkStPUFTw=="],
 
     "@upstash/redis": ["@upstash/redis@1.36.3", "", { "dependencies": { "uncrypto": "^0.1.3" } }, "sha512-wxo1ei4OHDHm4UGMgrNVz9QUEela9N/Iwi4p1JlHNSowQiPi+eljlGnfbZVkV0V4PIrjGtGFJt5GjWM5k28enA=="],
 
-    "@upstash/workflow": ["@upstash/workflow@1.1.1", "", { "dependencies": { "@upstash/qstash": "2.9.0-rc" }, "peerDependencies": { "zod": "^3.25.0 || ^4.0.0" } }, "sha512-1TWVoE8jS3bHcRGQlWgFg0j9J0MPMHD8Tm9Sq61Ix226d8S4LEwAQWPnHYxjxe5PWw/RUgMDOR8lhM62bzQWRg=="],
+    "@upstash/workflow": ["@upstash/workflow@1.2.0", "", { "dependencies": { "@upstash/qstash": "^2.10.1" }, "peerDependencies": { "zod": "^3.25.0 || ^4.0.0" } }, "sha512-91aOAnh5JsWzVajO+isU9BHdzQmWhOY++qSPeZcwEgvGIlhhIjH/IuKnLXLJhm4UIk0ntvY/w9rXUvD7UWDQvw=="],
 
     "@vercel/config": ["@vercel/config@0.0.37", "", { "dependencies": { "@vercel/routing-utils": "6.0.2", "pretty-cache-header": "^1.0.0", "zod": "^3.22.0" }, "bin": { "config": "dist/cli.js" } }, "sha512-tj/bmX4UNoI43XdzXO8kKATccrxQSdkxVQ4NDnVulP/qj7Mp4RakCWd38aNqWJ1i/YM7iUpnZxnMnyhkLuAbVA=="],
 
