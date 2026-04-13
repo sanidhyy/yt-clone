@@ -373,7 +373,7 @@ Useful resources and dependencies that are used in NewTube.
 - [prettier](https://www.npmjs.com/package/prettier): ^3.8.1
 - [prettier-plugin-tailwindcss](https://www.npmjs.com/package/prettier-plugin-tailwindcss): ^0.7.2
 - [react](https://www.npmjs.com/package/react): 19.2.4
-- [react-dom](https://www.npmjs.com/package/react-dom): 19.2.4
+- [react-dom](https://www.npmjs.com/package/react-dom): 19.2.5
 - [react-error-boundary](https://www.npmjs.com/package/react-error-boundary): ^6.1.1
 - [react-hook-form](https://www.npmjs.com/package/react-hook-form): ^7.72.0
 - [react-hot-toast](https://www.npmjs.com/package/react-hot-toast): ^2.5.2
