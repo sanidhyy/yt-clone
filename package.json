@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "concurrently \"bun run dev:next\" \"bun run dev:webhook\"",
 		"dev:next": "next dev --webpack",
-		"dev:webhook": "ngrok http --url=wired-legible-monster.ngrok-free.app 3000",
+		"dev:webhook": "ngrok http 3000",
 		"build": "next build --webpack",
 		"start": "next start --webpack",
 		"lint": "eslint",
