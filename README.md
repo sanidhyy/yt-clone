@@ -382,7 +382,7 @@ Useful resources and dependencies that are used in NewTube.
 - [openai](https://www.npmjs.com/package/openai): ^6.34.0
 - [player.style](https://www.npmjs.com/package/player.style): ^0.3.0
 - [postcss](https://www.npmjs.com/package/postcss): ^8
-- [prettier](https://www.npmjs.com/package/prettier): ^3.8.1
+- [prettier](https://www.npmjs.com/package/prettier): ^3.8.3
 - [prettier-plugin-tailwindcss](https://www.npmjs.com/package/prettier-plugin-tailwindcss): ^0.7.2
 - [react](https://www.npmjs.com/package/react): 19.2.4
 - [react-dom](https://www.npmjs.com/package/react-dom): 19.2.5
