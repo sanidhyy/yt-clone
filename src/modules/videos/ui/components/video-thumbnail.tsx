@@ -38,13 +38,13 @@ export const VideoThumbnail = ({
 				<img
 					src={imageUrl || THUMBNAIL_FALLBACK}
 					alt={`Thumbnail of ${title}`}
-					className='size-full object-cover group-hover:opacity-0'
+					className='absolute inset-0 size-full object-cover opacity-100 transition-opacity duration-150 group-hover:opacity-0'
 				/>
 
 				<img
 					src={previewUrl || THUMBNAIL_FALLBACK}
 					alt={`Preview of ${title}`}
-					className='size-full object-cover opacity-0 group-hover:opacity-100'
+					className='absolute inset-0 size-full object-cover opacity-0 transition-opacity duration-150 group-hover:opacity-100'
 				/>
 			</div>
 

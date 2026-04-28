@@ -1,56 +1,25 @@
 import { headers } from 'next/headers';
 import { NextResponse, type NextRequest } from 'next/server';
 
-import {
-	VideoAssetCreatedWebhookEvent,
-	VideoAssetDeletedWebhookEvent,
-	VideoAssetErroredWebhookEvent,
-	VideoAssetReadyWebhookEvent,
-	VideoAssetTrackReadyWebhookEvent,
-} from '@mux/mux-node/resources/webhooks';
 import { and, eq } from 'drizzle-orm';
 import { UTApi } from 'uploadthing/server';
 
 import { updateVideoAsset } from '@/modules/videos/server/actions';
 
-import { BAD_REQUEST, NOT_FOUND, OK } from '@/config/http-status-codes';
+import { NOT_FOUND, OK } from '@/config/http-status-codes';
 import { db } from '@/db';
 import { MuxStatus, videos } from '@/db/schema';
-import { env } from '@/env/server';
 import { mux } from '@/lib/mux';
 
-type WebhookEvent =
-	| VideoAssetCreatedWebhookEvent
-	| VideoAssetErroredWebhookEvent
-	| VideoAssetReadyWebhookEvent
-	| VideoAssetTrackReadyWebhookEvent
-	| VideoAssetDeletedWebhookEvent;
-
 export const POST = async (req: NextRequest) => {
-	const MUX_SIGNATURE_HEADER_NAME = 'Mux-Signature';
+	const headersList = await headers();
+	const body = await req.text();
 
-	const headerPayload = await headers();
-	const muxSignature = headerPayload.get(MUX_SIGNATURE_HEADER_NAME);
+	const event = await mux.webhooks.unwrap(body, headersList);
 
-	if (!muxSignature) {
-		return new NextResponse('Failed to verify signature!', { status: BAD_REQUEST });
-	}
-
-	const payload = await req.json();
-	const body = JSON.stringify(payload);
-	const signingSecret = env.MUX_WEBHOOK_SECRET;
-
-	mux.webhooks.verifySignature(
-		body,
-		{
-			[MUX_SIGNATURE_HEADER_NAME]: muxSignature,
-		},
-		signingSecret
-	);
-
-	switch (payload.type as WebhookEvent['type']) {
+	switch (event.type) {
 		case 'video.asset.created': {
-			const data = payload.data as VideoAssetCreatedWebhookEvent['data'];
+			const data = event.data;
 
 			if (!data.upload_id) {
 				return new NextResponse('No upload id found!', { status: NOT_FOUND });
@@ -76,7 +45,7 @@ export const POST = async (req: NextRequest) => {
 			break;
 		}
 		case 'video.asset.ready': {
-			const data = payload.data as VideoAssetReadyWebhookEvent['data'];
+			const data = event.data;
 			if (!data.upload_id) {
 				return new NextResponse('No upload id found!', { status: NOT_FOUND });
 			}
@@ -86,7 +55,7 @@ export const POST = async (req: NextRequest) => {
 			break;
 		}
 		case 'video.asset.errored': {
-			const data = payload.data as VideoAssetErroredWebhookEvent['data'];
+			const data = event.data;
 			if (!data.upload_id) {
 				return new NextResponse('No upload id found!', { status: NOT_FOUND });
 			}
@@ -103,7 +72,7 @@ export const POST = async (req: NextRequest) => {
 			break;
 		}
 		case 'video.asset.deleted': {
-			const data = payload.data as VideoAssetDeletedWebhookEvent['data'];
+			const data = event.data;
 			if (!data.upload_id) {
 				return new NextResponse('No upload id found!', { status: NOT_FOUND });
 			}
@@ -120,9 +89,8 @@ export const POST = async (req: NextRequest) => {
 			break;
 		}
 		case 'video.asset.track.ready': {
-			const data = payload.data as VideoAssetTrackReadyWebhookEvent['data'] & { asset_id: string };
+			const data = event.data;
 
-			// Typescript incorrectly says that asset_id does not exist
 			const assetId = data.asset_id;
 
 			if (!assetId) {
@@ -142,7 +110,7 @@ export const POST = async (req: NextRequest) => {
 			break;
 		}
 		default:
-			console.warn('Unhandled event: ', payload);
+			console.warn('Unhandled event: ', event);
 	}
 
 	return new NextResponse('Webhook received!', { status: OK });
