@@ -333,7 +333,7 @@ Useful resources and dependencies that are used in NewTube.
 - Thanks to CodeWithAntonio: https://codewithantonio.com/
 <!--- DEPENDENCIES_START --->
 - [@babel/eslint-parser](https://www.npmjs.com/package/@babel/eslint-parser): ^7.28.6
-- [@clerk/nextjs](https://www.npmjs.com/package/@clerk/nextjs): ^7.0.12
+- [@clerk/nextjs](https://www.npmjs.com/package/@clerk/nextjs): ^7.3.0
 - [@eslint/eslintrc](https://www.npmjs.com/package/@eslint/eslintrc): ^3
 - [@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers): ^5.1.1
 - [@ianvs/prettier-plugin-sort-imports](https://www.npmjs.com/package/@ianvs/prettier-plugin-sort-imports): ^4.7.1
