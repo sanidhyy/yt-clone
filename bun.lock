@@ -40,7 +40,7 @@
         "lucide-react": "^1.14.0",
         "next": "^16.2.3",
         "openai": "^6.34.0",
-        "player.style": "^0.3.0",
+        "player.style": "^0.3.4",
         "react": "19.2.5",
         "react-dom": "19.2.5",
         "react-error-boundary": "^6.1.1",
@@ -567,7 +567,7 @@
 
     "caniuse-lite": ["caniuse-lite@1.0.30001699", "", {}, "sha512-b+uH5BakXZ9Do9iK+CkDmctUSEqZl+SP056vc5usa0PL+ev5OHw003rZXcnjNDv3L8P5j6rwT6C0BPKSikW08w=="],
 
-    "ce-la-react": ["ce-la-react@0.3.0", "", { "peerDependencies": { "react": ">=17.0.0" } }, "sha512-84SEDLNHaAjykzlkqgKRq95hA3qnxrsTrwh4hTgBq6tfpINqajxz4bkz9q4orhUfpqDPQRgdCzYTF3bHcvTIlQ=="],
+    "ce-la-react": ["ce-la-react@0.3.2", "", { "peerDependencies": { "react": ">=17.0.0" } }, "sha512-QJ6k4lOD/btI08xG8jBPxRCGXvCnusGGkTsiXk0u3NqUu/W+BXRnFD4PYjwtqh8AWmGa5LDbGk0fLQsqr0nSMA=="],
 
     "chalk": ["chalk@4.1.2", "", { "dependencies": { "ansi-styles": "^4.1.0", "supports-color": "^7.1.0" } }, "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA=="],
 
@@ -945,7 +945,7 @@
 
     "math-intrinsics": ["math-intrinsics@1.1.0", "", {}, "sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g=="],
 
-    "media-chrome": ["media-chrome@4.14.0", "", { "dependencies": { "ce-la-react": "^0.3.0" } }, "sha512-IEdFb4blyF15vLvQzLIn6USJBv7Kf2ne+TfLQKBYI5Z0f9VEBVZz5MKy4Uhi0iA9lStl2S9ENIujJRuJIa5OiA=="],
+    "media-chrome": ["media-chrome@4.19.0", "", { "dependencies": { "ce-la-react": "^0.3.2" } }, "sha512-HWhDTwts+BSbdPkkB1VsJXp5kvL0IxY7xFT5tBwliM2+89kTPVTnHnev+9it2f9PweANjT/C8/C/S0PW9oyZbA=="],
 
     "merge2": ["merge2@1.4.1", "", {}, "sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg=="],
 
@@ -1051,7 +1051,7 @@
 
     "pkg-types": ["pkg-types@2.3.1", "", { "dependencies": { "confbox": "^0.2.4", "exsolve": "^1.0.8", "pathe": "^2.0.3" } }, "sha512-y+ichcgc2LrADuhLNAx8DFjVfgz91pRxfZdI3UDhxHvcVEZsenLO+7XaU5vOp0u/7V/wZ+plyuQxtrDlZJ+yeg=="],
 
-    "player.style": ["player.style@0.3.0", "", { "dependencies": { "media-chrome": "~4.14.0" } }, "sha512-ny1TbqA2ZsUd6jzN+F034+UMXVK7n5SrwepsrZ2gIqVz00Hn0ohCUbbUdst/2IOFCy0oiTbaOXkSFxRw1RmSlg=="],
+    "player.style": ["player.style@0.3.4", "", { "dependencies": { "media-chrome": "~4.19.0" } }, "sha512-5O9bkbq0APQIkhptyZwp0gUgheCeImGPFo4hvPF2M5xBmgsUYzsUPHCfMye2xyeRE1zvQBKtziaC3jPgnHE1tw=="],
 
     "possible-typed-array-names": ["possible-typed-array-names@1.1.0", "", {}, "sha512-/+5VFTchJDoVj3bhoqi6UeymcD00DAwb1nJwamzPvHEszJ4FpF6SNNbUbOS8yI56qHzdV8eK0qEfOSiodkTdxg=="],
 
