@@ -116,7 +116,7 @@
 		"drizzle-orm": "^0.45.1",
 		"drizzle-zod": "^0.8.2",
 		"embla-carousel-react": "^8.6.0",
-		"jiti": "^2.6.1",
+		"jiti": "^2.7.0",
 		"lucide-react": "^1.14.0",
 		"next": "^16.2.3",
 		"openai": "^6.34.0",
