@@ -397,7 +397,7 @@ Useful resources and dependencies that are used in NewTube.
 - [typescript](https://www.npmjs.com/package/typescript): ^6
 - [uploadthing](https://www.npmjs.com/package/uploadthing): ^7.7.3
 - [vaul](https://www.npmjs.com/package/vaul): ^1.1.2
-- [zod](https://www.npmjs.com/package/zod): ^4.1.13
+- [zod](https://www.npmjs.com/package/zod): ^4.4.3
 
 <!--- DEPENDENCIES_END --->
 
