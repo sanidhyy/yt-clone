@@ -372,7 +372,7 @@ Useful resources and dependencies that are used in NewTube.
 - [drizzle-zod](https://www.npmjs.com/package/drizzle-zod): ^0.8.2
 - [embla-carousel-react](https://www.npmjs.com/package/embla-carousel-react): ^8.6.0
 - [eslint](https://www.npmjs.com/package/eslint): ^10
-- [eslint-config-next](https://www.npmjs.com/package/eslint-config-next): 16.2.4
+- [eslint-config-next](https://www.npmjs.com/package/eslint-config-next): 16.2.6
 - [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier): ^10.1.8
 - [eslint-plugin-prettier](https://www.npmjs.com/package/eslint-plugin-prettier): ^5.5.5
 - [eslint-plugin-tailwindcss](https://www.npmjs.com/package/eslint-plugin-tailwindcss): ^3.18.3
