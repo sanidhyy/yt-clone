@@ -339,7 +339,7 @@ Useful resources and dependencies that are used in NewTube.
 - [@ianvs/prettier-plugin-sort-imports](https://www.npmjs.com/package/@ianvs/prettier-plugin-sort-imports): ^4.7.1
 - [@mux/mux-node](https://www.npmjs.com/package/@mux/mux-node): ^14.0.1
 - [@mux/mux-uploader-react](https://www.npmjs.com/package/@mux/mux-uploader-react): ^1.4.1
-- [@mux/mux-video-react](https://www.npmjs.com/package/@mux/mux-video-react): ^0.30.5
+- [@mux/mux-video-react](https://www.npmjs.com/package/@mux/mux-video-react): ^0.31.0
 - [@neondatabase/serverless](https://www.npmjs.com/package/@neondatabase/serverless): ^1.0.2
 - [@radix-ui/react-avatar](https://www.npmjs.com/package/@radix-ui/react-avatar): ^1.1.11
 - [@radix-ui/react-dialog](https://www.npmjs.com/package/@radix-ui/react-dialog): ^1.1.14
