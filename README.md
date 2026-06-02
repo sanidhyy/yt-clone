@@ -387,7 +387,7 @@ Useful resources and dependencies that are used in NewTube.
 - [react](https://www.npmjs.com/package/react): 19.2.6
 - [react-dom](https://www.npmjs.com/package/react-dom): 19.2.7
 - [react-error-boundary](https://www.npmjs.com/package/react-error-boundary): ^6.1.1
-- [react-hook-form](https://www.npmjs.com/package/react-hook-form): ^7.72.0
+- [react-hook-form](https://www.npmjs.com/package/react-hook-form): ^7.77.0
 - [react-hot-toast](https://www.npmjs.com/package/react-hot-toast): ^2.5.2
 - [server-only](https://www.npmjs.com/package/server-only): ^0.0.1
 - [superjson](https://www.npmjs.com/package/superjson): ^2.2.6
