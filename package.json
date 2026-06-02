@@ -144,7 +144,7 @@
 		"concurrently": "^9.1.2",
 		"drizzle-kit": "^0.31.10",
 		"eslint": "^10",
-		"eslint-config-next": "16.2.6",
+		"eslint-config-next": "16.2.7",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-prettier": "^5.5.5",
 		"eslint-plugin-tailwindcss": "^3.18.3",
