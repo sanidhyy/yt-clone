@@ -123,7 +123,7 @@
 		"player.style": "^0.3.4",
 		"react": "19.2.7",
 		"react-dom": "19.2.7",
-		"react-error-boundary": "^6.1.1",
+		"react-error-boundary": "^6.1.2",
 		"react-hook-form": "^7.77.0",
 		"react-hot-toast": "^2.5.2",
 		"server-only": "^0.0.1",
