@@ -359,7 +359,7 @@ Useful resources and dependencies that are used in NewTube.
 - [@types/react](https://www.npmjs.com/package/@types/react): 19.2.17
 - [@types/react-dom](https://www.npmjs.com/package/@types/react-dom): 19.2.3
 - [@uploadthing/react](https://www.npmjs.com/package/@uploadthing/react): ^7.3.2
-- [@upstash/workflow](https://www.npmjs.com/package/@upstash/workflow): ^1.3.0
+- [@upstash/workflow](https://www.npmjs.com/package/@upstash/workflow): ^1.3.1
 - [@vercel/config](https://www.npmjs.com/package/@vercel/config): ^0.5.1
 - [class-variance-authority](https://www.npmjs.com/package/class-variance-authority): ^0.7.1
 - [client-only](https://www.npmjs.com/package/client-only): ^0.0.1
