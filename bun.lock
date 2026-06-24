@@ -26,7 +26,7 @@
         "@trpc/react-query": "^11.17.0",
         "@trpc/server": "^11.17.0",
         "@uploadthing/react": "^7.3.2",
-        "@upstash/workflow": "^1.3.0",
+        "@upstash/workflow": "^1.3.1",
         "@vercel/config": "^0.5.1",
         "class-variance-authority": "^0.7.1",
         "client-only": "^0.0.1",
@@ -487,7 +487,7 @@
 
     "@upstash/redis": ["@upstash/redis@1.36.3", "", { "dependencies": { "uncrypto": "^0.1.3" } }, "sha512-wxo1ei4OHDHm4UGMgrNVz9QUEela9N/Iwi4p1JlHNSowQiPi+eljlGnfbZVkV0V4PIrjGtGFJt5GjWM5k28enA=="],
 
-    "@upstash/workflow": ["@upstash/workflow@1.3.0", "", { "dependencies": { "@upstash/qstash": "^2.11.0" }, "peerDependencies": { "zod": "^3.25.0 || ^4.0.0" } }, "sha512-bY6JRB6MmU9rESbdL8Dd5gs9U0/C6cWYfCwiM8wgqr2IIYBcUHSrP4aWTjDWf8g8AAa4EDmd6ZBqm4E7ecdXWg=="],
+    "@upstash/workflow": ["@upstash/workflow@1.3.1", "", { "dependencies": { "@upstash/qstash": "^2.11.0" }, "peerDependencies": { "zod": "^3.25.0 || ^4.0.0" } }, "sha512-OTnmkhnWmbnOs9bPFHOLTeNc3z1I8Z2AfbXcuC0EeZW1FURF+iWHFB7Sdr9b6YFACZ0PXoAB1qkdSPzdHEYPyQ=="],
 
     "@vercel/config": ["@vercel/config@0.5.1", "", { "dependencies": { "@vercel/routing-utils": "6.2.0", "pretty-cache-header": "^1.0.0", "zod": "^3.22.0" }, "bin": { "config": "dist/cli.js" } }, "sha512-q246LO1IfGOslxx4S5kRH2YrrrBoaR9cBKuNe8VfOFHmqLDrL/+MYrX7uZOowtPO7WemKI5w8L+9WU4rq1Q25w=="],
 
