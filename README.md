@@ -342,7 +342,7 @@ Useful resources and dependencies that are used in NewTube.
 - [@mux/mux-video-react](https://www.npmjs.com/package/@mux/mux-video-react): ^0.31.0
 - [@neondatabase/serverless](https://www.npmjs.com/package/@neondatabase/serverless): ^1.1.0
 - [@radix-ui/react-avatar](https://www.npmjs.com/package/@radix-ui/react-avatar): ^1.1.11
-- [@radix-ui/react-dialog](https://www.npmjs.com/package/@radix-ui/react-dialog): ^1.1.14
+- [@radix-ui/react-dialog](https://www.npmjs.com/package/@radix-ui/react-dialog): ^1.1.17
 - [@radix-ui/react-dropdown-menu](https://www.npmjs.com/package/@radix-ui/react-dropdown-menu): ^2.1.15
 - [@radix-ui/react-label](https://www.npmjs.com/package/@radix-ui/react-label): ^2.1.8
 - [@radix-ui/react-select](https://www.npmjs.com/package/@radix-ui/react-select): ^2.2.5
