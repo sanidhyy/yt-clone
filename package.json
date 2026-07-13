@@ -119,7 +119,7 @@
 		"jiti": "^2.7.0",
 		"lucide-react": "^1.16.0",
 		"next": "^16.2.3",
-		"openai": "^6.34.0",
+		"openai": "^6.46.0",
 		"player.style": "^0.3.4",
 		"react": "19.2.7",
 		"react-dom": "19.2.7",
