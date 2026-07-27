@@ -355,7 +355,7 @@ Useful resources and dependencies that are used in NewTube.
 - [@trpc/client](https://www.npmjs.com/package/@trpc/client): ^11.17.0
 - [@trpc/react-query](https://www.npmjs.com/package/@trpc/react-query): ^11.17.0
 - [@trpc/server](https://www.npmjs.com/package/@trpc/server): ^11.17.0
-- [@types/node](https://www.npmjs.com/package/@types/node): ^25
+- [@types/node](https://www.npmjs.com/package/@types/node): ^26
 - [@types/react](https://www.npmjs.com/package/@types/react): 19.2.17
 - [@types/react-dom](https://www.npmjs.com/package/@types/react-dom): 19.2.3
 - [@uploadthing/react](https://www.npmjs.com/package/@uploadthing/react): ^7.3.2
