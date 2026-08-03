@@ -335,7 +335,7 @@ Useful resources and dependencies that are used in NewTube.
 - [@babel/eslint-parser](https://www.npmjs.com/package/@babel/eslint-parser): ^7.29.7
 - [@clerk/nextjs](https://www.npmjs.com/package/@clerk/nextjs): ^7.5.20
 - [@eslint/eslintrc](https://www.npmjs.com/package/@eslint/eslintrc): ^3
-- [@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers): ^5.4.0
+- [@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers): ^5.5.7
 - [@ianvs/prettier-plugin-sort-imports](https://www.npmjs.com/package/@ianvs/prettier-plugin-sort-imports): ^4.7.1
 - [@mux/mux-node](https://www.npmjs.com/package/@mux/mux-node): ^14.0.1
 - [@mux/mux-uploader-react](https://www.npmjs.com/package/@mux/mux-uploader-react): ^1.5.0
