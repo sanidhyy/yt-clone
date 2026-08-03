@@ -348,7 +348,7 @@ Useful resources and dependencies that are used in NewTube.
 - [@radix-ui/react-select](https://www.npmjs.com/package/@radix-ui/react-select): ^2.2.5
 - [@radix-ui/react-separator](https://www.npmjs.com/package/@radix-ui/react-separator): ^1.1.15
 - [@radix-ui/react-slot](https://www.npmjs.com/package/@radix-ui/react-slot): ^1.3.0
-- [@radix-ui/react-tooltip](https://www.npmjs.com/package/@radix-ui/react-tooltip): ^1.2.10
+- [@radix-ui/react-tooltip](https://www.npmjs.com/package/@radix-ui/react-tooltip): ^1.2.16
 - [@radix-ui/react-visually-hidden](https://www.npmjs.com/package/@radix-ui/react-visually-hidden): ^1.2.5
 - [@t3-oss/env-nextjs](https://www.npmjs.com/package/@t3-oss/env-nextjs): ^0.13.11
 - [@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query): ^5.101.3
@@ -364,7 +364,7 @@ Useful resources and dependencies that are used in NewTube.
 - [class-variance-authority](https://www.npmjs.com/package/class-variance-authority): ^0.7.1
 - [client-only](https://www.npmjs.com/package/client-only): ^0.0.1
 - [clsx](https://www.npmjs.com/package/clsx): ^2.1.1
-- [concurrently](https://www.npmjs.com/package/concurrently): ^10.0.3
+- [concurrently](https://www.npmjs.com/package/concurrently): ^10.0.4
 - [date-fns](https://www.npmjs.com/package/date-fns): ^4.1.0
 - [dotenv](https://www.npmjs.com/package/dotenv): ^17.3.1
 - [drizzle-kit](https://www.npmjs.com/package/drizzle-kit): ^0.31.10
