@@ -7,7 +7,7 @@
       "dependencies": {
         "@clerk/nextjs": "^7.5.20",
         "@hookform/resolvers": "^5.5.7",
-        "@mux/mux-node": "^14.0.1",
+        "@mux/mux-node": "^15.0.0",
         "@mux/mux-uploader-react": "^1.5.0",
         "@mux/mux-video-react": "^0.31.0",
         "@neondatabase/serverless": "^1.1.0",
@@ -297,7 +297,7 @@
 
     "@msgpackr-extract/msgpackr-extract-win32-x64": ["@msgpackr-extract/msgpackr-extract-win32-x64@3.0.4", "", { "os": "win32", "cpu": "x64" }, "sha512-CmCXPQrkbwExx3j946/PtHWHbYJiCRBRDl4BlkRQcJB/YOwQxJRTpoo7aTsortjgoJ1x7opzTSxn7C+ASSLVjQ=="],
 
-    "@mux/mux-node": ["@mux/mux-node@14.1.1", "", { "bin": { "mux-mux-node": "bin/cli" } }, "sha512-Am79fhXU6A15zef1y+2UKfbIQ/UMGiVOjKKV3fOAqR8IS0A4HbL6WLDs0rNlMRHrefvASAftM2NWwLLBU3Peaw=="],
+    "@mux/mux-node": ["@mux/mux-node@15.0.0", "", { "bin": { "mux-ts": "bin/cli" } }, "sha512-3b3qfcLKPDqbIVHqcGjUtI521N91QEKGu2S2Qv91TQ1v8U4WZHAsM/l4Xl9MJ66+sHH0bC6otUX18Z5HAk3QBA=="],
 
     "@mux/mux-uploader": ["@mux/mux-uploader@1.5.0", "", { "dependencies": { "@mux/upchunk": "^3.5.0" } }, "sha512-a6FbE8kAl72jYjQ92/fkiIn2YyhXQayndzdc9lJ+gXhQEYXily+ynUojFsZwlPUxi6xTj5Zu7wcSxK0H5JU20Q=="],
 
