@@ -6,6 +6,7 @@ import '@/env/server';
 const nextConfig: NextConfig = {
 	devIndicators: false,
 	images: {
+		unoptimized: true,
 		remotePatterns: [
 			{
 				hostname: 'lh3.googleusercontent.com',
