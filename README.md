@@ -353,7 +353,7 @@ Useful resources and dependencies that are used in NewTube.
 - [@radix-ui/react-dialog](https://www.npmjs.com/package/@radix-ui/react-dialog): ^1.1.23
 - [@radix-ui/react-dropdown-menu](https://www.npmjs.com/package/@radix-ui/react-dropdown-menu): ^2.1.24
 - [@radix-ui/react-label](https://www.npmjs.com/package/@radix-ui/react-label): ^2.1.15
-- [@radix-ui/react-select](https://www.npmjs.com/package/@radix-ui/react-select): ^2.2.5
+- [@radix-ui/react-select](https://www.npmjs.com/package/@radix-ui/react-select): ^2.3.7
 - [@radix-ui/react-separator](https://www.npmjs.com/package/@radix-ui/react-separator): ^1.1.15
 - [@radix-ui/react-slot](https://www.npmjs.com/package/@radix-ui/react-slot): ^1.3.0
 - [@radix-ui/react-tooltip](https://www.npmjs.com/package/@radix-ui/react-tooltip): ^1.2.16
