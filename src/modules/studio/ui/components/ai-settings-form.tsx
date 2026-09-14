@@ -93,7 +93,7 @@ export const AISettingsForm = ({ apiKey }: AISettingsFormProps) => {
 									<FormControl className='pr-12'>
 										<Input
 											type={apiKeyVisible ? 'text' : 'password'}
-											placeholder='sk-proj-•••••••••••••••••••••••••••••••'
+											placeholder='sk-•••••••••••••••••••••••••••••••••••'
 											{...field}
 										/>
 									</FormControl>

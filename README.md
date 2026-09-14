@@ -277,9 +277,8 @@ NEXT_PUBLIC_APP_BASE_URL="http://localhost:3000"
 
 ---
 
-### 12. OpenAI (AI Features)
+### 12. AI Settings Cookie Secrets
 
-- Store it in your cookies under the name specified by `OPENAI_API_KEY_COOKIE_NAME`.
 - Generate both **verification secret** and **cookie name** (for cryptographic signing):
 
   ```bash
