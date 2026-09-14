@@ -2,6 +2,7 @@ import { createRequire } from 'module';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
+import { fixupConfigRules } from '@eslint/compat';
 import nextVitals from 'eslint-config-next/core-web-vitals';
 import nextTypescript from 'eslint-config-next/typescript';
 import eslintConfigPrettier from 'eslint-config-prettier/flat';
@@ -17,8 +18,8 @@ const tailwindFlatRecommended = tailwindPlugin.configs['flat/recommended'];
 
 const eslintConfig = defineConfig([
 	globalIgnores(['node_modules/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts', 'migrations/**']),
-	...nextVitals,
-	...nextTypescript,
+	...fixupConfigRules(nextVitals),
+	...fixupConfigRules(nextTypescript),
 	...tailwindFlatRecommended,
 	eslintConfigPrettier,
 	eslintPluginPrettierRecommended,

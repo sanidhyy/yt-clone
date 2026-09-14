@@ -98,6 +98,7 @@ export const studioRouter = createTRPCRouter({
 
 		try {
 			const completion = await openai.chat.completions.create({
+				// eslint-disable-next-line camelcase -- OpenAI API field
 				max_completion_tokens: 5,
 				messages: [{ content: 'hi', role: 'user' }],
 				model: 'gpt-4o-mini',
