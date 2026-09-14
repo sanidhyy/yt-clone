@@ -5,10 +5,10 @@
 	"type": "module",
 	"scripts": {
 		"dev": "concurrently \"pnpm run dev:next\" \"pnpm run dev:webhook\"",
-		"dev:next": "next dev --webpack",
+		"dev:next": "next dev",
 		"dev:webhook": "ngrok http 3000",
-		"build": "next build --webpack",
-		"start": "next start --webpack",
+		"build": "next build",
+		"start": "next start",
 		"lint": "eslint",
 		"lint:fix": "eslint --fix",
 		"format": "prettier --check .",
