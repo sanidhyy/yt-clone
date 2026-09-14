@@ -231,6 +231,8 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 		resolver: zodResolver(VideoUpdateSchema),
 	});
 
+	const isVideoReady = video.muxStatus === MuxStatus.READY;
+
 	const onSubmit = (data: z.infer<typeof VideoUpdateSchema>) => {
 		update.mutate(data);
 	};
@@ -570,7 +572,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 											</FormControl>
 
 											<SelectContent>
-												<SelectItem value={VideoVisibility.PUBLIC}>
+												<SelectItem value={VideoVisibility.PUBLIC} disabled={!isVideoReady}>
 													<div className='flex items-center gap-x-2'>
 														<Globe2Icon className='size-4' />
 														Public

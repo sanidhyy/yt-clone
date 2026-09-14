@@ -479,6 +479,20 @@ export const videosRouter = createTRPCRouter({
 
 		if (!id) throw new TRPCError({ code: 'NOT_FOUND', message: 'Video id not found!' });
 
+		const [existingVideo] = await db
+			.select({ muxStatus: videos.muxStatus })
+			.from(videos)
+			.where(and(eq(videos.id, id), eq(videos.userId, userId)));
+
+		if (!existingVideo) throw new TRPCError({ code: 'NOT_FOUND', message: 'Video not found!' });
+
+		if (visibility === VideoVisibility.PUBLIC && existingVideo.muxStatus !== MuxStatus.READY) {
+			throw new TRPCError({
+				code: 'BAD_REQUEST',
+				message: 'Video must be ready before it can be made public!',
+			});
+		}
+
 		const [updatedVideo] = await db
 			.update(videos)
 			.set({
