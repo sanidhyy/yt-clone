@@ -34,7 +34,7 @@ export const VideoTopRowSkeleton = () => {
 				</div>
 			</div>
 
-			<div className='h-[120px] w-full' />
+			<div className='h-30 w-full' />
 		</div>
 	);
 };

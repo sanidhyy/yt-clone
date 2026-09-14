@@ -69,9 +69,9 @@ export const VideoDescription = ({
 			<div className='relative'>
 				<p
 					className={cn(
-						'whitespace-pre-wrap text-sm',
+						'text-sm whitespace-pre-wrap',
 						!isExpanded && 'line-clamp-2',
-						!isDescription && 'italic text-muted-foreground'
+						!isDescription && 'text-muted-foreground italic'
 					)}
 				>
 					{isDescription ? description : 'No description'}

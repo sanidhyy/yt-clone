@@ -52,7 +52,7 @@ export const PlaylistThumbnail = ({ title, videoCount, className, imageUrl }: Pl
 			</div>
 
 			{/* Video count indicator */}
-			<div className='absolute bottom-2 right-2 flex items-center gap-x-1 rounded bg-black/80 px-1 py-0.5 text-xs font-medium text-white'>
+			<div className='absolute right-2 bottom-2 flex items-center gap-x-1 rounded bg-black/80 px-1 py-0.5 text-xs font-medium text-white'>
 				<ListVideoIcon className='size-4' />
 				{compactVideoCount} video{videoCount === 1 ? '' : 's'}
 			</div>

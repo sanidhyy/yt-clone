@@ -18,8 +18,8 @@ export const StudioSidebarHeader = () => {
 				<Skeleton className='size-[112px] rounded-full' />
 
 				<div className='mt-2 flex flex-col items-center gap-y-2'>
-					<Skeleton className='h-4 w-[80px]' />
-					<Skeleton className='h-4 w-[100px]' />
+					<Skeleton className='h-4 w-20' />
+					<Skeleton className='h-4 w-25' />
 				</div>
 			</SidebarHeader>
 		);

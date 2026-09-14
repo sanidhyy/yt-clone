@@ -13,7 +13,7 @@ export const PlaylistsView = () => {
 	const [createModalOpen, setCreateModalOpen] = useState(false);
 
 	return (
-		<div className='mx-auto mb-10 flex max-w-[2400px] flex-col gap-y-6 px-4 pt-2.5'>
+		<div className='mx-auto mb-10 flex max-w-600 flex-col gap-y-6 px-4 pt-2.5'>
 			<PlaylistCreateModal open={createModalOpen} onOpenChange={setCreateModalOpen} />
 
 			<div className='flex items-center justify-between'>

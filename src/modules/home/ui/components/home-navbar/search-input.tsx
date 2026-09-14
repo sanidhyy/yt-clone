@@ -38,17 +38,14 @@ export const SearchInputSuspense = () => {
 	};
 
 	return (
-		<form
-			onSubmit={handleSearch}
-			className='flex w-full max-w-[600px] rounded-full border focus-within:border-blue-500'
-		>
+		<form onSubmit={handleSearch} className='flex w-full max-w-150 rounded-full border focus-within:border-blue-500'>
 			<div className='relative w-full'>
 				<input
 					type='search'
 					value={searchValue}
 					onChange={(e) => setSearchValue(e.target.value)}
 					placeholder='Search'
-					className='w-full rounded-l-full border py-2 pl-4 pr-12 focus:outline-hidden'
+					className='w-full rounded-l-full border py-2 pr-12 pl-4 focus:outline-hidden'
 				/>
 
 				{!!searchValue.trim() && (
@@ -57,7 +54,7 @@ export const SearchInputSuspense = () => {
 						variant='ghost'
 						size='icon'
 						onClick={() => setSearchValue('')}
-						className='absolute right-2 top-1/2 -translate-y-1/2 rounded-full'
+						className='absolute top-1/2 right-2 -translate-y-1/2 rounded-full'
 					>
 						<XIcon className='text-gray-500' />
 					</Button>

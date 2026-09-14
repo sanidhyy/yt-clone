@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils';
 import { BannerUploadModal } from './banner-upload-modal';
 
 export const UserPageBannerSkeleton = () => {
-	return <Skeleton className='h-[15vh] max-h-[200px] w-full md:h-[25vh]' />;
+	return <Skeleton className='h-[15vh] max-h-50 w-full md:h-[25vh]' />;
 };
 
 interface UserPageBannerProps {
@@ -30,7 +30,7 @@ export const UserPageBanner = ({ user }: UserPageBannerProps) => {
 
 			<div
 				className={cn(
-					'h-[15vh] max-h-[200px] w-full rounded-xl bg-linear-to-r from-gray-100 to-gray-200 md:h-[25vh]',
+					'h-[15vh] max-h-50 w-full rounded-xl bg-linear-to-r from-gray-100 to-gray-200 md:h-[25vh]',
 					user.bannerUrl ? 'bg-cover bg-center' : 'bg-gray-100'
 				)}
 				style={{
@@ -41,7 +41,7 @@ export const UserPageBanner = ({ user }: UserPageBannerProps) => {
 					<Button
 						type='button'
 						size='icon'
-						className='absolute right-4 top-4 rounded-full bg-black/50 opacity-100 transition-opacity duration-300 hover:bg-black/50 group-hover:opacity-100 md:opacity-0'
+						className='absolute top-4 right-4 rounded-full bg-black/50 opacity-100 transition-opacity duration-300 group-hover:opacity-100 hover:bg-black/50 md:opacity-0'
 						onClick={() => setIsBannerUploadModalOpen(true)}
 					>
 						<Edit2Icon className='size-4 text-white' />

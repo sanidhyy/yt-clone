@@ -49,13 +49,13 @@ export const VideoThumbnail = ({
 			</div>
 
 			{/* Video duration box */}
-			<div className='absolute bottom-2 right-2 rounded bg-black/80 px-1 py-0.5 text-xs font-medium text-white opacity-100 transition-opacity duration-100 group-hover:opacity-0'>
+			<div className='absolute right-2 bottom-2 rounded bg-black/80 px-1 py-0.5 text-xs font-medium text-white opacity-100 transition-opacity duration-100 group-hover:opacity-0'>
 				{formatDuration(duration)}
 			</div>
 
 			{/* Video visibility box for private videos */}
 			{visibility === VideoVisibility.PRIVATE && (
-				<div className='absolute right-2 top-2 rounded bg-black/80 px-1 py-0.5 text-xs font-medium text-white opacity-100 transition-opacity duration-100 group-hover:opacity-0'>
+				<div className='absolute top-2 right-2 rounded bg-black/80 px-1 py-0.5 text-xs font-medium text-white opacity-100 transition-opacity duration-100 group-hover:opacity-0'>
 					<LockIcon className='size-4' />
 				</div>
 			)}

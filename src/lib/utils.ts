@@ -5,6 +5,7 @@ import { twMerge } from 'tailwind-merge';
 import { env } from '@/env/client';
 
 export const cn = (...inputs: ClassValue[]) => {
+	// eslint-disable-next-line tailwindcss/no-custom-classname
 	return twMerge(clsx(inputs));
 };
 

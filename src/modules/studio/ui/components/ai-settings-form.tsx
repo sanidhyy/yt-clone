@@ -101,7 +101,7 @@ export const AISettingsForm = ({ apiKey }: AISettingsFormProps) => {
 									<button
 										disabled={isPending}
 										type='button'
-										className='absolute inset-y-0 right-1 flex cursor-pointer items-center rounded-full p-3 text-muted-foreground outline-hidden ring-primary focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50'
+										className='absolute inset-y-0 right-1 flex cursor-pointer items-center rounded-full p-3 text-muted-foreground ring-primary outline-hidden focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50'
 										onClick={() => {
 											setApiKeyVisible((prevApiKeyVisible) => !prevApiKeyVisible);
 											form.setFocus('apiKey');

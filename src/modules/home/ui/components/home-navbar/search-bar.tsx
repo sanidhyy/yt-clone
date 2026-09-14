@@ -13,7 +13,7 @@ export const SearchBar = () => {
 
 	return (
 		<>
-			<div className='mx-auto hidden max-w-[720px] flex-1 justify-center sm:flex'>
+			<div className='mx-auto hidden max-w-180 flex-1 justify-center sm:flex'>
 				<SearchInput />
 			</div>
 

@@ -17,6 +17,7 @@ export const env = createEnv({
 		throw new Error('❌ Invalid environment variables');
 	},
 	server: {
+		AI_SETTINGS_COOKIE_NAME: z.string().min(1),
 		CLERK_SECRET_KEY: z.string().trim().min(1),
 		CLERK_WEBHOOK_SECRET: z.string().trim().min(1),
 		DATABASE_URL: z.url(),
@@ -25,7 +26,6 @@ export const env = createEnv({
 		MUX_WEBHOOK_SECRET: z.string().trim().min(1),
 		NODE_ENV: z.enum(['development', 'production', 'test']).default('development').optional(),
 		OPENAI_API_BASE_URL: z.url(),
-		AI_SETTINGS_COOKIE_NAME: z.string().min(1),
 		QSTASH_CURRENT_SIGNING_KEY: z.string().trim().min(1).startsWith('sig_'),
 		QSTASH_NEXT_SIGNING_KEY: z.string().trim().min(1).startsWith('sig_'),
 		QSTASH_TOKEN: z.string().trim().min(1),

@@ -48,7 +48,7 @@ export const VideoInfo = ({ data, onRemove }: VideoInfoProps) => {
 
 			<div className='min-w-0 flex-1'>
 				<Link prefetch href={`/videos/${data.id}`}>
-					<h3 className='line-clamp-1 wrap-break-word text-base font-medium lg:line-clamp-2'>{data.title}</h3>
+					<h3 className='line-clamp-1 text-base font-medium wrap-break-word lg:line-clamp-2'>{data.title}</h3>
 				</Link>
 
 				<Link prefetch href={`/users/${data.userId}`}>

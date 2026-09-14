@@ -56,7 +56,7 @@ export const FormSection = ({ videoId }: FormSectionProps) => {
 		<Suspense fallback={<FormSectionSkeleton />}>
 			<ErrorBoundary
 				fallback={
-					<p className='text-destructive text-sm'>
+					<p className='text-sm text-destructive'>
 						<TriangleAlertIcon className='-mt-0.5 mr-1 inline size-4' /> Failed to fetch video!
 					</p>
 				}
@@ -92,12 +92,12 @@ const FormSectionSkeleton = () => {
 
 					<div className='space-y-2'>
 						<Skeleton className='h-5 w-24' />
-						<Skeleton className='h-[220px] w-full' />
+						<Skeleton className='h-55 w-full' />
 					</div>
 
 					<div className='space-y-2'>
 						<Skeleton className='h-5 w-20' />
-						<Skeleton className='h-[84px] w-[153px]' />
+						<Skeleton className='h-21 w-[153px]' />
 					</div>
 
 					<div className='space-y-2'>
@@ -198,7 +198,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 		},
 		onSuccess: () => {
 			toast('Generating Video description...\nThis may take some time.', {
-				icon: <CheckCircle2Icon className='text-primary size-6' />,
+				icon: <CheckCircle2Icon className='size-6 text-primary' />,
 			});
 		},
 	});
@@ -209,7 +209,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 		},
 		onSuccess: () => {
 			toast('Generating Video title...\nThis may take some time.', {
-				icon: <CheckCircle2Icon className='text-primary size-6' />,
+				icon: <CheckCircle2Icon className='size-6 text-primary' />,
 			});
 		},
 	});
@@ -299,7 +299,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 					<div className='mb-6 flex items-center justify-between'>
 						<div>
 							<h1 className='text-2xl font-bold'>Video details</h1>
-							<p className='text-muted-foreground text-xs'>Manage your video details.</p>
+							<p className='text-xs text-muted-foreground'>Manage your video details.</p>
 						</div>
 
 						<div className='flex items-center gap-x-2'>
@@ -420,7 +420,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 										<FormLabel>Thumbnail</FormLabel>
 
 										<FormControl>
-											<div className='group relative h-[84px] w-[153px] border border-dashed bg-neutral-400 p-0.5'>
+											<div className='group relative h-21 w-[153px] border border-dashed bg-neutral-400 p-0.5'>
 												<img
 													src={video.thumbnailUrl || THUMBNAIL_FALLBACK}
 													alt={`Thumbnail of ${video.title}`}
@@ -514,7 +514,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 								<div className='flex flex-col gap-y-6 p-4'>
 									<div className='flex items-center justify-between gap-x-2'>
 										<div className='flex flex-col gap-y-1'>
-											<p className='text-muted-foreground text-xs'>Video link</p>
+											<p className='text-xs text-muted-foreground'>Video link</p>
 
 											<div className='flex items-center gap-x-2'>
 												<Link prefetch href={`/videos/${video.id}`}>
@@ -538,14 +538,14 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 
 									<div className='flex items-center justify-between'>
 										<div className='flex flex-col gap-y-1'>
-											<p className='text-muted-foreground text-xs'>Video status</p>
+											<p className='text-xs text-muted-foreground'>Video status</p>
 											<p className='text-sm'>{snakeCaseToTitle(video.muxStatus || MuxStatus.PREPARING)}</p>
 										</div>
 									</div>
 
 									<div className='flex items-center justify-between'>
 										<div className='flex flex-col gap-y-1'>
-											<p className='text-muted-foreground text-xs'>Subtitles status</p>
+											<p className='text-xs text-muted-foreground'>Subtitles status</p>
 											<p className='text-sm'>{snakeCaseToTitle(video.muxTrackStatus || 'no_subtitles')}</p>
 										</div>
 									</div>
