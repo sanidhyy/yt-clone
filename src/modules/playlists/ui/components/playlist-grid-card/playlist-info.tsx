@@ -46,7 +46,7 @@ export const PlaylistInfo = ({ id, name, onRemove, isPending }: PlaylistInfoProp
 	return (
 		<div className='flex items-center justify-between gap-3'>
 			<div className='min-w-0 flex-1'>
-				<h3 className='line-clamp-1 break-words text-sm font-medium lg:line-clamp-2'>{name}</h3>
+				<h3 className='line-clamp-1 wrap-break-word text-sm font-medium lg:line-clamp-2'>{name}</h3>
 
 				<p className='text-sm font-semibold text-muted-foreground hover:text-primary'>View full playlist</p>
 			</div>

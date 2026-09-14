@@ -18,7 +18,7 @@ export const SearchBar = () => {
 			</div>
 
 			{showSearchInput ? (
-				<div className='absolute z-[51] h-16 w-full bg-white p-2'>
+				<div className='absolute z-51 h-16 w-full bg-white p-2'>
 					<div className='flex w-full flex-1 items-center justify-center gap-2'>
 						<Button
 							type='button'

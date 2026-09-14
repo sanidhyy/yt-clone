@@ -41,7 +41,7 @@ export const FilterCarousel = ({ data, isLoading, onSelect, value }: FilterCarou
 			{/* Left fade */}
 			<div
 				className={cn(
-					'pointer-events-none absolute inset-y-0 left-12 z-10 w-12 bg-gradient-to-r from-white to-transparent',
+					'pointer-events-none absolute inset-y-0 left-12 z-10 w-12 bg-linear-to-r from-white to-transparent',
 					current === 1 && 'hidden'
 				)}
 			/>
@@ -49,7 +49,7 @@ export const FilterCarousel = ({ data, isLoading, onSelect, value }: FilterCarou
 			{/* Right fade */}
 			<div
 				className={cn(
-					'pointer-events-none absolute inset-y-0 right-12 z-10 w-12 bg-gradient-to-l from-white to-transparent',
+					'pointer-events-none absolute inset-y-0 right-12 z-10 w-12 bg-linear-to-l from-white to-transparent',
 					current === count && 'hidden'
 				)}
 			/>

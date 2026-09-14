@@ -30,7 +30,7 @@ export const UserPageBanner = ({ user }: UserPageBannerProps) => {
 
 			<div
 				className={cn(
-					'h-[15vh] max-h-[200px] w-full rounded-xl bg-gradient-to-r from-gray-100 to-gray-200 md:h-[25vh]',
+					'h-[15vh] max-h-[200px] w-full rounded-xl bg-linear-to-r from-gray-100 to-gray-200 md:h-[25vh]',
 					user.bannerUrl ? 'bg-cover bg-center' : 'bg-gray-100'
 				)}
 				style={{

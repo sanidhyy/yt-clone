@@ -48,7 +48,7 @@ export const SearchInputSuspense = () => {
 					value={searchValue}
 					onChange={(e) => setSearchValue(e.target.value)}
 					placeholder='Search'
-					className='w-full rounded-l-full border py-2 pl-4 pr-12 focus:outline-none'
+					className='w-full rounded-l-full border py-2 pl-4 pr-12 focus:outline-hidden'
 				/>
 
 				{!!searchValue.trim() && (

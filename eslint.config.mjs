@@ -1,4 +1,3 @@
-import { createRequire } from 'module';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -9,21 +8,22 @@ import eslintConfigPrettier from 'eslint-config-prettier/flat';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import { defineConfig, globalIgnores } from 'eslint/config';
 
+import eslintPluginTailwindcss from 'eslint-plugin-tailwindcss';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const require = createRequire(import.meta.url);
-
-const tailwindPlugin = require('eslint-plugin-tailwindcss');
-const tailwindFlatRecommended = tailwindPlugin.configs['flat/recommended'];
 
 const eslintConfig = defineConfig([
 	globalIgnores(['node_modules/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts', 'migrations/**']),
 	...fixupConfigRules(nextVitals),
 	...fixupConfigRules(nextTypescript),
-	...tailwindFlatRecommended,
+	eslintPluginTailwindcss.configs.recommended,
 	eslintConfigPrettier,
 	eslintPluginPrettierRecommended,
 	{
+		plugins: {
+			tailwindcss: eslintPluginTailwindcss,
+		},
 		rules: {
 			'@next/next/no-img-element': 'off',
 			'@typescript-eslint/no-unused-vars': [
@@ -54,7 +54,7 @@ const eslintConfig = defineConfig([
 		settings: {
 			tailwindcss: {
 				callees: ['cva', 'classnames', 'classNames', 'clsx', 'cn', 'cns', 'cx'],
-				config: `${__dirname}/tailwind.config.ts`,
+				cssConfigPath: `${__dirname}/src/app/globals.css`,
 			},
 		},
 	},
