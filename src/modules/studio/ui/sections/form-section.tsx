@@ -56,7 +56,7 @@ export const FormSection = ({ videoId }: FormSectionProps) => {
 		<Suspense fallback={<FormSectionSkeleton />}>
 			<ErrorBoundary
 				fallback={
-					<p className='text-sm text-destructive'>
+					<p className='text-destructive text-sm'>
 						<TriangleAlertIcon className='-mt-0.5 mr-1 inline size-4' /> Failed to fetch video!
 					</p>
 				}
@@ -198,7 +198,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 		},
 		onSuccess: () => {
 			toast('Generating Video description...\nThis may take some time.', {
-				icon: <CheckCircle2Icon className='size-6 text-primary' />,
+				icon: <CheckCircle2Icon className='text-primary size-6' />,
 			});
 		},
 	});
@@ -209,7 +209,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 		},
 		onSuccess: () => {
 			toast('Generating Video title...\nThis may take some time.', {
-				icon: <CheckCircle2Icon className='size-6 text-primary' />,
+				icon: <CheckCircle2Icon className='text-primary size-6' />,
 			});
 		},
 	});
@@ -299,7 +299,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 					<div className='mb-6 flex items-center justify-between'>
 						<div>
 							<h1 className='text-2xl font-bold'>Video details</h1>
-							<p className='text-xs text-muted-foreground'>Manage your video details.</p>
+							<p className='text-muted-foreground text-xs'>Manage your video details.</p>
 						</div>
 
 						<div className='flex items-center gap-x-2'>
@@ -432,7 +432,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 														<Button
 															type='button'
 															size='icon'
-															className='absolute right-1 top-1 size-7 rounded-full border border-white/50 bg-black/50 opacity-100 duration-300 hover:bg-black/50 group-hover:opacity-100 data-[state=open]:opacity-100 md:opacity-0 md:disabled:opacity-100'
+															className='absolute top-1 right-1 size-7 rounded-full border border-white/50 bg-black/50 opacity-100 duration-300 group-hover:opacity-100 hover:bg-black/50 data-[state=open]:opacity-100 md:opacity-0 md:disabled:opacity-100'
 															disabled={isPending || isRestoring || isGenerating}
 															isLoading={isRestoring}
 														>
@@ -478,7 +478,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 											disabled={field.disabled}
 										>
 											<FormControl>
-												<SelectTrigger disabled={field.disabled}>
+												<SelectTrigger disabled={field.disabled} className='w-full'>
 													<SelectValue placeholder='Select a category' />
 												</SelectTrigger>
 											</FormControl>
@@ -514,11 +514,11 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 								<div className='flex flex-col gap-y-6 p-4'>
 									<div className='flex items-center justify-between gap-x-2'>
 										<div className='flex flex-col gap-y-1'>
-											<p className='text-xs text-muted-foreground'>Video link</p>
+											<p className='text-muted-foreground text-xs'>Video link</p>
 
 											<div className='flex items-center gap-x-2'>
 												<Link prefetch href={`/videos/${video.id}`}>
-													<p className='line-clamp-1 break-all text-sm text-blue-500'>{fullUrl}</p>
+													<p className='line-clamp-1 text-sm break-all text-blue-500'>{fullUrl}</p>
 												</Link>
 
 												<Button
@@ -538,14 +538,14 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
 
 									<div className='flex items-center justify-between'>
 										<div className='flex flex-col gap-y-1'>
-											<p className='text-xs text-muted-foreground'>Video status</p>
+											<p className='text-muted-foreground text-xs'>Video status</p>
 											<p className='text-sm'>{snakeCaseToTitle(video.muxStatus || MuxStatus.PREPARING)}</p>
 										</div>
 									</div>
 
 									<div className='flex items-center justify-between'>
 										<div className='flex flex-col gap-y-1'>
-											<p className='text-xs text-muted-foreground'>Subtitles status</p>
+											<p className='text-muted-foreground text-xs'>Subtitles status</p>
 											<p className='text-sm'>{snakeCaseToTitle(video.muxTrackStatus || 'no_subtitles')}</p>
 										</div>
 									</div>
