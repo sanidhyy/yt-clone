@@ -44,7 +44,6 @@
 Here is the folder structure of this app.
 
 <!--- FOLDER_STRUCTURE_START --->
-
 ```bash
 yt-clone/
   |- migrations/
@@ -120,19 +119,18 @@ yt-clone/
   |- .env/.env.local
   |- .gitignore
   |- .prettierrc.mjs
-  |- bun.lock
   |- components.json
   |- drizzle.config.ts
   |- environment.d.ts
   |- eslint.config.mjs
   |- next.config.ts
   |- package.json
+  |- pnpm-lock.yaml
+  |- pnpm-workspace.yaml
   |- postcss.config.mjs
-  |- tailwind.config.ts
   |- tsconfig.json
   |- vercel.ts
 ```
-
 <!--- FOLDER_STRUCTURE_END --->
 
 <br />
@@ -342,73 +340,69 @@ Useful resources and dependencies that are used in NewTube.
 - Thanks to CodeWithAntonio: https://codewithantonio.com/
 
 <!--- DEPENDENCIES_START --->
-
-- [@babel/eslint-parser](https://www.npmjs.com/package/@babel/eslint-parser): ^8.0.1
-- [@clerk/nextjs](https://www.npmjs.com/package/@clerk/nextjs): ^7.7.6
+- [@babel/eslint-parser](https://www.npmjs.com/package/@babel/eslint-parser): ^8.0.5
+- [@clerk/nextjs](https://www.npmjs.com/package/@clerk/nextjs): ^7.9.2
+- [@eslint/compat](https://www.npmjs.com/package/@eslint/compat): ^2.1.1
 - [@eslint/eslintrc](https://www.npmjs.com/package/@eslint/eslintrc): ^3
 - [@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers): ^5.9.1
 - [@ianvs/prettier-plugin-sort-imports](https://www.npmjs.com/package/@ianvs/prettier-plugin-sort-imports): ^4.7.1
 - [@mux/mux-node](https://www.npmjs.com/package/@mux/mux-node): ^15.1.0
 - [@mux/mux-uploader-react](https://www.npmjs.com/package/@mux/mux-uploader-react): ^1.5.0
-- [@mux/mux-video-react](https://www.npmjs.com/package/@mux/mux-video-react): ^0.31.0
+- [@mux/mux-video-react](https://www.npmjs.com/package/@mux/mux-video-react): ^0.31.3
 - [@neondatabase/serverless](https://www.npmjs.com/package/@neondatabase/serverless): ^1.1.0
-- [@radix-ui/react-avatar](https://www.npmjs.com/package/@radix-ui/react-avatar): ^1.2.6
-- [@radix-ui/react-dialog](https://www.npmjs.com/package/@radix-ui/react-dialog): ^1.1.23
-- [@radix-ui/react-dropdown-menu](https://www.npmjs.com/package/@radix-ui/react-dropdown-menu): ^2.1.24
-- [@radix-ui/react-label](https://www.npmjs.com/package/@radix-ui/react-label): ^2.1.15
-- [@radix-ui/react-select](https://www.npmjs.com/package/@radix-ui/react-select): ^2.3.7
-- [@radix-ui/react-separator](https://www.npmjs.com/package/@radix-ui/react-separator): ^1.1.15
-- [@radix-ui/react-slot](https://www.npmjs.com/package/@radix-ui/react-slot): ^1.3.3
-- [@radix-ui/react-tooltip](https://www.npmjs.com/package/@radix-ui/react-tooltip): ^1.2.16
 - [@radix-ui/react-visually-hidden](https://www.npmjs.com/package/@radix-ui/react-visually-hidden): ^1.2.11
 - [@t3-oss/env-nextjs](https://www.npmjs.com/package/@t3-oss/env-nextjs): ^0.13.11
+- [@tailwindcss/postcss](https://www.npmjs.com/package/@tailwindcss/postcss): ^4.3.3
 - [@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query): ^5.102.8
-- [@trpc/client](https://www.npmjs.com/package/@trpc/client): ^11.17.0
-- [@trpc/react-query](https://www.npmjs.com/package/@trpc/react-query): ^11.17.0
-- [@trpc/server](https://www.npmjs.com/package/@trpc/server): ^11.17.0
+- [@trpc/client](https://www.npmjs.com/package/@trpc/client): ^11.18.0
+- [@trpc/react-query](https://www.npmjs.com/package/@trpc/react-query): ^11.18.0
+- [@trpc/server](https://www.npmjs.com/package/@trpc/server): ^11.18.0
 - [@types/node](https://www.npmjs.com/package/@types/node): ^26
-- [@types/react](https://www.npmjs.com/package/@types/react): 19.2.18
-- [@types/react-dom](https://www.npmjs.com/package/@types/react-dom): 19.2.3
-- [@uploadthing/react](https://www.npmjs.com/package/@uploadthing/react): ^7.3.2
+- [@types/react](https://www.npmjs.com/package/@types/react): 19.3.0
+- [@types/react-dom](https://www.npmjs.com/package/@types/react-dom): 19.3.0
+- [@uploadthing/react](https://www.npmjs.com/package/@uploadthing/react): ^7.3.3
 - [@upstash/workflow](https://www.npmjs.com/package/@upstash/workflow): ^1.3.3
 - [@vercel/config](https://www.npmjs.com/package/@vercel/config): ^0.7.0
 - [class-variance-authority](https://www.npmjs.com/package/class-variance-authority): ^0.7.1
 - [client-only](https://www.npmjs.com/package/client-only): ^0.0.1
 - [clsx](https://www.npmjs.com/package/clsx): ^2.1.1
-- [concurrently](https://www.npmjs.com/package/concurrently): ^10.0.4
-- [date-fns](https://www.npmjs.com/package/date-fns): ^4.1.0
-- [dotenv](https://www.npmjs.com/package/dotenv): ^17.3.1
+- [cn](https://www.npmjs.com/package/cn): ^0.3.0
+- [concurrently](https://www.npmjs.com/package/concurrently): ^10.0.5
+- [date-fns](https://www.npmjs.com/package/date-fns): ^4.4.0
+- [dotenv](https://www.npmjs.com/package/dotenv): ^17.4.2
 - [drizzle-kit](https://www.npmjs.com/package/drizzle-kit): ^0.31.10
 - [drizzle-orm](https://www.npmjs.com/package/drizzle-orm): ^0.45.2
-- [drizzle-zod](https://www.npmjs.com/package/drizzle-zod): ^0.8.2
+- [drizzle-zod](https://www.npmjs.com/package/drizzle-zod): ^0.8.3
 - [embla-carousel-react](https://www.npmjs.com/package/embla-carousel-react): ^8.6.0
 - [eslint](https://www.npmjs.com/package/eslint): ^10
-- [eslint-config-next](https://www.npmjs.com/package/eslint-config-next): 16.3.3
+- [eslint-config-next](https://www.npmjs.com/package/eslint-config-next): 16.3.5
 - [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier): ^10.1.8
-- [eslint-plugin-prettier](https://www.npmjs.com/package/eslint-plugin-prettier): ^5.5.5
-- [eslint-plugin-tailwindcss](https://www.npmjs.com/package/eslint-plugin-tailwindcss): ^4.0.4
+- [eslint-plugin-prettier](https://www.npmjs.com/package/eslint-plugin-prettier): ^5.5.6
+- [eslint-plugin-tailwindcss](https://www.npmjs.com/package/eslint-plugin-tailwindcss): ^4.4.0
 - [jiti](https://www.npmjs.com/package/jiti): ^2.7.0
-- [lucide-react](https://www.npmjs.com/package/lucide-react): ^1.41.0
-- [next](https://www.npmjs.com/package/next): ^16.3.2
-- [openai](https://www.npmjs.com/package/openai): ^7.2.0
+- [lucide-react](https://www.npmjs.com/package/lucide-react): ^1.46.0
+- [next](https://www.npmjs.com/package/next): ^16.3.5
+- [openai](https://www.npmjs.com/package/openai): ^7.15.0
 - [player.style](https://www.npmjs.com/package/player.style): ^0.3.4
 - [postcss](https://www.npmjs.com/package/postcss): ^8
 - [prettier](https://www.npmjs.com/package/prettier): ^3.9.6
 - [prettier-plugin-tailwindcss](https://www.npmjs.com/package/prettier-plugin-tailwindcss): ^0.8.1
-- [react](https://www.npmjs.com/package/react): 19.2.8
-- [react-dom](https://www.npmjs.com/package/react-dom): 19.2.7
-- [react-error-boundary](https://www.npmjs.com/package/react-error-boundary): ^6.1.2
-- [react-hook-form](https://www.npmjs.com/package/react-hook-form): ^7.85.0
-- [react-hot-toast](https://www.npmjs.com/package/react-hot-toast): ^2.5.2
+- [radix-ui](https://www.npmjs.com/package/radix-ui): ^1.6.7
+- [react](https://www.npmjs.com/package/react): 19.3.0
+- [react-dom](https://www.npmjs.com/package/react-dom): 19.3.0
+- [react-error-boundary](https://www.npmjs.com/package/react-error-boundary): ^6.1.5
+- [react-hook-form](https://www.npmjs.com/package/react-hook-form): ^7.88.0
+- [react-hot-toast](https://www.npmjs.com/package/react-hot-toast): ^2.6.0
 - [server-only](https://www.npmjs.com/package/server-only): ^0.0.1
 - [superjson](https://www.npmjs.com/package/superjson): ^2.2.6
-- [tailwind-merge](https://www.npmjs.com/package/tailwind-merge): ^3.6.0
-- [tailwindcss](https://www.npmjs.com/package/tailwindcss): ^3.4.1
-- [tailwindcss-animate](https://www.npmjs.com/package/tailwindcss-animate): ^1.0.7
+- [tailwind-merge](https://www.npmjs.com/package/tailwind-merge): ^3.7.0
+- [tailwindcss](https://www.npmjs.com/package/tailwindcss): ^4.3.3
+- [tsx](https://www.npmjs.com/package/tsx): ^4.23.13
+- [tw-animate-css](https://www.npmjs.com/package/tw-animate-css): ^1.4.0
 - [typescript](https://www.npmjs.com/package/typescript): ^6
-- [uploadthing](https://www.npmjs.com/package/uploadthing): ^7.7.3
+- [uploadthing](https://www.npmjs.com/package/uploadthing): ^7.7.4
 - [vaul](https://www.npmjs.com/package/vaul): ^1.1.2
-- [zod](https://www.npmjs.com/package/zod): ^4.4.3
+- [zod](https://www.npmjs.com/package/zod): ^4.6.5
 
 <!--- DEPENDENCIES_END --->
 
