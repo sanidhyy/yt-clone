@@ -2,3 +2,6 @@ allowBuilds:
   esbuild: false
   msgpackr-extract: false
   unrs-resolver: false
+minimumReleaseAgeExclude:
+  - lucide-react@1.46.0
+  - zod@4.6.5
