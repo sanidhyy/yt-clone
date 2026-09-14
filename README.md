@@ -44,6 +44,7 @@
 Here is the folder structure of this app.
 
 <!--- FOLDER_STRUCTURE_START --->
+
 ```bash
 yt-clone/
   |- migrations/
@@ -131,6 +132,7 @@ yt-clone/
   |- tsconfig.json
   |- vercel.ts
 ```
+
 <!--- FOLDER_STRUCTURE_END --->
 
 <br />
@@ -289,7 +291,7 @@ NEXT_PUBLIC_APP_BASE_URL="http://localhost:3000"
 ---
 
 ### 13. Ngrok
-  
+
 - Download Ngrok: https://ngrok.com/download
 - Sign up at [Ngrok](https://ngrok.com/) and copy your auth token from the dashboard.
 - Authenticate ngrok locally:
@@ -300,9 +302,9 @@ ngrok config add-authtoken YOUR_AUTH_TOKEN
 
 ---
 
-14. Install Project Dependencies using `npm install --legacy-peer-deps` or `yarn install --legacy-peer-deps` or `bun install --legacy-peer-deps`.
+14. Install Project Dependencies using `npm install --legacy-peer-deps` or `pnpm install --legacy-peer-deps`.
 
-15. Now app is fully configured 👍 and you can start using this app using either one of `npm run dev` or `yarn dev` or `bun dev`.
+15. Now app is fully configured 👍 and you can start using this app using either one of `npm run dev` or `pnpm dev`.
 
 **NOTE:** Please make sure to keep your API keys and configuration values secure and do not expose them publicly.
 
@@ -339,7 +341,9 @@ You might encounter some bugs while using this app. You are more than welcome to
 Useful resources and dependencies that are used in NewTube.
 
 - Thanks to CodeWithAntonio: https://codewithantonio.com/
+
 <!--- DEPENDENCIES_START --->
+
 - [@babel/eslint-parser](https://www.npmjs.com/package/@babel/eslint-parser): ^8.0.1
 - [@clerk/nextjs](https://www.npmjs.com/package/@clerk/nextjs): ^7.7.6
 - [@eslint/eslintrc](https://www.npmjs.com/package/@eslint/eslintrc): ^3

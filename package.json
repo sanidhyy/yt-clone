@@ -4,7 +4,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "concurrently \"bun run dev:next\" \"bun run dev:webhook\"",
+		"dev": "concurrently \"pnpm run dev:next\" \"pnpm run dev:webhook\"",
 		"dev:next": "next dev --webpack",
 		"dev:webhook": "ngrok http 3000",
 		"build": "next build --webpack",
@@ -16,74 +16,9 @@
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
 		"db:studio": "drizzle-kit studio",
-		"seed:categories": "bun ./src/scripts/seed-categories.ts",
+		"seed:categories": "tsx ./src/scripts/seed-categories.ts",
 		"postinstall": "drizzle-kit generate"
 	},
-	"author": {
-		"name": "Sanidhya Kumar Verma",
-		"email": "sanidhyyy@gmail.com",
-		"url": "https://github.com/sanidhyy"
-	},
-	"description": "AI-Powered YouTube Clone using Next.js 15 and Mux.",
-	"keywords": [
-		"reactjs",
-		"nextjs",
-		"youtube",
-		"youtube-clone",
-		"yt-clone",
-		"clerk-auth",
-		"lucide-icons",
-		"react-icons",
-		"mux",
-		"mux-player",
-		"shadcn-ui",
-		"radix-ui",
-		"tailwindcss",
-		"uploadthing",
-		"upstash",
-		"react-query",
-		"openai",
-		"player-style",
-		"trpc",
-		"drizzle-orm",
-		"zod",
-		"sonner",
-		"typescript",
-		"javascript",
-		"vercel",
-		"postcss",
-		"prettier",
-		"eslint",
-		"react",
-		"react-dom",
-		"html",
-		"css",
-		"date-fns",
-		"cn",
-		"clsx",
-		"lucide-react",
-		"neon-db"
-	],
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/sanidhyy/yt-clone.git"
-	},
-	"homepage": "https://github.com/sanidhyy/yt-clone#readme",
-	"bugs": {
-		"url": "https://github.com/sanidhyy/yt-clone/issues",
-		"email": "sanidhyyy@gmail.com"
-	},
-	"funding": [
-		{
-			"type": "patreon",
-			"url": "https://www.patreon.com/sanidhy"
-		},
-		{
-			"type": "Buy me a coffee",
-			"url": "https://www.buymeacoffee.com/sanidhy"
-		}
-	],
 	"dependencies": {
 		"@clerk/nextjs": "^7.7.6",
 		"@hookform/resolvers": "^5.9.1",
@@ -152,6 +87,72 @@
 		"prettier": "^3.9.6",
 		"prettier-plugin-tailwindcss": "^0.8.1",
 		"tailwindcss": "^3.4.1",
+		"tsx": "^4.23.13",
 		"typescript": "^6"
-	}
+	},
+	"author": {
+		"name": "Sanidhya Kumar Verma",
+		"email": "sanidhyyy@gmail.com",
+		"url": "https://github.com/sanidhyy"
+	},
+	"description": "AI-Powered YouTube Clone using Next.js 15 and Mux.",
+	"keywords": [
+		"reactjs",
+		"nextjs",
+		"youtube",
+		"youtube-clone",
+		"yt-clone",
+		"clerk-auth",
+		"lucide-icons",
+		"react-icons",
+		"mux",
+		"mux-player",
+		"shadcn-ui",
+		"radix-ui",
+		"tailwindcss",
+		"uploadthing",
+		"upstash",
+		"react-query",
+		"openai",
+		"player-style",
+		"trpc",
+		"drizzle-orm",
+		"zod",
+		"sonner",
+		"typescript",
+		"javascript",
+		"vercel",
+		"postcss",
+		"prettier",
+		"eslint",
+		"react",
+		"react-dom",
+		"html",
+		"css",
+		"date-fns",
+		"cn",
+		"clsx",
+		"lucide-react",
+		"neon-db"
+	],
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sanidhyy/yt-clone.git"
+	},
+	"homepage": "https://github.com/sanidhyy/yt-clone#readme",
+	"bugs": {
+		"url": "https://github.com/sanidhyy/yt-clone/issues",
+		"email": "sanidhyyy@gmail.com"
+	},
+	"funding": [
+		{
+			"type": "patreon",
+			"url": "https://www.patreon.com/sanidhy"
+		},
+		{
+			"type": "Buy me a coffee",
+			"url": "https://www.buymeacoffee.com/sanidhy"
+		}
+	]
 }
