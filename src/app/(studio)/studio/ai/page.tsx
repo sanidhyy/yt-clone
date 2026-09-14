@@ -9,7 +9,7 @@ import { getSecureCookieName } from '@/lib/utils';
 const AISettingsPage = async () => {
 	const cookieStore = await cookies();
 
-	const apiKey = cookieStore.get(getSecureCookieName(env.OPENAI_API_KEY_COOKIE_NAME))?.value.trim() || '';
+	const apiKey = cookieStore.get(getSecureCookieName(env.AI_SETTINGS_COOKIE_NAME))?.value.trim() || '';
 
 	return <AISettingsView apiKey={decrypt(apiKey)} />;
 };

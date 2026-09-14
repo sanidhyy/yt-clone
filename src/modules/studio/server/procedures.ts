@@ -85,7 +85,7 @@ export const studioRouter = createTRPCRouter({
 	removeAISettings: protectedProcedure.mutation(async () => {
 		const cookieStore = await cookies();
 
-		cookieStore.delete(getSecureCookieName(env.OPENAI_API_KEY_COOKIE_NAME));
+		cookieStore.delete(getSecureCookieName(env.AI_SETTINGS_COOKIE_NAME));
 
 		return { success: true };
 	}),
@@ -116,7 +116,7 @@ export const studioRouter = createTRPCRouter({
 
 		const cookieStore = await cookies();
 
-		cookieStore.set(getSecureCookieName(env.OPENAI_API_KEY_COOKIE_NAME), encryptedApiKey, {
+		cookieStore.set(getSecureCookieName(env.AI_SETTINGS_COOKIE_NAME), encryptedApiKey, {
 			httpOnly: true,
 			maxAge: 60 * 60 * 24 * 30, // 30 days
 			path: '/',

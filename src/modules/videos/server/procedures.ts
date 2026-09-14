@@ -77,7 +77,7 @@ export const videosRouter = createTRPCRouter({
 
 		const cookieStore = await cookies();
 
-		const openaiApiKey = cookieStore.get(getSecureCookieName(env.OPENAI_API_KEY_COOKIE_NAME))?.value?.trim();
+		const openaiApiKey = cookieStore.get(getSecureCookieName(env.AI_SETTINGS_COOKIE_NAME))?.value?.trim();
 		if (!openaiApiKey)
 			throw new TRPCError({
 				code: 'BAD_REQUEST',
@@ -99,7 +99,7 @@ export const videosRouter = createTRPCRouter({
 
 			const cookieStore = await cookies();
 
-			const openaiApiKey = cookieStore.get(getSecureCookieName(env.OPENAI_API_KEY_COOKIE_NAME))?.value?.trim();
+			const openaiApiKey = cookieStore.get(getSecureCookieName(env.AI_SETTINGS_COOKIE_NAME))?.value?.trim();
 			if (!openaiApiKey)
 				throw new TRPCError({
 					code: 'BAD_REQUEST',
@@ -119,7 +119,7 @@ export const videosRouter = createTRPCRouter({
 
 		const cookieStore = await cookies();
 
-		const openaiApiKey = cookieStore.get(getSecureCookieName(env.OPENAI_API_KEY_COOKIE_NAME))?.value?.trim();
+		const openaiApiKey = cookieStore.get(getSecureCookieName(env.AI_SETTINGS_COOKIE_NAME))?.value?.trim();
 		if (!openaiApiKey)
 			throw new TRPCError({
 				code: 'BAD_REQUEST',
