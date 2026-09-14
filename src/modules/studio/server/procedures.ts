@@ -2,7 +2,7 @@ import { cookies } from 'next/headers';
 
 import { TRPCError } from '@trpc/server';
 import { and, desc, eq, getTableColumns, lt, or } from 'drizzle-orm';
-import { OpenAI, OpenAIError } from 'openai';
+import { OpenAI } from 'openai';
 import { z } from 'zod';
 
 import { AISettingsSchema } from '@/modules/studio/schemas/ai-settings-schema';
@@ -11,7 +11,7 @@ import { db } from '@/db';
 import { ReactionType, comments, videoReactions, videoViews, videos } from '@/db/schema';
 import { env } from '@/env/server';
 import { encrypt } from '@/lib/encryption';
-import { getSecureCookieName } from '@/lib/utils';
+import { getAISettingsErrorMessage, getSecureCookieName } from '@/lib/utils';
 import { createTRPCRouter, protectedProcedure } from '@/trpc/init';
 
 export const studioRouter = createTRPCRouter({
@@ -97,18 +97,18 @@ export const studioRouter = createTRPCRouter({
 		});
 
 		try {
-			await openai.models.list();
+			const completion = await openai.chat.completions.create({
+				max_completion_tokens: 5,
+				messages: [{ content: 'hi', role: 'user' }],
+				model: 'gpt-4o-mini',
+			});
+
+			if (!completion.choices[0]?.message?.content) throw new Error('No response from API');
 		} catch (error) {
 			console.error(error);
 			throw new TRPCError({
-				cause: error instanceof Error ? error.cause : undefined,
 				code: 'BAD_REQUEST',
-				message:
-					error instanceof OpenAIError
-						? 'Invalid API Key!'
-						: error instanceof Error
-							? error.message
-							: 'Failed to verify API key!',
+				message: getAISettingsErrorMessage(error),
 			});
 		}
 
