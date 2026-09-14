@@ -1,8 +1,8 @@
 <a name="readme-top"></a>
 
-# AI-Powered YouTube Clone using Next.js 15 and Mux
+# AI-Powered YouTube Clone using Next.js 16 and Mux
 
-![AI-Powered YouTube Clone using Next.js 15 and Mux](/.github/images/img_main.png 'AI-Powered YouTube Clone using Next.js 15 and Mux')
+![AI-Powered YouTube Clone using Next.js 16 and Mux](/.github/images/img_main.png 'AI-Powered YouTube Clone using Next.js 16 and Mux')
 
 [![Ask Me Anything!](https://flat.badgen.net/static/Ask%20me/anything?icon=github&color=black&scale=1.01)](https://github.com/sanidhyy 'Ask Me Anything!')
 [![GitHub license](https://flat.badgen.net/github/license/sanidhyy/yt-clone?icon=github&color=black&scale=1.01)](https://github.com/sanidhyy/yt-clone/blob/main/LICENSE 'GitHub license')
@@ -44,6 +44,7 @@
 Here is the folder structure of this app.
 
 <!--- FOLDER_STRUCTURE_START --->
+
 ```bash
 yt-clone/
   |- migrations/
@@ -131,6 +132,7 @@ yt-clone/
   |- tsconfig.json
   |- vercel.ts
 ```
+
 <!--- FOLDER_STRUCTURE_END --->
 
 <br />
@@ -340,6 +342,7 @@ Useful resources and dependencies that are used in NewTube.
 - Thanks to CodeWithAntonio: https://codewithantonio.com/
 
 <!--- DEPENDENCIES_START --->
+
 - [@babel/eslint-parser](https://www.npmjs.com/package/@babel/eslint-parser): ^8.0.5
 - [@clerk/nextjs](https://www.npmjs.com/package/@clerk/nextjs): ^7.9.2
 - [@eslint/compat](https://www.npmjs.com/package/@eslint/compat): ^2.1.1
