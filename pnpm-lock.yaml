@@ -90,8 +90,8 @@ importers:
         specifier: ^16.3.5
         version: 16.3.5(@babel/core@8.0.5)(@types/node@26.5.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       openai:
-        specifier: ^7.15.0
-        version: 7.15.0(zod@4.6.5)
+        specifier: ^7.20.0
+        version: 7.20.0(zod@4.6.5)
       player.style:
         specifier: ^0.3.4
         version: 0.3.4(react@19.3.0)
@@ -3740,8 +3740,8 @@ packages:
     resolution: {integrity: sha512-XrsrhT5sybtKI6wakr2SPOlGZWWYbUXZ7a0jT8/QOeAPau+1X/bSegNe5YR75oJmEZQbKningirmGOEJCIk61Q==}
     engines: {node: '>=12.20.0'}
 
-  openai@7.15.0:
-    resolution: {integrity: sha512-2DIwesnPSduw68MFx7nAdgvshrgvS8WOan5W8+tgUMlAy/tY+Q41g80Pa+w/v64rHA6rtn+dketa8QvMVxU96w==}
+  openai@7.20.0:
+    resolution: {integrity: sha512-5x5ru4cKEvEqHqYZbdIbT57OE7KqmP9YYxZiUKuKng016grOHXqom1vmu34MTPPW30q+lcP9RhxAbaRse+Xlcw==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       '@aws-sdk/credential-provider-node': '>=3.972.0 <4'
@@ -7786,7 +7786,7 @@ snapshots:
 
   obug@2.2.1: {}
 
-  openai@7.15.0(zod@4.6.5):
+  openai@7.20.0(zod@4.6.5):
     optionalDependencies:
       zod: 4.6.5
 
