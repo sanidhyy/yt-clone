@@ -22,7 +22,7 @@
 	"dependencies": {
 		"@clerk/nextjs": "^7.9.2",
 		"@hookform/resolvers": "^5.9.1",
-		"@mux/mux-node": "^15.1.0",
+		"@mux/mux-node": "^15.3.0",
 		"@mux/mux-uploader-react": "^1.5.0",
 		"@mux/mux-video-react": "^0.31.3",
 		"@neondatabase/serverless": "^1.1.0",
