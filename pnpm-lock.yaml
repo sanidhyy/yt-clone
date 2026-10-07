@@ -21,8 +21,8 @@ importers:
         specifier: ^1.5.0
         version: 1.5.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@mux/mux-video-react':
-        specifier: ^0.31.3
-        version: 0.31.3(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: ^0.31.4
+        version: 0.31.4(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@neondatabase/serverless':
         specifier: ^1.1.0
         version: 1.1.0
@@ -1247,6 +1247,7 @@ packages:
 
   '@mux/mux-node@15.3.0':
     resolution: {integrity: sha512-gpsSjyL9aReV1caHoNLap1edyAs1vJJ1/tJuFQuXVVgU8jSwSpj+yha+bB/EsbhWJotVQFL6OS1H9+iZBLxu5A==}
+    deprecated: '@mux/mux-node was renamed to @mux/ts. 15.5.0 is the final release under this name; install @mux/ts for all future releases. Migration guide: https://github.com/muxinc/mux-ts/blob/main/MIGRATION.md'
     hasBin: true
 
   '@mux/mux-uploader-react@1.5.0':
@@ -1265,8 +1266,8 @@ packages:
   '@mux/mux-uploader@1.5.0':
     resolution: {integrity: sha512-a6FbE8kAl72jYjQ92/fkiIn2YyhXQayndzdc9lJ+gXhQEYXily+ynUojFsZwlPUxi6xTj5Zu7wcSxK0H5JU20Q==}
 
-  '@mux/mux-video-react@0.31.3':
-    resolution: {integrity: sha512-gb9JIuEqLOndi2a3+QUCHv7Ai+LaDtOXP3Fv5ACPPeBoFiiiawjHa8q1gvlIAXbFn6UYF5FypzbtG2mN+H0HIg==}
+  '@mux/mux-video-react@0.31.4':
+    resolution: {integrity: sha512-5UqTf/W0h938luvej1Dgwl/tt/aBDc0M9yV5WhAr8XGCHTD+2SHXD359cjygxsPbid+NShPKVc2AvCsIjoRbTg==}
     peerDependencies:
       '@types/react': ^17.0.0 || ^17.0.0-0 || ^18 || ^18.0.0-0 || ^19 || ^19.0.0-0
       '@types/react-dom': '*'
@@ -1278,8 +1279,8 @@ packages:
       '@types/react-dom':
         optional: true
 
-  '@mux/playback-core@0.35.3':
-    resolution: {integrity: sha512-FbtCNYo0Bqyg+8SZJkP4Xz3PvdtxXruCYBRaFATE6z+8dMmotkR/62XkcRl1GHABNXNn/6W5ep0V3+JgtS42XA==}
+  '@mux/playback-core@0.35.4':
+    resolution: {integrity: sha512-MxetTf+BpobrSWFUdnQSodKdClPbsOcacEug8EqPefv76rxyTQF64l7RTTF1bUdVlvy6ooqsyEKdR2jK+VS5UQ==}
 
   '@mux/upchunk@3.5.0':
     resolution: {integrity: sha512-D+TtvlujlZQjh5I+vFzJ31h5E1uVpEaLdR8M3BNaCFbVLnFMZs8J/L/fYSUyVGnyHT/yDtPHn/IHKdo3G6oSjA==}
@@ -3296,8 +3297,8 @@ packages:
   hermes-parser@0.25.1:
     resolution: {integrity: sha512-6pEjquH3rqaI6cYAXYPcz9MS4rY6R4ngRgrgfDshRptUZIc3lw0MCIJIGDj9++mfySOuPTHB4nrSW99BCvOPIA==}
 
-  hls.js@1.6.19:
-    resolution: {integrity: sha512-A//aZeaAgM5rgUCbTURD4gkfyw5Uag2/4Jky7CfDOukL/DN+P5DjbgK2BYteyP3/KnCkPfkGVkbLxQG2T0AbUQ==}
+  hls.js@1.7.3:
+    resolution: {integrity: sha512-MsPlx6yVW4Qv4C7mEVou4/gk/5cN2dVxOTnrNjPSmyH2f0Ln+/UkG10Ax1PE6OvrmTVPKgQYozTtBaPOuCzq7A==}
 
   hookified@1.15.1:
     resolution: {integrity: sha512-MvG/clsADq1GPM2KGo2nyfaWVyn9naPiXrqIe4jYjXNZQt238kWyOGrsyc/DmRAQ+Re6yeo6yX/yoNCG5KAEVg==}
@@ -5236,9 +5237,9 @@ snapshots:
     dependencies:
       '@mux/upchunk': 3.5.0
 
-  '@mux/mux-video-react@0.31.3(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@mux/mux-video-react@0.31.4(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
-      '@mux/playback-core': 0.35.3
+      '@mux/playback-core': 0.35.4
       prop-types: 15.8.1
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
@@ -5246,9 +5247,9 @@ snapshots:
       '@types/react': 19.3.0
       '@types/react-dom': 19.3.0(@types/react@19.3.0)
 
-  '@mux/playback-core@0.35.3':
+  '@mux/playback-core@0.35.4':
     dependencies:
-      hls.js: 1.6.19
+      hls.js: 1.7.3
       mux-embed: 5.18.1
 
   '@mux/upchunk@3.5.0':
@@ -7360,7 +7361,7 @@ snapshots:
     dependencies:
       hermes-estree: 0.25.1
 
-  hls.js@1.6.19: {}
+  hls.js@1.7.3: {}
 
   hookified@1.15.1: {}
 
