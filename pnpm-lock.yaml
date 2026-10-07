@@ -90,8 +90,8 @@ importers:
         specifier: ^16.3.6
         version: 16.3.6(@babel/core@8.0.5)(@types/node@26.6.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       openai:
-        specifier: ^7.20.0
-        version: 7.20.0(zod@4.6.5)
+        specifier: ^7.27.0
+        version: 7.27.0(zod@4.6.5)
       player.style:
         specifier: ^0.3.4
         version: 0.3.4(react@19.3.0)
@@ -1247,6 +1247,7 @@ packages:
 
   '@mux/mux-node@15.3.0':
     resolution: {integrity: sha512-gpsSjyL9aReV1caHoNLap1edyAs1vJJ1/tJuFQuXVVgU8jSwSpj+yha+bB/EsbhWJotVQFL6OS1H9+iZBLxu5A==}
+    deprecated: '@mux/mux-node was renamed to @mux/ts. 15.5.0 is the final release under this name; install @mux/ts for all future releases. Migration guide: https://github.com/muxinc/mux-ts/blob/main/MIGRATION.md'
     hasBin: true
 
   '@mux/mux-uploader-react@1.5.0':
@@ -3740,8 +3741,8 @@ packages:
     resolution: {integrity: sha512-XrsrhT5sybtKI6wakr2SPOlGZWWYbUXZ7a0jT8/QOeAPau+1X/bSegNe5YR75oJmEZQbKningirmGOEJCIk61Q==}
     engines: {node: '>=12.20.0'}
 
-  openai@7.20.0:
-    resolution: {integrity: sha512-5x5ru4cKEvEqHqYZbdIbT57OE7KqmP9YYxZiUKuKng016grOHXqom1vmu34MTPPW30q+lcP9RhxAbaRse+Xlcw==}
+  openai@7.27.0:
+    resolution: {integrity: sha512-QDo1FvnRDZn15YwGVOhT9vpyypDiLphkd/7a4mcURWf5upMoEetgA6o4DJeII+ZZkC6m6DvlilCwii3+ynDcTw==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       '@aws-sdk/credential-provider-node': '>=3.972.0 <4'
@@ -7790,7 +7791,7 @@ snapshots:
 
   obug@2.2.1: {}
 
-  openai@7.20.0(zod@4.6.5):
+  openai@7.27.0(zod@4.6.5):
     optionalDependencies:
       zod: 4.6.5
 
