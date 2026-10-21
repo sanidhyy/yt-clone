@@ -347,7 +347,7 @@ Useful resources and dependencies that are used in NewTube.
 - [@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers): ^5.9.2
 - [@ianvs/prettier-plugin-sort-imports](https://www.npmjs.com/package/@ianvs/prettier-plugin-sort-imports): ^4.7.1
 - [@mux/mux-node](https://www.npmjs.com/package/@mux/mux-node): ^15.3.0
-- [@mux/mux-uploader-react](https://www.npmjs.com/package/@mux/mux-uploader-react): ^1.5.0
+- [@mux/mux-uploader-react](https://www.npmjs.com/package/@mux/mux-uploader-react): ^1.6.0
 - [@mux/mux-video-react](https://www.npmjs.com/package/@mux/mux-video-react): ^0.31.4
 - [@neondatabase/serverless](https://www.npmjs.com/package/@neondatabase/serverless): ^1.2.0
 - [@radix-ui/react-visually-hidden](https://www.npmjs.com/package/@radix-ui/react-visually-hidden): ^1.2.13
