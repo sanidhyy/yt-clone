@@ -24,7 +24,7 @@
 		"@hookform/resolvers": "^5.9.2",
 		"@mux/mux-node": "^15.3.0",
 		"@mux/mux-uploader-react": "^1.6.0",
-		"@mux/mux-video-react": "^0.31.4",
+		"@mux/mux-video-react": "^0.31.5",
 		"@neondatabase/serverless": "^1.2.0",
 		"@radix-ui/react-visually-hidden": "^1.2.13",
 		"@t3-oss/env-nextjs": "^0.13.11",
