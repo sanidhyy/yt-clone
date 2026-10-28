@@ -387,7 +387,7 @@ Useful resources and dependencies that are used in NewTube.
 - [postcss](https://www.npmjs.com/package/postcss): ^8
 - [prettier](https://www.npmjs.com/package/prettier): ^3.9.9
 - [prettier-plugin-tailwindcss](https://www.npmjs.com/package/prettier-plugin-tailwindcss): ^0.8.1
-- [radix-ui](https://www.npmjs.com/package/radix-ui): ^1.6.7
+- [radix-ui](https://www.npmjs.com/package/radix-ui): ^1.8.1
 - [react](https://www.npmjs.com/package/react): 19.3.0
 - [react-dom](https://www.npmjs.com/package/react-dom): 19.3.0
 - [react-error-boundary](https://www.npmjs.com/package/react-error-boundary): ^6.1.5
