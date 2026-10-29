@@ -381,7 +381,7 @@ Useful resources and dependencies that are used in NewTube.
 - [eslint-plugin-tailwindcss](https://www.npmjs.com/package/eslint-plugin-tailwindcss): ^4.4.0
 - [jiti](https://www.npmjs.com/package/jiti): ^2.7.0
 - [lucide-react](https://www.npmjs.com/package/lucide-react): ^1.61.0
-- [next](https://www.npmjs.com/package/next): ^16.3.8
+- [next](https://www.npmjs.com/package/next): ^16.4.1
 - [openai](https://www.npmjs.com/package/openai): ^7.27.0
 - [player.style](https://www.npmjs.com/package/player.style): ^0.3.4
 - [postcss](https://www.npmjs.com/package/postcss): ^8
@@ -402,7 +402,7 @@ Useful resources and dependencies that are used in NewTube.
 - [typescript](https://www.npmjs.com/package/typescript): ^6
 - [uploadthing](https://www.npmjs.com/package/uploadthing): ^7.7.4
 - [vaul](https://www.npmjs.com/package/vaul): ^1.1.2
-- [zod](https://www.npmjs.com/package/zod): ^4.6.5
+- [zod](https://www.npmjs.com/package/zod): ^4.6.6
 
 <!--- DEPENDENCIES_END --->
 
