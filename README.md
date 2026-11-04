@@ -366,7 +366,7 @@ Useful resources and dependencies that are used in NewTube.
 - [class-variance-authority](https://www.npmjs.com/package/class-variance-authority): ^0.7.1
 - [client-only](https://www.npmjs.com/package/client-only): ^0.0.1
 - [clsx](https://www.npmjs.com/package/clsx): ^2.1.1
-- [cn](https://www.npmjs.com/package/cn): ^0.3.0
+- [cn](https://www.npmjs.com/package/cn): ^0.5.1
 - [concurrently](https://www.npmjs.com/package/concurrently): ^10.0.5
 - [date-fns](https://www.npmjs.com/package/date-fns): ^4.4.0
 - [dotenv](https://www.npmjs.com/package/dotenv): ^17.4.2
