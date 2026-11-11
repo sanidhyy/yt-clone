@@ -69,8 +69,8 @@ importers:
         specifier: ^4.4.0
         version: 4.4.0
       dotenv:
-        specifier: ^17.4.2
-        version: 17.4.2
+        specifier: ^18.0.9
+        version: 18.0.9
       drizzle-orm:
         specifier: ^0.45.4
         version: 0.45.4(@neondatabase/serverless@1.2.0)
@@ -2875,9 +2875,10 @@ packages:
   dom-walk@0.1.2:
     resolution: {integrity: sha512-6QvTW9mrGeIegrFXdtQi9pk7O/nSK6lSdXW2eqUspN5LWD7UTji2Fqw5V2YLjBpHEoU9Xl/eUWNpDeZvoyOv2w==}
 
-  dotenv@17.4.2:
-    resolution: {integrity: sha512-nI4U3TottKAcAD9LLud4Cb7b2QztQMUEfHbvhTH09bqXTxnSie8WnjPALV/WMCrJZ6UV/qHJ6L03OqO3LcdYZw==}
+  dotenv@18.0.9:
+    resolution: {integrity: sha512-3fVOW4cB02R066PUSwn8O4TJyz9NckQl7F81blIbaq9jKBm2tSmOKky7ZHIXzGvkVPXCSn6jkpziBPZdGFs8Tw==}
     engines: {node: '>=12'}
+    hasBin: true
 
   drizzle-kit@0.31.10:
     resolution: {integrity: sha512-7OZcmQUrdGI+DUNNsKBn1aW8qSoKuTH7d0mYgSP8bAzdFzKoovxEFnoGQp2dVs82EOJeYycqRtciopszwUf8bw==}
@@ -6953,7 +6954,7 @@ snapshots:
 
   dom-walk@0.1.2: {}
 
-  dotenv@17.4.2: {}
+  dotenv@18.0.9: {}
 
   drizzle-kit@0.31.10:
     dependencies:
