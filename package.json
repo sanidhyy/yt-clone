@@ -71,7 +71,7 @@
 		"@types/node": "^26",
 		"@types/react": "19.3.0",
 		"@types/react-dom": "19.3.0",
-		"concurrently": "^10.0.5",
+		"concurrently": "^10.0.7",
 		"drizzle-kit": "^0.31.10",
 		"eslint": "^10",
 		"eslint-config-next": "16.4.3",
