@@ -369,7 +369,7 @@ Useful resources and dependencies that are used in NewTube.
 - [cn](https://www.npmjs.com/package/cn): ^0.5.1
 - [concurrently](https://www.npmjs.com/package/concurrently): ^10.0.7
 - [date-fns](https://www.npmjs.com/package/date-fns): ^4.4.0
-- [dotenv](https://www.npmjs.com/package/dotenv): ^17.4.2
+- [dotenv](https://www.npmjs.com/package/dotenv): ^18.0.9
 - [drizzle-kit](https://www.npmjs.com/package/drizzle-kit): ^0.31.10
 - [drizzle-orm](https://www.npmjs.com/package/drizzle-orm): ^0.45.4
 - [drizzle-zod](https://www.npmjs.com/package/drizzle-zod): ^0.8.3
