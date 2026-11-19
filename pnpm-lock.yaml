@@ -18,8 +18,8 @@ importers:
         specifier: ^15.3.0
         version: 15.3.0
       '@mux/mux-uploader-react':
-        specifier: ^1.6.0
-        version: 1.6.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^1.6.1
+        version: 1.6.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@mux/mux-video-react':
         specifier: ^0.31.5
         version: 0.31.5(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -1253,8 +1253,8 @@ packages:
     deprecated: '@mux/mux-node was renamed to @mux/ts. 15.5.0 is the final release under this name; install @mux/ts for all future releases. Migration guide: https://github.com/muxinc/mux-ts/blob/main/MIGRATION.md'
     hasBin: true
 
-  '@mux/mux-uploader-react@1.6.0':
-    resolution: {integrity: sha512-SGwn1+ULCUEsrXtUPV728Ey1EAp9J7C89c6prEPVInOrDf1JoEENrzTJbT7SUKzKMojeDhhO3Do+EqSf2JgmRA==}
+  '@mux/mux-uploader-react@1.6.1':
+    resolution: {integrity: sha512-XvHK8ehLfSY4Sqih6fWZ8DYHEK8zSpXCGHR3YwwkGbmDo/JGpx+VRmKfnOVQWuQBpfgx1Egjl0/ADW2aipw98w==}
     peerDependencies:
       '@types/react': ^17.0.0 || ^17.0.0-0 || ^18 || ^18.0.0-0 || ^19 || ^19.0.0-0
       '@types/react-dom': '*'
@@ -1266,8 +1266,8 @@ packages:
       '@types/react-dom':
         optional: true
 
-  '@mux/mux-uploader@1.6.0':
-    resolution: {integrity: sha512-09lH10CIFZi3Rnx6s7vpICGoByebqbXegaDncEK3x3PrDlMiXteg7vj8UNvMMBntC3S771aKMpPrXLR8ajuHGQ==}
+  '@mux/mux-uploader@1.6.1':
+    resolution: {integrity: sha512-6WkLy1Sl+i39YaTDNGm3ls+/W4a4lKz/+4VrqdFaFUa/8a/bsMH7onX3bqqW+bCqesHegQ7LRSB+bIOxijK5vw==}
 
   '@mux/mux-video-react@0.31.5':
     resolution: {integrity: sha512-KHU1SP1CBQmGAulAgPSRkMxm+nFyzuyTkRQ9Y1cdPAPVr3hXfuZTwiq6SkWJNITsHsnuAx8XuiHtM782IQhkIg==}
@@ -5390,9 +5390,9 @@ snapshots:
 
   '@mux/mux-node@15.3.0': {}
 
-  '@mux/mux-uploader-react@1.6.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@mux/mux-uploader-react@1.6.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
-      '@mux/mux-uploader': 1.6.0
+      '@mux/mux-uploader': 1.6.1
       prop-types: 15.8.1
       react: 19.3.1
       react-dom: 19.3.1(react@19.3.1)
@@ -5400,7 +5400,7 @@ snapshots:
       '@types/react': 19.3.0
       '@types/react-dom': 19.3.0(@types/react@19.3.0)
 
-  '@mux/mux-uploader@1.6.0':
+  '@mux/mux-uploader@1.6.1':
     dependencies:
       '@mux/upchunk': 3.5.0
 
