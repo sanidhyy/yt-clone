@@ -349,7 +349,7 @@ Useful resources and dependencies that are used in NewTube.
 - [@mux/mux-node](https://www.npmjs.com/package/@mux/mux-node): ^15.3.0
 - [@mux/mux-uploader-react](https://www.npmjs.com/package/@mux/mux-uploader-react): ^1.6.0
 - [@mux/mux-video-react](https://www.npmjs.com/package/@mux/mux-video-react): ^0.31.5
-- [@neondatabase/serverless](https://www.npmjs.com/package/@neondatabase/serverless): ^1.2.0
+- [@neondatabase/serverless](https://www.npmjs.com/package/@neondatabase/serverless): ^1.2.1
 - [@radix-ui/react-visually-hidden](https://www.npmjs.com/package/@radix-ui/react-visually-hidden): ^1.2.13
 - [@t3-oss/env-nextjs](https://www.npmjs.com/package/@t3-oss/env-nextjs): ^0.13.11
 - [@tailwindcss/postcss](https://www.npmjs.com/package/@tailwindcss/postcss): ^4.3.3
@@ -366,7 +366,7 @@ Useful resources and dependencies that are used in NewTube.
 - [class-variance-authority](https://www.npmjs.com/package/class-variance-authority): ^0.7.1
 - [client-only](https://www.npmjs.com/package/client-only): ^0.0.1
 - [clsx](https://www.npmjs.com/package/clsx): ^2.1.1
-- [cn](https://www.npmjs.com/package/cn): ^0.5.1
+- [cn](https://www.npmjs.com/package/cn): ^0.5.2
 - [concurrently](https://www.npmjs.com/package/concurrently): ^10.0.7
 - [date-fns](https://www.npmjs.com/package/date-fns): ^4.4.0
 - [dotenv](https://www.npmjs.com/package/dotenv): ^18.0.9
