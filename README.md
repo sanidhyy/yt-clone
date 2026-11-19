@@ -358,8 +358,8 @@ Useful resources and dependencies that are used in NewTube.
 - [@trpc/react-query](https://www.npmjs.com/package/@trpc/react-query): ^11.18.0
 - [@trpc/server](https://www.npmjs.com/package/@trpc/server): ^11.18.0
 - [@types/node](https://www.npmjs.com/package/@types/node): ^26
-- [@types/react](https://www.npmjs.com/package/@types/react): 19.3.0
-- [@types/react-dom](https://www.npmjs.com/package/@types/react-dom): 19.3.0
+- [@types/react](https://www.npmjs.com/package/@types/react): ^19
+- [@types/react-dom](https://www.npmjs.com/package/@types/react-dom): ^19
 - [@uploadthing/react](https://www.npmjs.com/package/@uploadthing/react): ^7.3.3
 - [@upstash/workflow](https://www.npmjs.com/package/@upstash/workflow): ^1.5.1
 - [@vercel/config](https://www.npmjs.com/package/@vercel/config): ^0.13.0
@@ -388,8 +388,8 @@ Useful resources and dependencies that are used in NewTube.
 - [prettier](https://www.npmjs.com/package/prettier): ^3.9.9
 - [prettier-plugin-tailwindcss](https://www.npmjs.com/package/prettier-plugin-tailwindcss): ^0.8.1
 - [radix-ui](https://www.npmjs.com/package/radix-ui): ^1.8.1
-- [react](https://www.npmjs.com/package/react): 19.3.0
-- [react-dom](https://www.npmjs.com/package/react-dom): 19.3.0
+- [react](https://www.npmjs.com/package/react): 19.3.1
+- [react-dom](https://www.npmjs.com/package/react-dom): 19.3.1
 - [react-error-boundary](https://www.npmjs.com/package/react-error-boundary): ^6.1.5
 - [react-hook-form](https://www.npmjs.com/package/react-hook-form): ^7.89.0
 - [react-hot-toast](https://www.npmjs.com/package/react-hot-toast): ^2.6.1
