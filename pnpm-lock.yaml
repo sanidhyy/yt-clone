@@ -46,7 +46,7 @@ importers:
         version: 11.18.0(typescript@6.0.3)
       '@uploadthing/react':
         specifier: ^7.3.3
-        version: 7.3.3(next@16.4.5(@babel/core@8.0.5)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)(uploadthing@7.7.4(next@16.4.5(@babel/core@8.0.5)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(tailwindcss@4.3.3))
+        version: 7.3.3(next@16.4.5(@babel/core@8.0.5)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)(uploadthing@7.7.4(next@16.4.5(@babel/core@8.0.5)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(tailwindcss@4.3.5))
       '@upstash/workflow':
         specifier: ^1.5.1
         version: 1.5.1(zod@4.6.7)
@@ -124,7 +124,7 @@ importers:
         version: 3.7.0
       uploadthing:
         specifier: ^7.7.4
-        version: 7.7.4(next@16.4.5(@babel/core@8.0.5)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(tailwindcss@4.3.3)
+        version: 7.7.4(next@16.4.5(@babel/core@8.0.5)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(tailwindcss@4.3.5)
       vaul:
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -176,7 +176,7 @@ importers:
         version: 5.5.7(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.9)
       eslint-plugin-tailwindcss:
         specifier: ^4.4.0
-        version: 4.4.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(tailwindcss@4.3.3)(typescript@6.0.3)
+        version: 4.4.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(tailwindcss@4.3.5)(typescript@6.0.3)
       postcss:
         specifier: ^8
         version: 8.5.31
@@ -187,8 +187,8 @@ importers:
         specifier: ^0.8.1
         version: 0.8.1(@ianvs/prettier-plugin-sort-imports@4.7.1(prettier@3.9.9)(supports-color@10.2.2))(prettier@3.9.9)
       tailwindcss:
-        specifier: ^4.3.3
-        version: 4.3.3
+        specifier: ^4.3.5
+        version: 4.3.5
       tsx:
         specifier: ^4.23.15
         version: 4.23.15
@@ -4391,6 +4391,9 @@ packages:
   tailwindcss@4.3.3:
     resolution: {integrity: sha512-gOhV3P7ufE62QDGg1zVaTgCR+EtPv92k2nIhVcVKcLmxT1sUBsQGhnZj175j+MqRt4zLF7ic+sCYjfhxMxj7YQ==}
 
+  tailwindcss@4.3.5:
+    resolution: {integrity: sha512-FcQk9BuffmEHJP2G0XmB2SplU1aLTI7j07Kunk+U74Ny+XiWOtzXz9aujFZ/avntw1e2cOv/3PkgzflQ7gX2vQ==}
+
   tapable@2.3.3:
     resolution: {integrity: sha512-uxc/zpqFg6x7C8vOE7lh6Lbda8eEL9zmVm/PLeTPBRhh1xCgdWaQ+J1CUieGpIfm2HdtsUpRv+HshiasBMcc6A==}
     engines: {node: '>=6'}
@@ -6659,12 +6662,12 @@ snapshots:
 
   '@uploadthing/mime-types@0.3.6': {}
 
-  '@uploadthing/react@7.3.3(next@16.4.5(@babel/core@8.0.5)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)(uploadthing@7.7.4(next@16.4.5(@babel/core@8.0.5)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(tailwindcss@4.3.3))':
+  '@uploadthing/react@7.3.3(next@16.4.5(@babel/core@8.0.5)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)(uploadthing@7.7.4(next@16.4.5(@babel/core@8.0.5)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(tailwindcss@4.3.5))':
     dependencies:
       '@uploadthing/shared': 7.1.10
       file-selector: 0.6.0
       react: 19.3.0
-      uploadthing: 7.7.4(next@16.4.5(@babel/core@8.0.5)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(tailwindcss@4.3.3)
+      uploadthing: 7.7.4(next@16.4.5(@babel/core@8.0.5)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(tailwindcss@4.3.5)
     optionalDependencies:
       next: 16.4.5(@babel/core@8.0.5)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
 
@@ -7371,15 +7374,15 @@ snapshots:
       string.prototype.matchall: 4.1.0
       string.prototype.repeat: 1.0.0
 
-  eslint-plugin-tailwindcss@4.4.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(tailwindcss@4.3.3)(typescript@6.0.3):
+  eslint-plugin-tailwindcss@4.4.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(tailwindcss@4.3.5)(typescript@6.0.3):
     dependencies:
       '@typescript-eslint/utils': 8.70.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint: 10.10.0(jiti@2.7.0)(supports-color@10.2.2)
       postcss: 8.5.31
       postcss-nested: 7.0.2(postcss@8.5.31)
       synckit: 0.11.13
-      tailwind-api-utils: 1.0.3(tailwindcss@4.3.3)
-      tailwindcss: 4.3.3
+      tailwind-api-utils: 1.0.3(tailwindcss@4.3.5)
+      tailwindcss: 4.3.5
     optionalDependencies:
       typescript: 6.0.3
     transitivePeerDependencies:
@@ -8604,16 +8607,18 @@ snapshots:
       '@dual-bundle/import-meta-resolve': 4.2.1
       '@pkgr/core': 0.3.6
 
-  tailwind-api-utils@1.0.3(tailwindcss@4.3.3):
+  tailwind-api-utils@1.0.3(tailwindcss@4.3.5):
     dependencies:
       enhanced-resolve: 5.25.0
       jiti: 2.7.0
       local-pkg: 1.2.1
-      tailwindcss: 4.3.3
+      tailwindcss: 4.3.5
 
   tailwind-merge@3.7.0: {}
 
   tailwindcss@4.3.3: {}
+
+  tailwindcss@4.3.5: {}
 
   tapable@2.3.3: {}
 
@@ -8747,7 +8752,7 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.1
 
-  uploadthing@7.7.4(next@16.4.5(@babel/core@8.0.5)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(tailwindcss@4.3.3):
+  uploadthing@7.7.4(next@16.4.5(@babel/core@8.0.5)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(tailwindcss@4.3.5):
     dependencies:
       '@effect/platform': 0.90.3(effect@3.17.7)
       '@standard-schema/spec': 1.0.0-beta.4
@@ -8756,7 +8761,7 @@ snapshots:
       effect: 3.17.7
     optionalDependencies:
       next: 16.4.5(@babel/core@8.0.5)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      tailwindcss: 4.3.3
+      tailwindcss: 4.3.5
 
   uri-js@4.4.1:
     dependencies:
